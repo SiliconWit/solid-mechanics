@@ -29,10 +29,10 @@ A connecting rod that looks strong enough can fail in service if the designer di
 
 By the end of this unit, you will be able to:
 
-1. <Badge text="Analyze" variant="tip" /> real-world mechatronic systems to identify critical components under stress
-2. <Badge text="Define and calculate" variant="note" /> stress, strain, and material properties (Young's modulus, Poisson's ratio)
-3. <Badge text="Apply" variant="tip" /> Hooke's Law to predict material behavior under loading
-4. <Badge text="Solve" variant="caution" /> connecting rod stress problems during peak compression in crank-slider systems
+1. Analyze real-world mechatronic systems to identify critical components under stress
+2. Define and calculate stress, strain, and material properties (Young's modulus, Poisson's ratio)
+3. Apply Hooke's Law to predict material behavior under loading
+4. Solve connecting rod stress problems during peak compression in crank-slider systems
 
 ## Real-World System Problem: The Crank-Slider Mechanism
 
@@ -156,8 +156,8 @@ $$\sigma = E \cdot \epsilon$$
 </Card>
 
 :::tip[Material Selection Insight]
-<Badge text="Higher E = Stiffer Material" variant="tip" /> → Less deformation under load  
-<Badge text="Lower E = More Flexible" variant="note" /> → More deformation, better for vibration damping
+Higher E = Stiffer Material → Less deformation under load  
+Lower E = More Flexible → More deformation, better for vibration damping
 :::
 
 ### Poisson's Ratio: Lateral Strain Effects
@@ -284,11 +284,11 @@ Now let's return to our crank-slider system and apply what we've learned to solv
 </Steps>
 
 :::note[Deformation Analysis]
-<Badge text="Elastic deformation" variant="tip" /> is usually **acceptable** in structural components
+Elastic deformation is usually **acceptable** in structural components
 
-<Badge text="Permanent deformation" variant="caution" /> occurs beyond yield strength
+Permanent deformation occurs beyond yield strength
 
-<Badge text="Failure" variant="danger" /> occurs at ultimate tensile strength
+Failure occurs at ultimate tensile strength
 :::
 
 </details>
@@ -329,10 +329,10 @@ In this unit, you learned to:
 4. **Solve** real connecting rod problems with safety factors
 
 **Key Design Principles:**
-- <Badge text="Strength Check" variant="success" />: σ_applied < σ_allowable
-- <Badge text="Stiffness Check" variant="tip" />: δ_applied < δ_allowable  
-- <Badge text="Fatigue Check" variant="caution" />: For cyclic loading
-- <Badge text="Buckling Check" variant="danger" />: For compression members
+- Strength Check: σ_applied < σ_allowable
+- Stiffness Check: δ_applied < δ_allowable  
+- Fatigue Check: For cyclic loading
+- Buckling Check: For compression members
 
 :::tip[Mechatronic Design Philosophy]
 **"Design for the weakest link"** - In complex mechatronic systems, identify and strengthen the component most likely to fail under normal operating conditions.

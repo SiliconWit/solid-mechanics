@@ -29,10 +29,10 @@ A CNC actuator shaft that stretches even a few micrometers under load throws off
 
 By the end of this unit, you will be able to:
 
-1. <Badge text="Analyze" variant="tip" /> axial stress and strain in precision actuator shafts
-2. <Badge text="Calculate" variant="note" /> allowable loads based on yield strength criteria
-3. <Badge text="Compare" variant="caution" /> material properties (aluminum vs steel) for actuator applications
-4. <Badge text="Solve" variant="tip" /> shaft sizing problems for CNC positioning systems
+1. Analyze axial stress and strain in precision actuator shafts
+2. Calculate allowable loads based on yield strength criteria
+3. Compare material properties (aluminum vs steel) for actuator applications
+4. Solve shaft sizing problems for CNC positioning systems
 
 ## Real-World System Problem: CNC Z-Axis Actuator Shaft
 
@@ -77,10 +77,10 @@ During machining operations:
 The choice affects system performance, cost, and precision.
 
 :::note[CNC Actuator Design Trade-offs]
-<Badge text="Precision" variant="success" />: Steel's higher stiffness reduces deformation  
-<Badge text="Speed" variant="tip" />: Aluminum's lighter weight enables faster motion  
-<Badge text="Cost" variant="note" />: Material and machining costs vary significantly  
-<Badge text="Durability" variant="caution" />: Steel offers better long-term wear resistance
+Precision: Steel's higher stiffness reduces deformation  
+Speed: Aluminum's lighter weight enables faster motion  
+Cost: Material and machining costs vary significantly  
+Durability: Steel offers better long-term wear resistance
 :::
 
 ## Fundamental Theory: Axial Stress and Strain
@@ -257,7 +257,7 @@ In precision applications, **stiffness requirements often exceed strength requir
 :::
 
 :::tip[Young's Modulus Impact]
-Steel's <Badge text="2.86× higher E" variant="success" /> compared to aluminum significantly reduces deformation, but still insufficient for this precision requirement.
+Steel's 2.86× higher E compared to aluminum significantly reduces deformation, but still insufficient for this precision requirement.
 :::
 
 </details>
@@ -309,10 +309,10 @@ Steel's <Badge text="2.86× higher E" variant="success" /> compared to aluminum 
 **Recommended: Steel 1045 shaft (16 mm diameter)**
 
 **Advantages:**
-- <Badge text="69% smaller diameter" variant="success" /> (16 mm vs 27 mm)
-- <Badge text="Compact design" variant="tip" /> fits space constraints
-- <Badge text="Similar mass" variant="note" /> (0.63 kg vs 0.62 kg)
-- <Badge text="Higher strength margin" variant="success" /> for future load increases
+- 69% smaller diameter (16 mm vs 27 mm)
+- Compact design fits space constraints
+- Similar mass (0.63 kg vs 0.62 kg)
+- Higher strength margin for future load increases
 
 **Trade-off:** Slightly higher material cost for superior performance
 :::
@@ -328,30 +328,30 @@ Steel's <Badge text="2.86× higher E" variant="success" /> compared to aluminum 
 
 :::note[Aluminum Applications in Mechatronics]
 ✅ **Excellent for:**
-- <Badge text="High-speed robotics" variant="tip" />: Lower inertia enables faster acceleration
-- <Badge text="Thermal management" variant="note" />: 4× better thermal conductivity than steel
-- <Badge text="Corrosive environments" variant="success" />: Natural oxide layer protection
-- <Badge text="Weight-critical systems" variant="tip" />: Drones, portable equipment
+- High-speed robotics: Lower inertia enables faster acceleration
+- Thermal management: 4× better thermal conductivity than steel
+- Corrosive environments: Natural oxide layer protection
+- Weight-critical systems: Drones, portable equipment
 
 ❌ **Avoid when:**
-- <Badge text="Ultra-precision required" variant="danger" />: Lower E causes excessive deflection
-- <Badge text="High contact stresses" variant="caution" />: Lower hardness leads to wear
-- <Badge text="Fatigue-critical" variant="caution" />: Lower fatigue strength than steel
+- Ultra-precision required: Lower E causes excessive deflection
+- High contact stresses: Lower hardness leads to wear
+- Fatigue-critical: Lower fatigue strength than steel
 :::
 
 ### When to Choose Steel
 
 :::note[Steel Applications in Mechatronics]
 ✅ **Excellent for:**
-- <Badge text="Precision systems" variant="success" />: High E minimizes deflection
-- <Badge text="Load-bearing structures" variant="success" />: Superior strength and stiffness
-- <Badge text="Durable mechanisms" variant="tip" />: Excellent fatigue and wear resistance
-- <Badge text="Space-constrained designs" variant="note" />: Higher strength enables smaller sections
+- Precision systems: High E minimizes deflection
+- Load-bearing structures: Superior strength and stiffness
+- Durable mechanisms: Excellent fatigue and wear resistance
+- Space-constrained designs: Higher strength enables smaller sections
 
 ❌ **Avoid when:**
-- <Badge text="Weight-sensitive applications" variant="caution" />: 3× heavier than aluminum
-- <Badge text="High-frequency motion" variant="caution" />: Higher inertia limits acceleration
-- <Badge text="Budget constraints" variant="note" />: Higher material and machining costs
+- Weight-sensitive applications: 3× heavier than aluminum
+- High-frequency motion: Higher inertia limits acceleration
+- Budget constraints: Higher material and machining costs
 :::
 
 ## Summary and Next Steps
@@ -367,10 +367,10 @@ In this unit, you learned to:
 4. **Compare** aluminum vs steel for precision applications
 
 **Key Engineering Insights:**
-- <Badge text="Stiffness ∝ E" variant="tip" />: Material stiffness is material-dependent
-- <Badge text="Stiffness ∝ A" variant="note" />: Cross-sectional area linearly affects stiffness  
-- <Badge text="Strength ∝ A" variant="success" />: Doubling area doubles load capacity
-- <Badge text="Deformation ∝ 1/E" variant="caution" />: Higher E dramatically reduces deflection
+- Stiffness ∝ E: Material stiffness is material-dependent
+- Stiffness ∝ A: Cross-sectional area linearly affects stiffness  
+- Strength ∝ A: Doubling area doubles load capacity
+- Deformation ∝ 1/E: Higher E dramatically reduces deflection
 
 :::danger[Critical Design Rule]
 **Always check both strength AND stiffness criteria**. In precision mechatronics, stiffness requirements typically govern the design, leading to components that are over-designed for strength.
