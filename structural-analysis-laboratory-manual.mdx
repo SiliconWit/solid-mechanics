@@ -594,6 +594,10 @@ Coordinate System (FreeCAD Standard):
 This lab focuses on visualization and familiarity with FreeCAD. FEM analysis will be introduced in Lab 2.
 :::
 
+:::tip[Instrument it]
+This lab calculates and simulates the bending stress; on the real beam you would close the loop and measure it. A foil strain gauge bonded at the section of maximum moment, read through an HX711 or an instrumentation amplifier, gives the strain directly, and multiplying by the modulus gives a stress to compare against your analytical and FEM numbers. An [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/) reads the gauge and [logs the readings](https://siliconwit.io), turning the lab from a calculation into a measurement you can trust.
+:::
+
 ### Lab 1 Deliverables
 
 **Submit according to the [File Naming and Submission Standards](#file-naming-and-submission-standards) above.**

@@ -410,6 +410,10 @@ For a beam with length L, both loads act together:
 
 </Card>
 
+:::tip[Instrument it]
+A deflection you calculated is a prediction until you measure it on the real beam. A dial indicator or an LVDT reads the deflection directly, and a foil strain gauge bonded to the surface (through an HX711 or an instrumentation amplifier) gives you the strain, and so the stress, at the point you care about. An [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/) reads the gauge and [logs it](https://siliconwit.io), so you can confirm the beam behaves as the theory says before you trust it under load.
+:::
+
 ## Application 1: PCB Sagging in Rack (Electronics)
 
 <InArticleAd />
@@ -1254,6 +1258,10 @@ A CNC router or laser cutter uses a simply supported beam as the Y-axis gantry s
 </Steps>
 
 </details>
+
+:::tip[Instrument it]
+On a machine like this CNC gantry, deflection is not a one-time check, it sets your achievable tolerance on every cut. Mount a dial gauge or, better, a non-contact capacitive or eddy-current displacement probe to watch the rail deflect under real cutting load. An [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/) reads the probe and [streams](/education/iot-systems/) it to a [live trend](https://siliconwit.io) so you can correlate sag with feed rate and depth of cut, and dial in the parameters that hold your tolerance.
+:::
 
 ## Summary and Next Steps
 
