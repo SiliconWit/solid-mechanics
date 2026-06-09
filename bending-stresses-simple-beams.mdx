@@ -1010,6 +1010,10 @@ Now we'll use the flexural formula to calculate the bending stress for each load
 
 ---
 
+:::tip[Instrument it]
+Bending stress is invisible, but the strain that rides with it is not. Bond a foil strain gauge to the extreme fibre on the tension face at the section of maximum moment; the strain times Young's modulus is the bending stress you computed from Mc/I. A quarter-bridge read by an [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/) turns the flexure formula into a measured value you can [trend on siliconwit.io](https://siliconwit.io) and check against the allowable before the part takes a permanent set.
+:::
+
 ## Summary and Next Steps
 
 <InArticleAd />

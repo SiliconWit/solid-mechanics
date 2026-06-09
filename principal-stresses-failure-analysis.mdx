@@ -471,6 +471,10 @@ A bolted connection experiences eccentric loading creating non-uniform stress di
 
 </details>
 
+:::tip[Instrument it]
+The principal stresses that decide whether a part survives are exactly what a strain-gauge rosette measures. Bond a 0/45/90 rosette to the free surface at the critical point; from its three strains you compute the principal strains, their direction, and through Hooke's law the principal stresses that feed von Mises or Tresca. An [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/) sampling the three channels can [track the principal stress and its safety factor on siliconwit.io](https://siliconwit.io) and warn before the state reaches the yield envelope.
+:::
+
 ## Course Completion Summary
 
 <InArticleAd />

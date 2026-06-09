@@ -1132,6 +1132,10 @@ For a **rectangular cross-section** (width b, height h), formulas differ from ci
 
 </details>
 
+:::tip[Instrument it]
+A shaft carrying both bending and torque has a stress state no single gauge can read, but a strain-gauge rosette can. Bond a 0/45/90 rosette to the shaft surface at the critical section; its three strains give the principal strains and their direction, and through Hooke's law the principal stresses your combined-loading check needs. Wire the three channels into an [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/) and you can [stream the principal stress and its angle to siliconwit.io](https://siliconwit.io) and alarm as it climbs toward the yield envelope.
+:::
+
 ## Summary and Next Steps
 
 <InArticleAd />

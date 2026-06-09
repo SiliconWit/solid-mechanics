@@ -910,6 +910,10 @@ $$M(x) = 1500x - 150x^2 - 3150$$
 
 </details>
 
+:::tip[Instrument it]
+The bending moment at any section is something you can read off a beam in service. Bond a strain gauge to the top or bottom fibre where the moment is largest; the surface strain times Young's modulus times the section modulus gives the bending moment there, and a few gauges spaced along the span reconstruct the whole moment diagram. Read them with a quarter-bridge into an HX711 or an instrumentation amplifier and an [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/), and you can [watch the live moment on siliconwit.io](https://siliconwit.io) and catch an overload before the beam yields.
+:::
+
 ## Summary and Next Steps
 
 <InArticleAd />
