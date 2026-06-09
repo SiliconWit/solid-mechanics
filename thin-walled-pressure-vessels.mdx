@@ -5,6 +5,7 @@ contributors: "sam-macharia,jack-kojiro"
 pubDate: 2025-09-16
 tags: ["solid-mechanics", "pressure-vessels", "pneumatic-actuator", "hoop-stress", "longitudinal-stress"]
 excerpt: "Learn pressure vessel stress analysis by working three practical problems: a pneumatic actuator casing, a compressed-air receiver tank, and a spherical accumulator shell. Covers hoop stress, longitudinal stress, wall thickness sizing, and the geometry reason a sphere uses half the material of a cylinder at the same pressure."
+heroImage: "https://cdn.siliconwit.com/product-development/solid-mechanics-analyzer/pressure-vessel-diagram.png"
 ---
 
 import MechanicsOfMaterialsComments from '../../../../components/mechanics-of-materials/MechanicsOfMaterialsComments.astro';
@@ -34,6 +35,10 @@ By the end of this lesson, you will be able to:
 3. **Size** the minimum wall thickness for a given internal pressure and allowable stress
 4. **Evaluate** the safety factor of an existing wall against the material yield strength
 5. **Explain** why a spherical vessel carries wall stress in all directions equally and requires about half the wall material of an equivalent cylinder
+
+:::tip[Try it as you read]
+This lesson pairs with the [Pressure Vessel Simulator](/product-development/pressure-vessel-simulator/): pressurize a thin-walled cylinder and watch the hoop stress come out twice the longitudinal, then switch to a sphere and see the wall stress halve. The [Pressure Vessel Experiments](/education/mechanics-of-materials/pressure-vessel-experiments) reproduce the worked examples step by step with Python.
+:::
 
 ## Real-World System Problem: Pneumatic Actuator Casing
 
@@ -202,6 +207,12 @@ A compressed-air receiver stores energy between the compressor and the distribut
 
 **Key Question:** Is the 10 mm wall adequately safe, and how thin could the wall theoretically be at this pressure?
 :::
+
+Set this cylinder in the simulator and read the hoop and longitudinal stresses and the safety factor:
+
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '0.5rem 0 1rem' }}>
+  <LinkButton href="/product-development/pressure-vessel-simulator/" target="_blank" variant="primary">Open the Pressure Vessel Simulator</LinkButton>
+</div>
 
 ### Step 1: Verify the Thin-Wall Assumption
 

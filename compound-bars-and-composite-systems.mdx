@@ -5,6 +5,7 @@ contributors: "sam-macharia,jack-kojiro"
 pubDate: 2025-09-18
 tags: ["solid-mechanics", "compound-bars", "linear-actuator", "multi-material", "load-sharing"]
 excerpt: "Master the two canonical compound-bar arrangements: a parallel system where materials share the same deformation and split the load by axial stiffness, and a series system where the same force passes through each segment and the deflections add. Worked examples cover a linear actuator rod, a steel-core aluminum-tube column, and a stepped steel-aluminum tie rod."
+heroImage: "https://cdn.siliconwit.com/product-development/solid-mechanics-analyzer/axial-diagram.png"
 ---
 
 import MechanicsOfMaterialsComments from '../../../../components/mechanics-of-materials/MechanicsOfMaterialsComments.astro';
@@ -33,6 +34,10 @@ By the end of this lesson, you will be able to:
 2. **Apply** equilibrium and deformation compatibility to find the load carried by each material in a parallel system
 3. **Calculate** the stress in each segment and the common deflection when materials share the same shortening
 4. **Sum** segment elongations to find total deflection in a series compound bar carrying the same axial force throughout
+
+:::tip[Try it as you read]
+This lesson pairs with the [Axial Loading Simulator](/product-development/axial-loading-simulator/): build a compound bar and watch the load split between the two materials by axial stiffness, not by area, exactly as the analysis below predicts. The [Axial Loading Experiments](/education/mechanics-of-materials/axial-loading-experiments) reproduce the worked examples step by step with Python.
+:::
 
 ## Real-World System Problem: Multi-Material Actuator and Column Design
 
@@ -244,6 +249,12 @@ A structural column is built by sliding a solid steel rod through the centre of 
 
 **Key Question:** How does the 120 kN split between the steel and the aluminum, what is the stress in each, and by how much does the column shorten?
 :::
+
+Load a compound steel-and-aluminum bar in the simulator and watch the stiffer steel draw more than its area share of the load:
+
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '0.5rem 0 1rem' }}>
+  <LinkButton href="/product-development/axial-loading-simulator/" target="_blank" variant="primary">Open the Axial Loading Simulator</LinkButton>
+</div>
 
 ### Step 1: Cross-Sectional Areas
 

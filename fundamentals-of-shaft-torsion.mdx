@@ -5,6 +5,7 @@ contributors: "sam-macharia,jack-kojiro"
 pubDate: 2025-09-17
 tags: ["solid-mechanics", "torsion", "Geneva-mechanism", "crankshaft", "shear-stress", "angular-deformation"]
 excerpt: "Master torsional analysis through three worked examples: sizing a Geneva mechanism crankshaft, computing shear stress and twist for a power-transmitting shaft, and quantifying the material saving when a hollow shaft replaces a solid one."
+heroImage: "https://cdn.siliconwit.com/product-development/solid-mechanics-analyzer/shaft-torsion-diagram.png"
 ---
 
 import MechanicsOfMaterialsComments from '../../../../components/mechanics-of-materials/MechanicsOfMaterialsComments.astro';
@@ -33,6 +34,10 @@ By the end of this lesson, you will be able to:
 2. **Calculate** peak shear stress and angle of twist for solid and hollow circular shafts
 3. **Convert** power and rotational speed into torque, and apply the result to a shaft design
 4. **Compare** a hollow and a solid shaft carrying the same torque, and quantify the material saving
+
+:::tip[Try it as you read]
+This lesson pairs with the [Shaft Torsion Simulator](/product-development/shaft-torsion-simulator/): twist a shaft in 3D and read the shear stress across the radius and the angle of twist along the length, then compare a hollow section against a solid one. The [Shaft Torsion Experiments](/education/mechanics-of-materials/shaft-torsion-experiments) reproduce the worked examples step by step with Python.
+:::
 
 ## Real-World System Problem: Geneva Mechanism Crankshaft
 
@@ -232,6 +237,12 @@ A small conveyor drive unit has a 5 kW induction motor running at 960 rpm. The o
 
 **Key Question:** Does the 20 mm shaft keep shear stress within the 60 MPa allowable, and how many degrees does it twist over its 400 mm length?
 :::
+
+Enter the motor shaft in the simulator and read the peak shear stress and the angle of twist over its length:
+
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '0.5rem 0 1rem' }}>
+  <LinkButton href="/product-development/shaft-torsion-simulator/" target="_blank" variant="primary">Open the Shaft Torsion Simulator</LinkButton>
+</div>
 
 ### Step 1: Torque from Power and Speed
 

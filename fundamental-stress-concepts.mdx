@@ -5,6 +5,7 @@ contributors: "sam-macharia,jack-kojiro"
 pubDate: 2025-09-16
 tags: ["mechanics of materials", "solid-mechanics", "mechatronics", "crank-slider", "stress-strain", "connecting-rod"]
 excerpt: "Learn the fundamental quantities of mechanics of materials, stress, strain, Young's modulus, and Poisson's ratio, by analyzing three real parts: a connecting rod in compression, a precision tie rod in tension, and a clevis pin in double shear."
+heroImage: "https://cdn.siliconwit.com/product-development/solid-mechanics-analyzer/axial-diagram.png"
 ---
 
 import MechanicsOfMaterialsComments from '../../../../components/mechanics-of-materials/MechanicsOfMaterialsComments.astro';
@@ -33,6 +34,10 @@ By the end of this lesson, you will be able to:
 2. **Calculate** normal stress, shear stress, strain, and the material properties that link them (Young's modulus, Poisson's ratio)
 3. **Apply** Hooke's law to predict elastic deformation under tension, compression, and shear
 4. **Evaluate** a design against yield strength with a safety factor, and read the lateral contraction that Poisson's ratio predicts
+
+:::tip[Try it as you read]
+This lesson pairs with the [Axial Loading Simulator](/product-development/axial-loading-simulator/): load a single bar in tension and watch the stress, strain, and elongation update as you change the force, diameter, and material. The [Axial Loading Experiments](/education/mechanics-of-materials/axial-loading-experiments) reproduce the worked examples below step by step with Python.
+:::
 
 ## Real-World System Problem: The Crank-Slider Mechanism
 
@@ -184,10 +189,8 @@ Poisson's ratio becomes important wherever a part is loaded in more than one dir
 
 Return to the crank-slider and put the theory to work on the rod itself.
 
-<div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-  <TailwindWrapper>
-	![Four-stroke engine slider-crank mechanism in motion](./images/Slider-Crank-Mechanism.gif)
-  </TailwindWrapper>
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '0.25rem 0 1rem' }}>
+  <LinkButton href="/product-development/crank-slider-mechanism-simulator/" target="_blank" variant="primary" icon="rocket" iconPlacement="start">Open the Crank-Slider Simulator</LinkButton>
 </div>
 
 :::note[System Problem Statement]
@@ -282,6 +285,12 @@ A camera gantry, a CNC frame, and many robot structures use a thin steel tie rod
 
 **Key Question:** How far does the rod stretch, and by how much does its diameter shrink while loaded?
 :::
+
+Set a single steel bar to these values in the simulator and confirm the stress and elongation match the hand calculation below:
+
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '0.5rem 0 1rem' }}>
+  <LinkButton href="/product-development/axial-loading-simulator/" target="_blank" variant="primary">Open the Axial Loading Simulator</LinkButton>
+</div>
 
 ### Step 1: Tensile Stress and Safety Factor
 

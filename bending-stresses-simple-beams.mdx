@@ -5,6 +5,7 @@ contributors: "sam-macharia,naing-lin-htun,jack-kojiro"
 pubDate: 2025-10-17
 tags: ["solid-mechanics", "bending-stress", "beam-analysis", "flexural-formula", "structural-design", "pantograph", "crane-jib", "gantry-rail"]
 excerpt: "Master bending stress analysis through practical engineering applications including electric train pantographs, industrial crane jibs, and 3D printer gantry systems, covering the flexural formula, neutral axis concepts, stress distribution, and safety factor design for multiple beam configurations under various loading conditions."
+heroImage: "https://cdn.siliconwit.com/product-development/solid-mechanics-analyzer/beam-diagram.png"
 ---
 
 import MechanicsOfMaterialsComments from '../../../../components/mechanics-of-materials/MechanicsOfMaterialsComments.astro';
@@ -35,6 +36,10 @@ By the end of this lesson, you will be able to:
 2. Locate the neutral axis and identify maximum stress locations in beam cross-sections
 3. Analyze stress distribution and shear/moment diagrams for different beam types
 4. Design structural members for both tensile and compressive stress limits in real-world applications
+
+:::tip[Try it as you read]
+This lesson pairs with the [Beam Analysis Simulator](/product-development/beam-analysis-simulator/): choose a cross-section and watch the maximum bending stress respond as you change the load and the section dimensions. The [Beam Analysis Experiments](/education/mechanics-of-materials/beam-analysis-experiments) reproduce the worked examples step by step with Python.
+:::
 
 ## Engineering Beams: The Foundation of Structural Design
 
@@ -178,6 +183,12 @@ An electric train pantograph arm maintains contact with overhead power lines thr
 
 **Key Question:** Where does maximum bending stress occur in this pin-supported beam with spring loading, and does the design provide adequate safety margin for dynamic railway operations?
 :::
+
+Set this beam and section in the simulator and read the maximum bending stress directly:
+
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '0.5rem 0 1rem' }}>
+  <LinkButton href="/product-development/beam-analysis-simulator/" target="_blank" variant="primary">Open the Beam Analysis Simulator</LinkButton>
+</div>
 
 <Card title="🔧 Equivalent System Model" icon="document">
 <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>

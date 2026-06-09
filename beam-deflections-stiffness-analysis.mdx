@@ -5,6 +5,7 @@ contributors: "sam-macharia,jack-kojiro"
 pubDate: 2025-11-23
 tags: ["solid-mechanics", "beam-deflection", "elastic-deformation", "stiffness-analysis", "precision-engineering", "PCB-design", "medical-imaging", "CNC-machining", "mechatronics"]
 excerpt: "Learn beam deflection analysis through real-world precision applications: PCB sagging under component weight, C-arm fluoroscopy positioning, and CNC gantry rail stiffness. Master elastic curve equations, support configuration effects, and stiffness design strategies for electronics, medical, and manufacturing systems."
+heroImage: "https://cdn.siliconwit.com/product-development/solid-mechanics-analyzer/beam-diagram.png"
 ---
 
 import MechanicsOfMaterialsComments from '../../../../components/mechanics-of-materials/MechanicsOfMaterialsComments.astro';
@@ -33,6 +34,10 @@ By the end of this lesson, you will be able to:
 2. Apply superposition principles for complex loading scenarios
 3. Analyze how support configurations (cantilever, simply supported, fixed-fixed) affect deflection behavior
 4. Design structural members to meet stiffness requirements for precision applications
+
+:::tip[Try it as you read]
+This lesson pairs with the [Beam Analysis Simulator](/product-development/beam-analysis-simulator/): watch the deflected shape and the maximum deflection respond as you change the span, the load, and the section, and see why deflection grows so fast with length. The [Beam Analysis Experiments](/education/mechanics-of-materials/beam-analysis-experiments) reproduce the worked examples step by step with Python.
+:::
 
 ## Engineering Challenge: Deflection in Precision Systems
 
@@ -436,6 +441,12 @@ A printed circuit board (PCB) is mounted between two supports in an electronics 
 
 **Key Question:** How much does the PCB deflect under component weight, and what design changes can reduce sagging to protect solder joints?
 :::
+
+Set this beam in the simulator and read the maximum deflection as you vary the span:
+
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '0.5rem 0 1rem' }}>
+  <LinkButton href="/product-development/beam-analysis-simulator/" target="_blank" variant="primary">Open the Beam Analysis Simulator</LinkButton>
+</div>
 
 <Card title="🔧 Equivalent System Model" icon="document">
 <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>

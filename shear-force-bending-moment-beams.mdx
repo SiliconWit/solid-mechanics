@@ -6,6 +6,7 @@ pubDate: 2025-09-21
 tags: ["solid-mechanics", "structural-analysis", "shear-force", "bending-moment", "beam-design", "industrial-applications", "mechatronics", "material-handling"]
 excerpt: "Master shear force and bending moment analysis through real-world industrial applications: robotic arm cantilevers, conveyor support beams, and solar tracker structures. Learn to construct diagrams, identify critical sections, and apply equilibrium principles for safe structural design in mechatronics and automation systems."
 hashtags: ["#BeamAnalysis", "#StructuralMechanics", "#EngineeringDesign"]
+heroImage: "https://cdn.siliconwit.com/product-development/solid-mechanics-analyzer/beam-diagram.png"
 ---
 
 import MechanicsOfMaterialsComments from '../../../../components/mechanics-of-materials/MechanicsOfMaterialsComments.astro';
@@ -34,6 +35,10 @@ By the end of this lesson, you will be able to:
 2. **Identify** critical sections with maximum shear and moment values across diverse loading conditions
 3. **Apply** equilibrium principles to analyze beams under point loads, distributed loads, and combined loading scenarios
 4. **Determine** reaction forces for different support types including fixed, pinned, and roller supports
+
+:::tip[Try it as you read]
+This lesson pairs with the [Beam Analysis Simulator](/product-development/beam-analysis-simulator/): place point loads and distributed loads on a beam and watch the shear-force and bending-moment diagrams build as you drag the loads. The [Beam Analysis Experiments](/education/mechanics-of-materials/beam-analysis-experiments) reproduce the worked examples step by step with Python.
+:::
 
 ## Real-World Engineering Challenge: Beam Analysis in Industrial Automation Systems
 
@@ -342,6 +347,12 @@ A material handling robotic arm is modeled as a cantilever beam carrying both it
 
 **Key Question:** What are the maximum shear force and bending moment for this robotic arm?
 :::
+
+Build this beam in the simulator and watch its shear-force and bending-moment diagrams form:
+
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '0.5rem 0 1rem' }}>
+  <LinkButton href="/product-development/beam-analysis-simulator/" target="_blank" variant="primary">Open the Beam Analysis Simulator</LinkButton>
+</div>
 
 <Card title="🔧 Equivalent System Model" icon="document">
 <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>

@@ -5,6 +5,7 @@ contributors: "sam-macharia,jack-kojiro"
 tags: ["solid-mechanics", "thermal-stress", "piston-cylinder", "extruder", "thermal-expansion"]
 excerpt: "Learn to calculate free thermal expansion, the thermal stress that develops when expansion is prevented, and the compatibility-based solution for compound assemblies where two materials with different expansion coefficients are bonded together."
 pubDate: 2025-09-18
+heroImage: "https://cdn.siliconwit.com/product-development/solid-mechanics-analyzer/thermal-stress-diagram.png"
 ---
 
 import MechanicsOfMaterialsComments from '../../../../components/mechanics-of-materials/MechanicsOfMaterialsComments.astro';
@@ -33,6 +34,10 @@ By the end of this lesson, you will be able to:
 2. **Derive** the thermal stress $\sigma = E \alpha \Delta T$ that develops in a fully restrained member, and check it against yield
 3. **Analyze** differential thermal expansion in a piston-cylinder interface to predict hot clearances
 4. **Solve** compound (bimetallic) assemblies by writing the compatibility equation and the force-balance equation, then computing the stress in each material
+
+:::tip[Try it as you read]
+This lesson pairs with the [Thermal Stress Simulator](/product-development/thermal-stress-simulator/): heat a constrained bar and watch a compressive stress build with no external load, then open a gap and see the stress stay at zero until the bar closes it. The [Thermal Stress Experiments](/education/mechanics-of-materials/thermal-stress-experiments) reproduce the worked examples step by step with Python.
+:::
 
 ## Real-World System Problem: Heated Piston-Cylinder Interface
 
@@ -247,6 +252,12 @@ A steel actuator rod is rigidly clamped at both ends inside an aluminum housing.
 
 **Key Question:** What compressive stress develops in the rod, what would the free expansion have been, and is the rod safe against yield?
 :::
+
+Clamp a steel bar in the simulator and ramp the temperature to watch the thermal stress climb toward yield:
+
+<div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '0.5rem 0 1rem' }}>
+  <LinkButton href="/product-development/thermal-stress-simulator/" target="_blank" variant="primary">Open the Thermal Stress Simulator</LinkButton>
+</div>
 
 ### Step 1: Would-Be Free Expansion
 
