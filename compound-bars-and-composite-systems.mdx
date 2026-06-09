@@ -1,10 +1,10 @@
 ---
-title: "Lesson 1.3: Compound Bars in Multi-Material Systems"
-description: "Analyzing linear actuator rods with steel-aluminum segments to understand load sharing and deformation compatibility"
+title: "Lesson 1.3: Compound Bars and Composite Systems"
+description: "Learn how to analyze compound bars by applying equilibrium, deformation compatibility, and axial stiffness to calculate load sharing, stress, and deflection in both parallel and series multi-material systems."
 contributors: "sam-macharia,jack-kojiro"
 pubDate: 2025-09-18
 tags: ["solid-mechanics", "compound-bars", "linear-actuator", "multi-material", "load-sharing"]
-excerpt: "Learn compound bar analysis through a linear actuator rod with steel and aluminum segments, covering load sharing, deformation compatibility, and stress distribution in multi-material systems."
+excerpt: "Master the two canonical compound-bar arrangements: a parallel system where materials share the same deformation and split the load by axial stiffness, and a series system where the same force passes through each segment and the deflections add. Worked examples cover a linear actuator rod, a steel-core aluminum-tube column, and a stepped steel-aluminum tie rod."
 ---
 
 import MechanicsOfMaterialsComments from '../../../../components/mechanics-of-materials/MechanicsOfMaterialsComments.astro';
@@ -23,324 +23,427 @@ import { Card, CardGrid, Badge, Steps, LinkButton, FileTree } from '@astrojs/sta
 
 
 
-When a load passes through two materials joined end to end, steel and aluminum for example, each material carries a different stress and stretches by a different amount. Ignoring this mismatch leads to designs where one segment yields while the other is barely loaded, or where differential expansion under temperature changes introduces unexpected forces at the joint. In this lesson you will analyze a linear actuator rod with steel and aluminum segments, learning how to enforce deformation compatibility, calculate load sharing, and predict stress distribution in multi-material systems. #CompoundBars #LoadSharing #MultiMaterial
+When a load passes through two materials joined end to end, steel and aluminum for example, each material carries a different stress and stretches by a different amount. Ignoring this mismatch leads to designs where one segment yields while the other is barely loaded, or where differential expansion under temperature changes introduces unexpected forces at the joint. In this lesson you will analyze three compound systems: a linear actuator rod (series, unequal areas), a steel-core aluminum-tube column (parallel, equal shortening), and a stepped tie rod (series, total elongation as a sum). #CompoundBars #LoadSharing #MultiMaterial
 
 ## Learning Objectives
 
-By the end of this unit, you will be able to:
+By the end of this lesson, you will be able to:
 
-1. **Analyze** stress distribution in multi-material actuator rods
-2. **Apply** deformation compatibility conditions in compound systems
-3. **Calculate** load sharing between steel and aluminum segments
-4. **Solve** complex multi-section linear actuator problems
+1. **Distinguish** between parallel (equal-deformation) and series (equal-force) compound bar arrangements
+2. **Apply** equilibrium and deformation compatibility to find the load carried by each material in a parallel system
+3. **Calculate** the stress in each segment and the common deflection when materials share the same shortening
+4. **Sum** segment elongations to find total deflection in a series compound bar carrying the same axial force throughout
 
-## Real-World System Problem: Linear Actuator with Compound Rod
-
-<InArticleAd />
-
-
-<BionicText method="advanced" intensity="medium" class="highlight">
-Industrial linear actuators often use compound rods—components made of different materials to optimize performance, cost, and weight. Understanding how loads are shared between materials is crucial for reliable design.
-</BionicText>
-
-### System Description
-
-**Linear Actuator Components:**
-- **Steel Section** (high-strength, compact design)
-- **Aluminum Section** (lightweight, cost-effective)
-- **Coupling Joint** (connects different materials)
-- **Load Application Point** (where external forces act)
-
-### The Engineering Challenge
-
-:::note[Key Compound Bar Principles]
-- Both materials **must deform by the same amount** (compatibility)
-- Each material **carries a different portion** of the total load (equilibrium)  
-- **Stress levels differ** in each material due to different properties
-:::
-
-> **Critical Question:** If a linear actuator rod has a steel section (high strength, high stiffness) and an aluminum section (lower strength, lower stiffness), how does the load split between them under a 20,000 N applied force?
-
-### Why Multi-Material Design Matters
-
-**Steel Section Advantages:**
-- High strength-to-volume ratio
-- Compact design for space-constrained areas
-- Superior fatigue resistance
-
-**Aluminum Section Advantages:**
-- Reduced overall system weight
-- Lower material cost
-- Better corrosion resistance
-
-**Combined Benefits:**
-- Optimized performance: Each material used where most effective
-- Cost efficiency: Expensive materials only where needed
-- Weight optimization: Light materials in low-stress regions
-- Design flexibility: Tailored properties for specific requirements
-
-:::tip[Multi-Material Design Philosophy]
-In compound systems, **"right material, right place"** - use each material where its properties provide the greatest advantage while minimizing disadvantages.
-:::
-
-## Fundamental Theory: Compound Bar Analysis
+## Real-World System Problem: Multi-Material Actuator and Column Design
 
 <InArticleAd />
 
 
-To solve our linear actuator problem, we need to understand how multiple materials work together under load.
+Industrial machines combine materials deliberately: a stiff steel core to carry the bulk of a compressive load, a lighter aluminum jacket to add cross-sectional area at low cost, or a steel-aluminum stepped rod to save weight along the lightly stressed length. Each combination falls into one of two fundamental arrangements, and the analysis depends on which one it is.
 
-### Basic Principles
+### The Compound Bar Problem
 
-**1. Static Equilibrium:**
-The sum of internal forces equals the applied external force:
-$$F_{steel} + F_{aluminum} = F_{applied}$$
+> **Engineering Question:** When a single axial load is applied to a system made of two or more materials, how does the load split between them, and how much does each material deform? The answer depends entirely on whether the materials deform together (parallel) or the same force passes through them in succession (series).
 
-**2. Deformation Compatibility:**
-Both sections must elongate by the same total amount:
-$$\delta_{steel} = \delta_{aluminum} = \delta_{total}$$
+### Why Multi-Material Analysis Matters
 
-**3. Individual Section Behavior:**
-Each section follows Hooke's Law:
-$$\delta_i = \frac{F_i L_i}{A_i E_i}$$
+<CardGrid>
+  <Card title="Preventing hidden overload" icon="warning">
+  In a parallel system, the stiffer material attracts more load than its area alone would suggest. Ignoring this can leave one material near its yield limit while the other is barely stressed.
+  </Card>
+  <Card title="Weight and cost optimization" icon="setting">
+  Using aluminum where stresses are low and steel only where they are high can cut component weight by 30 to 40 percent without compromising strength.
+  </Card>
+  <Card title="Deformation compatibility" icon="puzzle">
+  Whenever two materials are bonded or bolted together, their deformations must match at every interface. Violating this constraint is the most common error in compound bar analysis.
+  </Card>
+  <Card title="System-level reliability" icon="rocket">
+  A compound rod that yields in one material will redistribute load to the other, often catastrophically. The analysis predicts and prevents that redistribution.
+  </Card>
+</CardGrid>
 
-### Load Distribution Analysis
-
-From compatibility and equilibrium:
-
-$$\frac{F_{steel} L_{steel}}{A_{steel} E_{steel}} = \frac{F_{aluminum} L_{aluminum}}{A_{aluminum} E_{aluminum}}$$
-
-This leads to the load distribution:
-
-$$F_{steel} = \frac{F_{applied} \cdot \frac{A_{steel} E_{steel}}{L_{steel}}}{\frac{A_{steel} E_{steel}}{L_{steel}} + \frac{A_{aluminum} E_{aluminum}}{L_{aluminum}}}$$
-
-$$F_{aluminum} = F_{applied} - F_{steel}$$
-
-### Stiffness Concept
-
-Each section has an **axial stiffness**:
-$$k_i = \frac{A_i E_i}{L_i}$$
-
-The section with higher stiffness carries more load.
-
-:::note[Stiffness-Based Load Sharing]
-k = AE/L determines load distribution
-
-**Higher stiffness** → **More load carried**  
-**Lower stiffness** → **Less load carried**
-
-This is fundamentally different from single-material systems where stress is uniform.
-:::
-
-<Tabs>
-  <TabItem label="Steel Properties">
-    
-    **Typical Steel (1045):**
-    - $E_{steel}$ = 200 GPa
-    - $\sigma_{yield}$ = 530 MPa
-    - Higher stiffness per unit area
-    
-  </TabItem>
-  <TabItem label="Aluminum Properties">
-    
-    **Aluminum (6061-T6):**
-    - $E_{aluminum}$ = 70 GPa  
-    - $\sigma_{yield}$ = 270 MPa
-    - Lower stiffness but lighter weight
-    
-  </TabItem>
-  <TabItem label="Stiffness Comparison">
-    
-    **Steel advantage:** 200/70 = 2.86× stiffer
-    
-    **Load sharing:** Steel takes more load per unit area
-    
-    **Design impact:** Steel section can be smaller for same load capacity
-    
-  </TabItem>
-</Tabs>
-
-## Application: Linear Actuator Rod Analysis
+## Fundamental Theory: Parallel and Series Compound Bars
 
 <InArticleAd />
 
 
-Let's solve a realistic compound rod problem step by step.
+Every compound bar problem reduces to one of two arrangements, and getting the right one is the first step.
 
-:::note[Problem Statement]
-**Industrial Linear Actuator Rod Analysis**
+### Case 1: Parallel Arrangement (Equal Deformation)
 
-**What we need to determine:**
-1. **Load distribution** between steel and aluminum sections
-2. **Stress levels** in each material section
-3. **Total system deformation** under applied load
-4. **Safety factors** for both materials and design optimization
+In a parallel compound bar the materials share the same length and the same end conditions: both shorten (or lengthen) by exactly the same amount $\delta$. A steel rod inside an aluminum sleeve, both compressed between the same two rigid end plates, is the standard example.
 
-**Key Question:** How does a 20,000 N tensile force split between the steel and aluminum sections, and what are the resulting stresses and deformations?
+<Card title="Parallel: compatibility and load split" icon="document">
+Because both materials shorten by $\delta$ over length $L$, they share the same strain $\varepsilon$:
+
+$$\varepsilon = \frac{\delta}{L} \quad \text{(same for all materials)}$$
+
+The stress in each material follows from Hooke's law:
+
+$$\sigma_i = E_i \, \varepsilon$$
+
+Equilibrium requires the loads to sum to the applied total:
+
+$$P_{total} = \sum_i F_i = \sum_i \sigma_i A_i = \varepsilon \sum_i E_i A_i$$
+
+Solving for the load carried by material $i$:
+
+$$F_i = P_{total} \cdot \frac{E_i A_i}{\sum_j E_j A_j}$$
+
+The load splits in proportion to the **axial stiffness** $EA$ of each material, not its area alone.
+</Card>
+
+:::note[Why the stiffer material dominates]
+If steel has $E = 200$ GPa and aluminum has $E = 70$ GPa, a steel section with the same area as an aluminum section carries $200/70 \approx 2.86$ times more load. This ratio only changes if you deliberately give the softer material a larger cross-sectional area to compensate.
 :::
 
-<hr />
+### Case 2: Series Arrangement (Equal Force)
 
-**System Parameters:**
-- Industrial linear actuator rod (compound steel-aluminum system)
-- Applied force: **`F`** = 20,000 N (tensile)
-- **Steel Section:** Length L₁ = 200 mm, Diameter d₁ = 25 mm, Material: Steel 1045 (E₁ = 200 GPa, σ_yield = 530 MPa)
-- **Aluminum Section:** Length L₂ = 300 mm, Diameter d₂ = 30 mm, Material: Aluminum 6061-T6 (E₂ = 70 GPa, σ_yield = 270 MPa)
-- **`Safety factor`**: 3.0
+In a series compound bar, the axial force is the same in every segment (from equilibrium of any cross-section between the applied loads). The deformations of the segments add up to give the total elongation.
 
-<hr />
+<Card title="Series: same force, deflections add" icon="document">
+For each segment $i$ with length $L_i$, area $A_i$, and modulus $E_i$:
 
-### Step 1: Calculate Cross-Sectional Areas
+$$\sigma_i = \frac{F}{A_i}$$
+
+$$\delta_i = \frac{F L_i}{A_i E_i}$$
+
+Total elongation:
+
+$$\delta_{total} = \sum_i \delta_i = F \sum_i \frac{L_i}{A_i E_i}$$
+
+Each segment has its own stress level because the areas differ, but the force is the same throughout.
+</Card>
+
+:::tip[Checking which case applies]
+Ask: are the two materials attached at both ends to the same rigid plates (or the same attachment points), so neither can shorten more than the other? If yes, it is a parallel system. If one material is simply bolted end-to-end with the other so the load passes through them in sequence, it is a series system.
+:::
+
+## Application 1: Linear Actuator Rod with Steel and Aluminum Sections
+
+<InArticleAd />
+
+
+An industrial linear actuator rod is made in two sections joined end to end. The steel section is short and compact, sized for the confined end of the actuator; the aluminum section is longer and wider, reducing overall weight along the stroke. A tensile force is applied at one end and reacted at the other, so the same force passes through both sections. This is a series arrangement.
+
+:::note[System Problem Statement]
+- Steel section: length $L_1 = 200$ mm, diameter $d_1 = 25$ mm, Steel 1045, $E_1 = 200$ GPa, $\sigma_{y1} = 530$ MPa
+- Aluminum section: length $L_2 = 300$ mm, diameter $d_2 = 30$ mm, Aluminum 6061-T6, $E_2 = 70$ GPa, $\sigma_{y2} = 270$ MPa
+- Applied tensile force: $F = 20{,}000$ N
+- Required safety factor: 3.0
+
+**Key Question:** What is the stress in each section, and how much does the rod stretch in total?
+:::
+
+### Step 1: Cross-Sectional Areas
 
 <details>
-<summary>**Click to reveal cross-sectional area calculations**</summary>
+<summary>**Click to reveal the area calculations**</summary>
 
 <Steps>
 
 1. **Steel section area:**
-   
-   $$A_1 = \frac{\pi d_1^2}{4} = \frac{\pi (25 \times 10^{-3})^2}{4} = 4.91 \times 10^{-4} \text{ m}^2$$
+
+   $$A_1 = \frac{\pi d_1^2}{4} = \frac{\pi (25 \text{ mm})^2}{4} = 490.9 \text{ mm}^2$$ ✅
 
 2. **Aluminum section area:**
-   
-   $$A_2 = \frac{\pi d_2^2}{4} = \frac{\pi (30 \times 10^{-3})^2}{4} = 7.07 \times 10^{-4} \text{ m}^2$$
+
+   $$A_2 = \frac{\pi d_2^2}{4} = \frac{\pi (30 \text{ mm})^2}{4} = 706.9 \text{ mm}^2$$ ✅
 
 </Steps>
 
 </details>
 
-### Step 2: Calculate Axial Stiffnesses
+### Step 2: Axial Stiffness and Load Distribution
 
 <details>
-<summary>**Click to reveal axial stiffness calculations**</summary>
+<summary>**Click to reveal the stiffness and load calculations**</summary>
 
 <Steps>
 
-1. **Steel section stiffness:**
-   
-   $$k_1 = \frac{A_1 E_1}{L_1} = \frac{4.91 \times 10^{-4} \times 200 \times 10^9}{200 \times 10^{-3}} = 4.91 \times 10^8 \text{ N/m}$$
+1. **Axial stiffness of each section** (units: N/mm):
 
-2. **Aluminum section stiffness:**
-   
-   $$k_2 = \frac{A_2 E_2}{L_2} = \frac{7.07 \times 10^{-4} \times 70 \times 10^9}{300 \times 10^{-3}} = 1.65 \times 10^8 \text{ N/m}$$
+   $$k_1 = \frac{A_1 E_1}{L_1} = \frac{490.9 \times 200{,}000}{200} = 490{,}900 \text{ N/mm}$$ ✅
 
-3. **Stiffness ratio:**
-   
-   Steel section is 4.91/1.65 = 2.98× stiffer than aluminum section
+   $$k_2 = \frac{A_2 E_2}{L_2} = \frac{706.9 \times 70{,}000}{300} = 164{,}900 \text{ N/mm}$$ ✅
+
+2. **Load in each section** (same force throughout in a series rod, but cross-check via stiffness confirms it is indeed a series system where $F$ is constant):
+
+   Because this is a series arrangement, $F_1 = F_2 = 20{,}000$ N. The stiffnesses differ, which means the deflections differ, not the forces. ✅
 
 </Steps>
 
 </details>
 
-### Step 3: Determine Load Distribution
+### Step 3: Stress and Safety Factors
 
 <details>
-<summary>**Click to reveal load distribution calculations**</summary>
+<summary>**Click to reveal the stress calculations**</summary>
 
 <Steps>
 
-1. **Load in steel section:**
-   
-   $$F_1 = F_{applied} \times \frac{k_1}{k_1 + k_2} = 20,000 \times \frac{4.91 \times 10^8}{4.91 \times 10^8 + 1.65 \times 10^8} = 14,939 \text{ N}$$
+1. **Stress in the steel section:**
 
-2. **Load in aluminum section:**
-   
-   $$F_2 = F_{applied} - F_1 = 20,000 - 14,939 = 5,061 \text{ N}$$
+   $$\sigma_1 = \frac{F}{A_1} = \frac{20{,}000 \text{ N}}{490.9 \text{ mm}^2} = 40.7 \text{ MPa}$$ ✅
 
-3. **Load distribution analysis:**
-   
-   - Steel section: 14,939 N (74.7% of total load)
-   - Aluminum section: 5,061 N (25.3% of total load)
-   - Counter-intuitive: Steel carries 75% despite being only 40% of total length!
+2. **Stress in the aluminum section:**
+
+   $$\sigma_2 = \frac{F}{A_2} = \frac{20{,}000 \text{ N}}{706.9 \text{ mm}^2} = 28.3 \text{ MPa}$$ ✅
+
+3. **Safety factors:**
+
+   $$\text{SF}_1 = \frac{530 \text{ MPa}}{40.7 \text{ MPa}} = 13.0 \qquad \text{SF}_2 = \frac{270 \text{ MPa}}{28.3 \text{ MPa}} = 9.5$$ ✅
+
+   Both exceed the required 3.0 comfortably. The rod is sized conservatively, as expected for a part that also sees dynamic loading. ✅
 
 </Steps>
 
 </details>
 
-### Step 4: Calculate Stresses and Safety Factors
+### Step 4: Elongation of Each Section and Total Stretch
 
 <details>
-<summary>**Click to reveal stress and safety factor calculations**</summary>
+<summary>**Click to reveal the deflection calculation**</summary>
 
 <Steps>
 
-1. **Steel section stress:**
-   
-   $$\sigma_1 = \frac{F_1}{A_1} = \frac{14,939}{4.91 \times 10^{-4}} = 30.4 \text{ MPa}$$
+1. **Elongation of the steel section:**
 
-2. **Aluminum section stress:**
-   
-   $$\sigma_2 = \frac{F_2}{A_2} = \frac{5,061}{7.07 \times 10^{-4}} = 7.16 \text{ MPa}$$
+   $$\delta_1 = \frac{F L_1}{A_1 E_1} = \frac{20{,}000 \times 200}{490.9 \times 200{,}000} = 0.0407 \text{ mm}$$ ✅
 
-3. **Safety factor assessment:**
-   
-   - Steel: SF = 530/30.4 = 17.4 ✅ Very conservative
-   - Aluminum: SF = 270/7.16 = 37.7 ✅ Over-designed
-   - Both exceed required SF = 3.0
+2. **Elongation of the aluminum section:**
 
-</Steps>
+   $$\delta_2 = \frac{F L_2}{A_2 E_2} = \frac{20{,}000 \times 300}{706.9 \times 70{,}000} = 0.1214 \text{ mm}$$ ✅
 
-</details>
+3. **Total rod elongation:**
 
-### Step 5: Calculate Total Deformation
+   $$\delta_{total} = \delta_1 + \delta_2 = 0.0407 + 0.1214 = 0.162 \text{ mm}$$ ✅
 
-<details>
-<summary>**Click to reveal total deformation calculations**</summary>
-
-<Steps>
-
-1. **Deformation using steel section:**
-   
-   $$\delta_{total} = \frac{F_1 L_1}{A_1 E_1} = \frac{14,939 \times 200 \times 10^{-3}}{4.91 \times 10^{-4} \times 200 \times 10^9} = 0.0304 \text{ mm}$$
-
-2. **Verification using aluminum section:**
-   
-   $$\delta_{total} = \frac{F_2 L_2}{A_2 E_2} = \frac{5,061 \times 300 \times 10^{-3}}{7.07 \times 10^{-4} \times 70 \times 10^9} = 0.0307 \text{ mm}$$
-
-3. **Compatibility verification:**
-   
-   ✅ Results match (0.0304 ≈ 0.0307 mm) - small difference due to rounding
-   This confirms deformation compatibility is satisfied
+   Note that the aluminum section stretches three times as much as the steel section, even though the force is the same. The aluminum section is both longer and less stiff per unit area. ✅
 
 </Steps>
 
 </details>
 
-## Design Analysis Summary
+:::note[Engineering Insight]
+In a series compound rod the force is the same everywhere, but the stresses and deflections differ because the areas and moduli differ. The section with the smallest $AE$ product stretches most. In stroke-sensitive actuators, even 0.16 mm of compliance can matter: it must be accounted for in the control loop dead-band.
+:::
+
+## Application 2: Steel Core Inside an Aluminum Tube Under Shared Compression
 
 <InArticleAd />
 
 
-<CardGrid>
-  <Card title="Steel Section Analysis" icon="approve">
-    **Load Carried:** 14,939 N (75%)  
-    **Stress:** 30.4 MPa  
-    **Safety Factor:** 17.4  
-    **Status:** Conservative design
-  </Card>
-  <Card title="Aluminum Section Analysis" icon="approve">
-    **Load Carried:** 5,061 N (25%)  
-    **Stress:** 7.16 MPa  
-    **Safety Factor:** 37.7  
-    **Status:** Over-designed
-  </Card>
-  <Card title="Load Distribution" icon="information">
-    **Steel dominance:** Carries 75% of load  
-    **Stiffness ratio:** 2.98× stiffer  
-    **Total deformation:** 0.030 mm  
-    **Status:** Stiffness-controlled
-  </Card>
-</CardGrid>
+A structural column is built by sliding a solid steel rod through the centre of an aluminum tube and compressing both between the same two end plates. Both materials shorten by the same amount (they share the same end fixings), so the load splits by axial stiffness. This is a parallel arrangement.
 
-### Design Optimization Insights
+:::note[System Problem Statement]
+- Steel solid rod: diameter $d_s = 30$ mm, $E_s = 200$ GPa, $\sigma_{ys} = 350$ MPa
+- Aluminum tube: inner diameter $d_{ai} = 30$ mm, outer diameter $d_{ao} = 50$ mm, $E_a = 70$ GPa, $\sigma_{ya} = 270$ MPa
+- Shared length: $L = 250$ mm
+- Total compressive load applied to the end plates: $P = 120{,}000$ N
 
-:::note[Multi-Material Optimization Opportunities]
-1. Steel section: Efficiently utilized (carries 75% of load)
-2. Aluminum section: Over-designed (only 25% of load, SF = 37.7)
-3. Weight savings: Aluminum diameter could be reduced by ~40%
-4. Space optimization: Steel section could be shortened if length allows
+**Key Question:** How does the 120 kN split between the steel and the aluminum, what is the stress in each, and by how much does the column shorten?
+:::
 
-**Optimization Strategy:** Reduce aluminum cross-section until its safety factor matches steel's safety factor for balanced design.
+### Step 1: Cross-Sectional Areas
+
+<details>
+<summary>**Click to reveal the area calculations**</summary>
+
+<Steps>
+
+1. **Steel rod area:**
+
+   $$A_s = \frac{\pi d_s^2}{4} = \frac{\pi (30)^2}{4} = 706.9 \text{ mm}^2$$ ✅
+
+2. **Aluminum tube area:**
+
+   $$A_a = \frac{\pi (d_{ao}^2 - d_{ai}^2)}{4} = \frac{\pi (50^2 - 30^2)}{4} = \frac{\pi \times 1600}{4} = 1256.6 \text{ mm}^2$$ ✅
+
+</Steps>
+
+</details>
+
+### Step 2: Axial Stiffness of Each Material
+
+<details>
+<summary>**Click to reveal the axial stiffness values**</summary>
+
+<Steps>
+
+1. Because both materials have the same length $L$, the load splitting depends only on $EA$, not $EA/L$:
+
+   $$EA_s = 200{,}000 \times 706.9 = 141.4 \times 10^6 \text{ N}$$ ✅
+
+   $$EA_a = 70{,}000 \times 1256.6 = 88.0 \times 10^6 \text{ N}$$ ✅
+
+   $$EA_{total} = 141.4 \times 10^6 + 88.0 \times 10^6 = 229.4 \times 10^6 \text{ N}$$ ✅
+
+2. Even though the aluminum tube has nearly twice the cross-sectional area of the steel rod ($1256.6$ vs $706.9$ mm$^2$), its lower modulus keeps its $EA$ below the steel's. ✅
+
+</Steps>
+
+</details>
+
+### Step 3: Load Carried by Each Material
+
+<details>
+<summary>**Click to reveal the load distribution**</summary>
+
+<Steps>
+
+1. **Load on the steel rod:**
+
+   $$P_s = P \cdot \frac{EA_s}{EA_{total}} = 120{,}000 \times \frac{141.4}{229.4} = 74{,}000 \text{ N} \quad (61.6\%)$$ ✅
+
+2. **Load on the aluminum tube:**
+
+   $$P_a = P - P_s = 120{,}000 - 74{,}000 = 46{,}000 \text{ N} \quad (38.4\%)$$ ✅
+
+3. Steel carries 61.6 percent of the total load despite occupying only $706.9 / (706.9 + 1256.6) = 36\%$ of the cross-sectional area, because its modulus is $200/70 \approx 2.86$ times higher. ✅
+
+</Steps>
+
+</details>
+
+### Step 4: Stress in Each Material and Safety Factors
+
+<details>
+<summary>**Click to reveal the stress and safety factor calculations**</summary>
+
+<Steps>
+
+1. **Compressive stress in the steel rod:**
+
+   $$\sigma_s = \frac{P_s}{A_s} = \frac{74{,}000}{706.9} = 104.7 \text{ MPa}$$ ✅
+
+2. **Compressive stress in the aluminum tube:**
+
+   $$\sigma_a = \frac{P_a}{A_a} = \frac{46{,}000}{1256.6} = 36.6 \text{ MPa}$$ ✅
+
+3. **Safety factors:**
+
+   $$\text{SF}_s = \frac{350}{104.7} = 3.34 \qquad \text{SF}_a = \frac{270}{36.6} = 7.38$$ ✅
+
+   Both materials have adequate margin. The steel rod is the governing element at SF = 3.34. ✅
+
+</Steps>
+
+</details>
+
+### Step 5: Common Deflection
+
+<details>
+<summary>**Click to reveal the deflection calculation**</summary>
+
+<Steps>
+
+1. **Common strain** (the same for both, by compatibility):
+
+   $$\varepsilon = \frac{\sigma_s}{E_s} = \frac{104.7}{200{,}000} = 5.23 \times 10^{-4}$$ ✅
+
+2. **Shortening of the column:**
+
+   $$\delta = \varepsilon \, L = 5.23 \times 10^{-4} \times 250 = 0.131 \text{ mm}$$ ✅
+
+3. **Verification via the aluminum:**
+
+   $$\varepsilon_a = \frac{\sigma_a}{E_a} = \frac{36.6}{70{,}000} = 5.23 \times 10^{-4} \checkmark$$ ✅
+
+   Both materials confirm the same strain, which is the compatibility check. ✅
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+Steel carries 62 percent of a 120 kN load through only 36 percent of the cross-sectional area because modulus multiplies area in the load-sharing rule. When you need a compact, stiff column, shrinking the aluminum and growing the steel cross-section shifts the balance further toward steel, but the governing safety factor stays at the steel end. The aluminum in this design has a generous margin and could be made thinner without reducing column safety.
+:::
+
+## Application 3: Stepped Steel-Aluminum Tie Rod in Tension
+
+<InArticleAd />
+
+
+A stepped tie rod carries a single tensile force from one end to the other through two segments of different material and diameter. The force is the same in every cross-section (series arrangement), so the stresses differ because the areas differ, and the total elongation is the sum of the two segment elongations.
+
+:::note[System Problem Statement]
+- Steel segment: diameter $d_s = 20$ mm, length $L_s = 300$ mm, $E_s = 200$ GPa, $\sigma_{ys} = 350$ MPa
+- Aluminum segment: diameter $d_a = 30$ mm, length $L_a = 400$ mm, $E_a = 70$ GPa, $\sigma_{ya} = 270$ MPa
+- Applied tensile force: $F = 30{,}000$ N throughout
+
+**Key Question:** What stress does each segment carry, and what is the total elongation of the rod?
+:::
+
+### Step 1: Cross-Sectional Areas
+
+<details>
+<summary>**Click to reveal the area calculations**</summary>
+
+<Steps>
+
+1. **Steel segment area:**
+
+   $$A_s = \frac{\pi (20)^2}{4} = 314.2 \text{ mm}^2$$ ✅
+
+2. **Aluminum segment area:**
+
+   $$A_a = \frac{\pi (30)^2}{4} = 706.9 \text{ mm}^2$$ ✅
+
+</Steps>
+
+</details>
+
+### Step 2: Stress in Each Segment
+
+<details>
+<summary>**Click to reveal the stress calculations**</summary>
+
+<Steps>
+
+1. The same force $F = 30{,}000$ N acts on every cross-section, so:
+
+   $$\sigma_s = \frac{F}{A_s} = \frac{30{,}000}{314.2} = 95.5 \text{ MPa}$$ ✅
+
+   $$\sigma_a = \frac{F}{A_a} = \frac{30{,}000}{706.9} = 42.4 \text{ MPa}$$ ✅
+
+2. **Safety factors:**
+
+   $$\text{SF}_s = \frac{350}{95.5} = 3.67 \qquad \text{SF}_a = \frac{270}{42.4} = 6.37$$ ✅
+
+   The steel segment is the critical one; its safety factor is 3.67. ✅
+
+</Steps>
+
+</details>
+
+### Step 3: Elongation of Each Segment and Total Elongation
+
+<details>
+<summary>**Click to reveal the elongation calculations**</summary>
+
+<Steps>
+
+1. **Elongation of the steel segment:**
+
+   $$\delta_s = \frac{F L_s}{A_s E_s} = \frac{30{,}000 \times 300}{314.2 \times 200{,}000} = 0.143 \text{ mm}$$ ✅
+
+2. **Elongation of the aluminum segment:**
+
+   $$\delta_a = \frac{F L_a}{A_a E_a} = \frac{30{,}000 \times 400}{706.9 \times 70{,}000} = 0.243 \text{ mm}$$ ✅
+
+3. **Total elongation:**
+
+   $$\delta_{total} = \delta_s + \delta_a = 0.143 + 0.243 = 0.386 \text{ mm}$$ ✅
+
+   The aluminum segment stretches 70 percent more than the steel segment, even though it is only 33 percent longer, because its modulus is less than half of steel's. ✅
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+In a series rod the material with the smallest $AE$ product stretches most per unit length; in this case the aluminum segment contributes 63 percent of the total elongation despite being 57 percent of the total length. If this rod positions a tool or a sensor, the soft segment dominates the compliance budget. One practical fix is to increase the aluminum diameter until its $AE$ matches the steel segment's, which balances the stretch contribution between the two materials.
 :::
 
 ## Design Guidelines for Compound Systems
@@ -348,30 +451,23 @@ Let's solve a realistic compound rod problem step by step.
 <InArticleAd />
 
 
-### When to Use Compound Bars
+<CardGrid>
+  <Card title="Identify the arrangement first" icon="warning">
+  Before writing any equation, decide whether the materials deform together (parallel) or carry the same force in sequence (series). The governing equations are completely different for the two cases.
+  </Card>
+  <Card title="Load splits by EA in parallel" icon="setting">
+  In a parallel system, use $F_i = P \cdot EA_i / \sum EA_j$. The stiffer material always attracts more load than its area fraction alone would imply, sometimes far more.
+  </Card>
+  <Card title="Check every material separately" icon="puzzle">
+  Each segment has its own stress and its own safety factor against yield. Passing one does not guarantee the other passes. In most compound systems the materials have different yield strengths, so both checks are needed.
+  </Card>
+  <Card title="Sum deflections in series, share in parallel" icon="rocket">
+  Total elongation in a series bar is the sum of segment elongations. In a parallel bar, one common deflection closes the problem. Confusing the two is the source of most compound-bar errors.
+  </Card>
+</CardGrid>
 
-✅ **Beneficial for:**
-- Weight optimization (lighter materials where loads are lower)
-- Cost optimization (expensive materials only where needed)
-- Space constraints (stiffer materials in confined spaces)
-- Thermal expansion management (different CTEs)
-
-### Load Distribution Rules
-
-1. **Stiffer sections carry more load** (higher k = A·E/L)
-2. **All sections deform equally** (compatibility requirement)
-3. **Shorter, stiffer sections have higher stress gradients**
-4. **Material interfaces require careful joint design**
-
-### Common Mistakes to Avoid
-
-:::danger[Compound Bar Design Pitfalls]
-❌ Equal stress assumption: Stress varies by material properties  
-❌ Compatibility oversight: All sections MUST deform equally  
-❌ Partial safety checks: Every section needs individual failure analysis  
-❌ Uniform safety factors: Different sections may have different requirements
-
-**Remember:** Each material behaves according to its own stress-strain relationship!
+:::tip[Instrument it]
+Load sharing in a parallel system is invisible until you measure it. Bond a strain gauge to each material; because they share the same deflection but differ in stiffness, the two strain readings reveal how the load actually splits, usually far from what area fractions alone would suggest. Read both gauges with an [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/) and you can [watch the split live on siliconwit.io](https://siliconwit.io) and confirm the stiffer member carries its predicted share.
 :::
 
 ## Summary and Next Steps
@@ -379,26 +475,26 @@ Let's solve a realistic compound rod problem step by step.
 <InArticleAd />
 
 
-In this unit, you learned to:
+### Key Concepts Mastered
 
-1. **Apply** equilibrium and compatibility to compound systems
-2. **Calculate** load distribution using stiffness ratios
-3. **Analyze** stress levels in each material section
-4. **Optimize** multi-material designs for performance
+1. **Parallel compound bars** have equal deformation in all materials. Load splits by axial stiffness: $F_i = P \cdot EA_i / \sum EA_j$. Each material carries stress $\sigma_i = E_i \varepsilon$ where $\varepsilon$ is the common strain.
+2. **Series compound bars** carry the same axial force throughout. Stress in each segment is $\sigma_i = F/A_i$. Total elongation is the sum of segment elongations, $\delta_{total} = \sum F L_i/(A_i E_i)$.
+3. **Deformation compatibility** is the constraint that locks the two materials together in a parallel system. Violating it is the most common error in compound bar analysis.
+4. **Every segment needs its own safety factor check**, because different areas and different yield strengths mean the critical segment is not always the one with the highest stress.
 
-**Key Formula:** Load share = $\frac{k_i}{k_{total}}$ where $k_i = \frac{A_i E_i}{L_i}$
+### Results at a Glance
 
-**Critical Design Principles:**
-- Equilibrium: ΣF_internal = F_external
-- Compatibility: δ₁ = δ₂ = δ_total  
-- Load sharing: F_i = (k_i/k_total) × F_applied
-- Stiffness dominance: Higher k → More load
+| Application | Arrangement | Key results | Governing SF |
+|---|---|---|:---:|
+| Linear actuator rod (steel 25 mm + alum 30 mm, 20 kN) | Series | $\sigma_1 = 40.7$ MPa, $\sigma_2 = 28.3$ MPa, $\delta_{total} = 0.162$ mm | 9.5 (alum) |
+| Steel core + alum tube column (120 kN, 250 mm) | Parallel | $P_s = 74$ kN (62%), $\sigma_s = 104.7$ MPa, $\sigma_a = 36.6$ MPa, $\delta = 0.131$ mm | 3.34 (steel) |
+| Stepped tie rod (steel 20 mm + alum 30 mm, 30 kN) | Series | $\sigma_s = 95.5$ MPa, $\sigma_a = 42.4$ MPa, $\delta_{total} = 0.386$ mm | 3.67 (steel) |
 
-:::tip[Compound Bar Design Rule]
-**"Design by stiffness, verify by strength"** - The stiffest section will always carry the most load, so design it carefully for strength while optimizing other sections for weight/cost.
-:::
+### A Note on Tools
 
-**Coming Next**: In Lesson 1.4, we'll analyze thermal stresses in a heated piston-cylinder system, exploring how temperature changes create internal stresses even without external loads.
+All three worked examples required only the formulas $\sigma = F/A$, $\delta = FL/(AE)$, and the load-splitting rule $F_i = P \cdot EA_i / \sum EA_j$. A spreadsheet or a four-function calculator is sufficient for any compound bar with uniform sections. Finite-element software adds value only when the cross-section varies continuously along the length or when stress concentrations at the material interface need to be resolved.
+
+Next, [Thermal Stresses and Strains](/education/mechanics-of-materials/thermal-stresses-and-strains) extends the compound bar framework to temperature loading, where no external force is applied but constrained thermal expansion drives internal stresses that can be large enough to yield the softer material.
 
 
 

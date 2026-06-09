@@ -1,9 +1,9 @@
 ---
 title: "Lesson 1.4: Thermal Stresses and Strains"
-description: "Master thermal stress analysis for heated mechanical systems. Learn thermal expansion calculations, stress development in constrained components, and thermal design for mechatronic applications."
+description: "Analyze thermal stress and strain in constrained and compound systems: free expansion, fully restrained members, and differential expansion in bimetallic assemblies, with worked examples for mechatronic design."
 contributors: "sam-macharia,jack-kojiro"
 tags: ["solid-mechanics", "thermal-stress", "piston-cylinder", "extruder", "thermal-expansion"]
-excerpt: "Learn thermal stress analysis through heated piston-cylinder systems, covering thermal expansion, constrained deformation, and stress development in mechatronic applications."
+excerpt: "Learn to calculate free thermal expansion, the thermal stress that develops when expansion is prevented, and the compatibility-based solution for compound assemblies where two materials with different expansion coefficients are bonded together."
 pubDate: 2025-09-18
 ---
 
@@ -23,401 +23,454 @@ import { Card, CardGrid, Badge, Steps, LinkButton, FileTree } from '@astrojs/sta
 
 
 
-A piston that fits perfectly at room temperature can seize in the cylinder at operating temperature if the designer neglected differential thermal expansion between materials. Conversely, a rail that is free to expand causes no stress, but bolt it to a rigid frame and the same temperature rise generates forces large enough to buckle the rail or shear the bolts. In this lesson you will analyze heated piston-cylinder systems and constrained structures, learning to calculate thermal expansion, predict stress in constrained components, and design for safe operation across a range of temperatures. #ThermalStress #ThermalExpansion #MechatronicDesign
+A piston that fits perfectly at room temperature can seize in the cylinder at operating temperature if the designer neglected differential thermal expansion between materials. Conversely, a rail that is free to expand causes no stress, but bolt it to a rigid frame and the same temperature rise generates forces large enough to buckle the rail or shear the bolts. In this lesson you will analyze heated piston-cylinder systems and constrained structures, learning to calculate thermal expansion, predict stress in constrained components, and solve compound assemblies where two materials with different expansion coefficients are bonded at their ends. #ThermalStress #ThermalExpansion #MechatronicDesign
 
 ## Learning Objectives
 
 By the end of this lesson, you will be able to:
 
-1. Calculate thermal expansion and contraction in heated components
-2. Analyze thermal stress development in constrained systems
-3. Apply thermal stress principles to piston-cylinder interfaces
-4. Design for thermal expansion in mechatronic systems
+1. **Calculate** free thermal expansion and the thermal strain $\epsilon_T = \alpha \Delta T$ for any material and temperature change
+2. **Derive** the thermal stress $\sigma = E \alpha \Delta T$ that develops in a fully restrained member, and check it against yield
+3. **Analyze** differential thermal expansion in a piston-cylinder interface to predict hot clearances
+4. **Solve** compound (bimetallic) assemblies by writing the compatibility equation and the force-balance equation, then computing the stress in each material
 
 ## Real-World System Problem: Heated Piston-Cylinder Interface
 
 <InArticleAd />
 
 
-<BionicText method="advanced" intensity="medium" class="highlight">
-In 3D printer extruder heads, injection molding systems, and heated actuators, piston-cylinder interfaces operate at elevated temperatures. Understanding thermal stress is crucial for preventing seizure, excessive wear, and component failure.
-</BionicText>
-
-### System Description
-
-**Heated Extruder Head Components:**
-- **Aluminum Cylinder** (heated to 200°C for plastic melting)
-- **Steel Piston** (reciprocates within heated cylinder)
-- **Heating Elements** (maintain precise temperature)
-- **Temperature Sensors** (monitor thermal conditions)
+In 3D printer extruder heads, injection molding systems, and heated actuators, piston-cylinder interfaces operate at elevated temperatures. Understanding thermal stress is critical for preventing seizure, excessive wear, and component failure.
 
 ### The Thermal Challenge
 
-During heating from room temperature (20°C) to operating temperature (200°C):
+> **Engineering Question:** How do we predict the clearance change and the thermal stresses when an aluminum cylinder and a steel piston are heated from room temperature to operating temperature?
 
-:::note[Critical Engineering Problems]
-- **Aluminum expands more** than steel (different thermal expansion coefficients)
-- **Clearances change** affecting piston fit and operation
-- **Thermal stresses develop** even without external mechanical loads
-- **Seizure risk** if thermal expansion isn't properly managed
-:::
+### Why Thermal Analysis Matters
 
-> **Engineering Question:** How do we calculate the thermal stresses and clearance changes when an aluminum cylinder and steel piston are heated from 20°C to 200°C?
-
-### Why Thermal Analysis Matters in Mechatronics
-
-**Consequences of Poor Thermal Design:**
-- **Seized actuators** (thermal expansion eliminates clearances)
-- **Reduced precision** (thermal growth affects positioning)
-- **Component failure** (excessive thermal stress)
-- **Performance drift** (thermal effects change system behavior)
-
-**Benefits of Proper Thermal Design:**
-- **Reliable operation** across temperature ranges
-- **Maintained precision** through thermal compensation
-- **Extended component life** with controlled stress levels
-- **Predictable performance** in varying thermal environments
+<CardGrid>
+  <Card title="Seized actuators" icon="warning">
+  If differential expansion closes a running clearance to zero, the piston locks in the bore. The failure is sudden and often requires a full replacement of both parts.
+  </Card>
+  <Card title="Reduced precision" icon="setting">
+  Even sub-millimetre thermal growth shifts the datum of a positioning stage. In a CNC head or a pick-and-place arm, the part lands in the wrong place.
+  </Card>
+  <Card title="Hidden stresses" icon="puzzle">
+  Thermal stresses develop with no applied load. A component that looks lightly loaded at room temperature can be near yield at operating temperature purely from constraint.
+  </Card>
+  <Card title="Predictable performance" icon="rocket">
+  A thermal analysis before the first prototype replaces field failures with deliberate clearances, correct material pairings, and a design that works at every temperature in the range.
+  </Card>
+</CardGrid>
 
 ## Fundamental Theory: Thermal Expansion and Stress
 
 <InArticleAd />
 
 
-### Linear Thermal Expansion
+When a material is heated it tends to expand. Whether a stress develops depends entirely on whether that expansion is free or prevented.
 
-When materials are heated, they expand according to:
+### Free Thermal Strain and Expansion
 
-<Card title="🌡️ Thermal Expansion Formula" icon="document">
-$$\delta_T = \alpha L \Delta T$$
+<Card title="Thermal Strain and Expansion" icon="document">
+$$\epsilon_T = \alpha \, \Delta T$$
 
-**Where:**
-- $\delta_T$ = Thermal expansion (m)
-- $\alpha$ = Coefficient of thermal expansion (1/°C)
-- $L$ = Original length (m)
-- $\Delta T$ = Temperature change (°C)
+$$\delta_T = \alpha \, L \, \Delta T$$
 
-**Physical Meaning:** Materials expand linearly with temperature increase. Different materials have different expansion coefficients, leading to differential expansion in assemblies.
+Where:
+- $\epsilon_T$ = thermal strain (dimensionless)
+- $\delta_T$ = free thermal expansion (m or mm)
+- $\alpha$ = coefficient of thermal expansion (1/°C)
+- $L$ = original length (m or mm)
+- $\Delta T$ = temperature change (°C), positive for heating
+
+A free member (no constraints at either end) expands by $\delta_T$ and develops zero stress. The expansion is real but harmless unless it closes a gap or fights another part.
 </Card>
 
-### Thermal Strain
+### Fully Restrained Member: Thermal Stress
 
-The thermal strain (dimensionless) is:
+When both ends of a member are rigidly fixed and the temperature rises, the member tries to expand but cannot. The walls push back with a compressive reaction force, and the member develops a compressive stress equal to what Hooke's law would give for that strain:
 
-<Card title="📏 Thermal Strain Formula" icon="document">
-$$\epsilon_T = \frac{\delta_T}{L} = \alpha \Delta T$$
+<Card title="Thermal Stress in a Fully Restrained Member" icon="document">
+$$\sigma_T = E \, \alpha \, \Delta T$$
 
-**Where:**
-- $\epsilon_T$ = Thermal strain (dimensionless)
-- $\delta_T$ = Thermal expansion (m)
-- $L$ = Original length (m)
-- $\alpha$ = Coefficient of thermal expansion (1/°C)
-- $\Delta T$ = Temperature change (°C)
+Where:
+- $\sigma_T$ = thermal stress (Pa or MPa), compressive for heating
+- $E$ = Young's modulus (Pa or GPa)
+- $\alpha$ = coefficient of thermal expansion (1/°C)
+- $\Delta T$ = temperature change (°C)
 
-**Physical Meaning:** Thermal strain is the ratio of thermal expansion to original length, representing the fractional change in dimensions due to temperature change.
+This result is independent of the member's length. A long rod and a short rod of the same material and cross-section, both fully restrained, develop the same stress for the same temperature rise.
 </Card>
 
-<Tabs>
-  <TabItem label="Material Properties">
-    
-    **Aluminum 6061:**
-    - $\alpha_{Al}$ = 23.6 × 10⁻⁶ /°C
-    - Higher thermal expansion
-    - Common in heated housings
-    
-    **Steel 1045:**
-    - $\alpha_{steel}$ = 12.0 × 10⁻⁶ /°C
-    - Lower thermal expansion  
-    - Common in precision components
-    
-    **Expansion Ratio:** Aluminum expands ~2× more than steel
+:::note[Partial Constraint and Gap Cases]
+If the member is allowed to expand by a gap $g$ before it contacts a rigid wall, only the excess expansion is restrained:
 
-    
-  </TabItem>
-  <TabItem label="Temperature Effects">
-    
-    **Free Expansion:**
-    - Material can expand/contract freely
-    - No stress development
-    - Only dimensional changes occur
-    
-    **Constrained Expansion:**
-    - Material expansion is prevented
-    - Thermal stresses develop
-    - Both stress AND dimension changes
-    
-  </TabItem>
-  <TabItem label="Stress Calculation">
-    
-    **Thermal Stress (Fully Constrained):**
-    $$\sigma_T = E \alpha \Delta T$$
-    
-    **Partial Constraint:**
-    $$\sigma_T = E \alpha \Delta T \times \text{constraint factor}$$
-    
-    **Design Implication:** High E materials develop higher thermal stress
-    
-  </TabItem>
-</Tabs>
+$$\delta_{restrained} = \delta_T - g = \alpha L \Delta T - g$$
 
-### Thermal Stress Development
+$$\sigma_T = E \, \frac{\delta_{restrained}}{L} = E \left(\alpha \Delta T - \frac{g}{L}\right) \qquad \text{valid when } \alpha L \Delta T > g$$
 
-<Card title="🔒 Thermal Stress Formula" icon="document">
-**Fully constrained expansion:**
-$$\sigma_T = E \alpha \Delta T$$
+If $\alpha L \Delta T \leq g$ the member never contacts the wall and the thermal stress is zero.
+:::
 
-**Partially constrained expansion:**
-$$\sigma_T = E \alpha \Delta T \times (1 - \frac{\delta_{allowed}}{\delta_{free}})$$
+### Compound (Bimetallic) Assembly: Compatibility
 
-**Where:**
-- $\sigma_T$ = Thermal stress (Pa)
-- $E$ = Young's modulus (Pa)
-- $\alpha$ = Coefficient of thermal expansion (1/°C)
-- $\Delta T$ = Temperature change (°C)
+When two materials with different $\alpha$ values are bonded end-to-end (or inside one another) and heated, they cannot each expand freely because they must stay connected. The system reaches a compromise elongation, and internal forces keep the two parts in equilibrium:
 
-**Physical Meaning:** When thermal expansion is prevented, materials develop internal stress proportional to their stiffness and expansion tendency.
+<Card title="Compatibility Method for Compound Assemblies" icon="document">
+Let material A (higher $\alpha$) and material B (lower $\alpha$) share the same length $L$ and are bonded at both ends. Both are heated by $\Delta T$.
+
+**Compatibility** (same total deformation for both):
+$$\delta_A = \delta_B$$
+
+**Free expansions:**
+$$\delta_{A,free} = \alpha_A L \Delta T, \qquad \delta_{B,free} = \alpha_B L \Delta T$$
+
+Because $\alpha_A > \alpha_B$, material A tries to expand more. An internal compressive force $P$ develops in A and an equal tensile force $P$ develops in B (Newton's third law).
+
+**Compatibility equation:**
+$$\alpha_A L \Delta T - \frac{P L}{A_A E_A} = \alpha_B L \Delta T + \frac{P L}{A_B E_B}$$
+
+Solving for $P$:
+$$P = \frac{(\alpha_A - \alpha_B) \Delta T}{\dfrac{1}{A_A E_A} + \dfrac{1}{A_B E_B}}$$
+
+Then $\sigma_A = P / A_A$ (compression) and $\sigma_B = P / A_B$ (tension).
 </Card>
 
-## Application: Piston-Cylinder Thermal Analysis
+## Application 1: Piston-Cylinder Thermal Analysis
 
 <InArticleAd />
 
 
-Let's analyze our heated extruder system step by step.
+A heated 3D printer extruder uses an aluminum cylinder with a steel piston. This is not a constrained system; the piston moves freely. The analysis predicts whether the running clearance opens or closes with temperature, and what stress would develop if the parts were locked together.
 
-:::note[Problem Statement]
-**Heated 3D Printer Extruder Head Thermal Analysis**
+:::note[System Problem Statement]
+- **Aluminum cylinder:** inner diameter $D_{Al} = 20.00$ mm, length 100 mm, material Al 6061 ($\alpha_{Al} = 23.6 \times 10^{-6}$ /°C, $E_{Al} = 70$ GPa, $\sigma_{yield,Al} = 270$ MPa)
+- **Steel piston:** outer diameter $D_{st} = 19.95$ mm, length 80 mm, material Steel 1045 ($\alpha_{st} = 12.0 \times 10^{-6}$ /°C, $E_{st} = 200$ GPa, $\sigma_{yield,st} = 530$ MPa)
+- **Temperature change:** $\Delta T = 180$ °C (from 20 °C to 200 °C)
+- **Cold running clearance:** 0.05 mm
 
-**What we need to determine:**
-1. **Thermal expansion** of aluminum cylinder and steel piston
-2. **Operating clearances** at elevated temperature
-3. **Thermal stress development** if expansion is constrained
-4. **Design recommendations** for reliable thermal operation
-
-**Key Question:** How do clearances change when the piston-cylinder assembly is heated from 20°C to 200°C, and what thermal stresses develop?
+**Key Question:** How does the clearance change at operating temperature, and would either part yield if the expansion were fully constrained?
 :::
 
-<hr />
-
-**System Parameters:**
-- Heated 3D printer extruder head (aluminum cylinder with steel piston)
-- **Aluminum Cylinder:** Inner diameter 20.00 mm, Length 100 mm, Material: Al 6061 (α = 23.6 × 10⁻⁶ /°C, E = 70 GPa)
-- **Steel Piston:** Outer diameter 19.95 mm, Length 80 mm, Material: Steel 1045 (α = 12.0 × 10⁻⁶ /°C, E = 200 GPa)
-- **Temperature change:** ΔT = 180°C (from 20°C to 200°C)
-- Cold clearance: 0.05 mm
-
-<hr />
-
-### Step 1: Calculate Free Thermal Expansion
+### Step 1: Thermal Expansion of Each Part
 
 <details>
-<summary>**Click to reveal thermal expansion calculations**</summary>
+<summary>**Click to reveal the thermal expansion calculations**</summary>
 
 <Steps>
 
 1. **Aluminum cylinder inner diameter expansion:**
-   
-   $$\Delta D_{Al} = D_0 \alpha_{Al} \Delta T = 20.00 \times 23.6 \times 10^{-6} \times 180 = 0.0849 \text{ mm}$$
-   
-   New inner diameter: 20.00 + 0.0849 = **20.0849 mm**
+
+   $$\Delta D_{Al} = D_{Al} \, \alpha_{Al} \, \Delta T = 20.00 \times 23.6 \times 10^{-6} \times 180 = 0.0849 \text{ mm}$$ ✅
+
+   Hot inner diameter: $20.00 + 0.0849 = 20.0849$ mm ✅
 
 2. **Steel piston outer diameter expansion:**
-   
-   $$\Delta D_{steel} = D_0 \alpha_{steel} \Delta T = 19.95 \times 12.0 \times 10^{-6} \times 180 = 0.0431 \text{ mm}$$
-   
-   New outer diameter: 19.95 + 0.0431 = **19.9931 mm**
 
-3. **Calculate running clearance at operating temperature:**
-   
-   $$\text{Clearance}_{hot} = D_{cylinder} - D_{piston} = 20.0849 - 19.9931 = 0.0918 \text{ mm}$$
-   
-   The clearance **increases** from 0.05 mm (cold) to 0.092 mm (hot)
+   $$\Delta D_{st} = D_{st} \, \alpha_{st} \, \Delta T = 19.95 \times 12.0 \times 10^{-6} \times 180 = 0.0431 \text{ mm}$$ ✅
+
+   Hot outer diameter: $19.95 + 0.0431 = 19.9931$ mm ✅
+
+3. **Hot running clearance:**
+
+   $$\text{Clearance}_{hot} = D_{Al,hot} - D_{st,hot} = 20.0849 - 19.9931 = 0.0918 \text{ mm}$$ ✅
+
+   The clearance increases from 0.05 mm cold to 0.092 mm hot. The aluminum expands roughly twice as fast as the steel, so the bore opens faster than the piston grows. There is no risk of seizure for this material combination. ✅
 
 </Steps>
 
 </details>
 
-### Step 2: Analyze Constrained Thermal Stress
+### Step 2: Thermal Stress if Expansion Were Fully Constrained
 
 <details>
-<summary>**Click to reveal thermal stress calculations**</summary>
+<summary>**Click to reveal the thermal stress calculations**</summary>
 
 <Steps>
 
-1. **Thermal stress in constrained aluminum cylinder:**
-   
-   $$\sigma_T = E \alpha \Delta T = 70 \times 10^9 \times 23.6 \times 10^{-6} \times 180 = 297 \text{ MPa}$$
+1. **Constrained thermal stress in the aluminum cylinder wall:**
 
-2. **Thermal stress in constrained steel piston:**
-   
-   $$\sigma_T = E \alpha \Delta T = 200 \times 10^9 \times 12.0 \times 10^{-6} \times 180 = 432 \text{ MPa}$$
+   $$\sigma_{T,Al} = E_{Al} \, \alpha_{Al} \, \Delta T = 70{,}000 \times 23.6 \times 10^{-6} \times 180 = 297 \text{ MPa}$$ ✅
 
-3. **Assessment against yield strengths:**
-   
-   - Aluminum: 297 MPa > 270 MPa (yield) → **Would yield if constrained!**
-   - Steel: 432 MPa < 530 MPa (yield) → **Would remain elastic**
-   - Conclusion: Never fully constrain aluminum during heating
+2. **Constrained thermal stress in the steel piston:**
+
+   $$\sigma_{T,st} = E_{st} \, \alpha_{st} \, \Delta T = 200{,}000 \times 12.0 \times 10^{-6} \times 180 = 432 \text{ MPa}$$ ✅
+
+3. **Compare with yield strengths:**
+
+   - Aluminum: 297 MPa compared with $\sigma_{yield} = 270$ MPa. Would yield if fully constrained. ✅
+   - Steel: 432 MPa compared with $\sigma_{yield} = 530$ MPa. Would remain elastic. ✅
+
+   These are the stresses that would exist if neither part could move at all. In reality the piston and cylinder are free to expand independently, so neither actually develops these stresses. The calculation is a warning: never bolt or press-fit a high-$\alpha$ material in a way that prevents all thermal growth. ✅
 
 </Steps>
 
 </details>
 
-### Step 3: Design Recommendations
+### Step 3: Clearance Design for Reliable Operation
 
 <details>
-<summary>**Click to reveal design optimization analysis**</summary>
+<summary>**Click to reveal the design clearance calculation**</summary>
 
 <Steps>
 
-1. **Optimal cold clearance calculation:**
-   
-   Required hot clearance (minimum): 0.05 mm
-   Differential expansion: 0.0849 - 0.0431 = 0.0418 mm
-   **Required cold clearance:** 0.05 + 0.0418 = 0.092 mm
+1. **Minimum required hot clearance** (to prevent contact under worst case): 0.05 mm. ✅
 
-2. **Thermal stress management:**
-   
-   - Allow free expansion → Zero thermal stress
-   - Design clearances for hot operation
-   - Use materials with similar α when possible
+2. **Differential expansion** of the two diameters:
 
-3. **Design validation:**
-   
-   ✅ Hot clearance adequate (0.05 mm minimum)
-   ✅ No thermal stress (free expansion)
-   ✅ Reliable operation across temperature range
+   $$\Delta_{differential} = \Delta D_{Al} - \Delta D_{st} = 0.0849 - 0.0431 = 0.0418 \text{ mm}$$ ✅
+
+3. **Required cold clearance** to guarantee 0.05 mm hot clearance:
+
+   Since heating increases the clearance (aluminum expands more), the hot clearance will always be larger than the cold clearance for this material combination. The current cold clearance of 0.05 mm grows to 0.092 mm hot. No adjustment is needed here. If the materials were reversed (steel bore, aluminum piston), the clearance would shrink by 0.042 mm and the cold clearance would need to be at least $0.05 + 0.042 = 0.092$ mm to avoid seizure. ✅
 
 </Steps>
 
 </details>
 
-## Advanced Analysis: Bi-Material System
+:::note[Engineering Insight]
+The direction of differential expansion determines whether a temperature rise opens or closes a running fit. When the bore material has a higher $\alpha$ than the piston material, the clearance grows with temperature. When it is the other way around, the clearance shrinks and seizure becomes the risk. Identifying which case applies is the first thing to check in any heated assembly.
+:::
+
+## Application 2: Fully Restrained Steel Rod
 
 <InArticleAd />
 
 
-### Composite Rod Analysis
+A steel actuator rod is rigidly clamped at both ends inside an aluminum housing. During a machine warm-up cycle the rod heats up by 60 °C. Because it cannot expand, it develops a compressive thermal stress.
 
-Consider a **fixed aluminum rod** with a **steel sleeve** heated together:
+:::note[System Problem Statement]
+- **Component:** steel actuator rod, length $L = 500$ mm, cross-sectional area $A = 200$ mm²
+- **Material:** structural steel, $\alpha = 12 \times 10^{-6}$ /°C, $E = 200$ GPa, $\sigma_{yield} = 250$ MPa
+- **Temperature rise:** $\Delta T = 60$ °C
+- **Boundary condition:** both ends rigidly fixed (fully restrained)
 
-**Setup:**
-- Both materials heat up by ΔT = 100°C
-- Both want to expand, but by different amounts
-- They're bonded together (compatibility constraint)
-
-**Analysis:**
-
-:::tip[Key Insight]
-The final deformation will be between what each material would do individually. The stiffer material (steel) will expand less than it "wants to," while the more expansive material (aluminum) will be constrained.
+**Key Question:** What compressive stress develops in the rod, what would the free expansion have been, and is the rod safe against yield?
 :::
 
-**Compatibility equation:**
-$$\delta_{Al} = \delta_{steel}$$
+### Step 1: Would-Be Free Expansion
 
-**Force equilibrium:**
-$$F_{Al} + F_{steel} = 0$$ (internal forces balance)
+<details>
+<summary>**Click to reveal the free-expansion calculation**</summary>
 
-**Solution yields:**
-- **Aluminum experiences compression** (wants to expand more but is held back)
-- **Steel experiences tension** (is pulled to expand more than it naturally would)
+<Steps>
+
+1. **Compute the thermal strain:**
+
+   $$\epsilon_T = \alpha \, \Delta T = (12 \times 10^{-6})(60) = 7.2 \times 10^{-4}$$ ✅
+
+2. **Compute the free expansion over 500 mm:**
+
+   $$\delta_T = \alpha \, L \, \Delta T = (12 \times 10^{-6})(500)(60) = 0.36 \text{ mm}$$ ✅
+
+   This is the expansion the rod would undergo if neither end were fixed. Because both ends are clamped, the walls provide a reaction force that keeps the rod at its original 500 mm length. ✅
+
+</Steps>
+
+</details>
+
+### Step 2: Thermal Stress and Force on the Clamps
+
+<details>
+<summary>**Click to reveal the thermal stress calculation**</summary>
+
+<Steps>
+
+1. **Thermal stress** (the formula is independent of length):
+
+   $$\sigma_T = E \, \alpha \, \Delta T = (200 \times 10^3 \text{ MPa})(12 \times 10^{-6})(60) = 144 \text{ MPa (compressive)}$$ ✅
+
+2. **Reaction force at each clamp:**
+
+   $$F = \sigma_T \times A = 144 \text{ MPa} \times 200 \text{ mm}^2 = 28{,}800 \text{ N} = 28.8 \text{ kN}$$ ✅
+
+   Each clamp must carry 28.8 kN of compressive reaction even though no external load is applied to the rod. This force is invisible to a static load analysis but fully real. ✅
+
+</Steps>
+
+</details>
+
+### Step 3: Safety Factor Against Yield
+
+<details>
+<summary>**Click to reveal the safety factor check**</summary>
+
+<Steps>
+
+1. **Compare the thermal stress with the yield strength:**
+
+   $$\text{SF} = \frac{\sigma_{yield}}{\sigma_T} = \frac{250 \text{ MPa}}{144 \text{ MPa}} = 1.74$$ ✅
+
+2. **Interpret the result.** A safety factor of 1.74 is marginal for a real installation. If the temperature rise reached 90 °C (not unusual for a machine running hard) the stress would climb to $200{,}000 \times 12 \times 10^{-6} \times 90 = 216$ MPa, with SF = 1.16. At 104 °C the rod would yield. The clamps would then relax as the rod deforms plastically, and on cool-down the rod would be in residual tension, a classic ratcheting failure path. ✅
+
+   For a rod that must remain elastic across its full thermal range, either the material needs a higher yield strength, or the mounting must allow some axial movement (such as a slip fit with a soft spring return). ✅
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+A fully restrained member develops $\sigma = E \alpha \Delta T$ regardless of its length. The same temperature rise in a 50 mm rod and a 5000 mm rod of identical material and cross-section gives identical stress. Length determines how large the free expansion would have been, not how much stress the constraint generates. This is why long rails under rigid constraint are more dangerous in the sense that the stored elastic energy is greater, not in the sense of higher stress.
+:::
+
+## Application 3: Compound Assembly (Aluminum Rod in Steel Housing)
+
+<InArticleAd />
+
+
+An aluminum rod is pressed into a steel housing and pinned at both ends so the two parts must deform together. When the assembly heats up, aluminum tries to expand more than steel. The two materials fight each other: the aluminum is put in compression and the steel housing is put in tension by the same internal force.
+
+:::note[System Problem Statement]
+- **Aluminum rod:** diameter $d_{Al} = 20$ mm, so $A_{Al} = \pi (20)^2 / 4 = 314.2$ mm², length $L = 200$ mm, $\alpha_{Al} = 23 \times 10^{-6}$ /°C, $E_{Al} = 70$ GPa
+- **Steel housing (tube):** same wall area $A_{st} = 314.2$ mm², length $L = 200$ mm, $\alpha_{st} = 12 \times 10^{-6}$ /°C, $E_{st} = 200$ GPa
+- **Temperature rise:** $\Delta T = 80$ °C, both parts heat equally
+- **Constraint:** ends pinned; both parts must have the same total elongation
+
+**Key Question:** What internal force develops, and what stress does each material carry?
+:::
+
+### Step 1: Free Expansions and the Compatibility Gap
+
+<details>
+<summary>**Click to reveal the free-expansion and compatibility analysis**</summary>
+
+<Steps>
+
+1. **Free expansion of the aluminum rod:**
+
+   $$\delta_{Al,free} = \alpha_{Al} \, L \, \Delta T = (23 \times 10^{-6})(200)(80) = 0.368 \text{ mm}$$ ✅
+
+2. **Free expansion of the steel housing:**
+
+   $$\delta_{st,free} = \alpha_{st} \, L \, \Delta T = (12 \times 10^{-6})(200)(80) = 0.192 \text{ mm}$$ ✅
+
+3. **Compatibility gap:** aluminum wants to be 0.368 mm longer, steel wants to be only 0.192 mm longer. The pins force them to the same length, so neither gets what it wants:
+
+   $$\Delta \delta_{free} = 0.368 - 0.192 = 0.176 \text{ mm}$$ ✅
+
+   An internal compressive force $P$ shortens the aluminum and an equal tensile force $P$ stretches the steel until the two meet at a common length. ✅
+
+</Steps>
+
+</details>
+
+### Step 2: Solve for the Internal Force
+
+<details>
+<summary>**Click to reveal the compatibility equation solution**</summary>
+
+<Steps>
+
+1. **Write the compatibility equation.** Both parts must reach the same elongation $\delta$:
+
+   $$\delta_{Al,free} - \frac{P L}{A_{Al} E_{Al}} = \delta_{st,free} + \frac{P L}{A_{st} E_{st}}$$
+
+2. **Rearrange to isolate $P$:**
+
+   $$(\alpha_{Al} - \alpha_{st}) \Delta T = P \left(\frac{1}{A_{Al} E_{Al}} + \frac{1}{A_{st} E_{st}}\right)$$
+
+3. **Compute the flexibility terms** (working in N and mm, so $E$ in MPa = N/mm²):
+
+   $$\frac{1}{A_{Al} E_{Al}} = \frac{1}{314.2 \times 70{,}000} = 4.546 \times 10^{-8} \text{ mm/N}$$ ✅
+
+   $$\frac{1}{A_{st} E_{st}} = \frac{1}{314.2 \times 200{,}000} = 1.591 \times 10^{-8} \text{ mm/N}$$ ✅
+
+   $$\text{Sum} = 6.137 \times 10^{-8} \text{ mm/N}$$ ✅
+
+4. **Solve for $P$:**
+
+   $$P = \frac{(\alpha_{Al} - \alpha_{st}) \Delta T}{\text{sum}} = \frac{(23 - 12) \times 10^{-6} \times 80}{6.137 \times 10^{-8}} = \frac{8.80 \times 10^{-4}}{6.137 \times 10^{-8}} = 14{,}340 \text{ N} \approx 14.3 \text{ kN}$$ ✅
+
+</Steps>
+
+</details>
+
+### Step 3: Stresses in Each Material
+
+<details>
+<summary>**Click to reveal the stress results and yield check**</summary>
+
+<Steps>
+
+1. **Stress in the aluminum rod** (compression, because it was forced to expand less than it wanted):
+
+   $$\sigma_{Al} = \frac{P}{A_{Al}} = \frac{14{,}340}{314.2} = 45.6 \text{ MPa (compressive)}$$ ✅
+
+2. **Stress in the steel housing** (tension, because it was forced to expand more than it wanted):
+
+   $$\sigma_{st} = \frac{P}{A_{st}} = \frac{14{,}340}{314.2} = 45.6 \text{ MPa (tensile)}$$ ✅
+
+   Because the two areas are equal here, the stresses come out equal. In a real design the areas are usually different and the stresses differ accordingly. ✅
+
+3. **Common actual elongation** (verify consistency):
+
+   $$\delta = \delta_{Al,free} - \frac{P L}{A_{Al} E_{Al}} = 0.368 - \frac{14{,}340 \times 200}{314.2 \times 70{,}000} = 0.368 - 0.130 = 0.238 \text{ mm}$$ ✅
+
+   Check via steel: $0.192 + \frac{14{,}340 \times 200}{314.2 \times 200{,}000} = 0.192 + 0.046 = 0.238$ mm. Both paths give 0.238 mm. ✅
+
+4. **Yield check:**
+   - Aluminum ($\sigma_{yield} \approx 270$ MPa): SF = 270 / 45.6 = 5.9. Comfortable. ✅
+   - Steel ($\sigma_{yield} \approx 250$ MPa): SF = 250 / 45.6 = 5.5. Comfortable. ✅
+
+   If the temperature rise were much larger, the aluminum would yield first because it has a lower yield strength. ✅
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+The compatibility method generalizes to any number of parallel load paths: write one compatibility equation per redundant constraint and one force-balance equation, then solve simultaneously. The key physical picture is that the high-$\alpha$ material ends up in compression and the low-$\alpha$ material ends up in tension whenever both are heated by the same amount. Reversing which is stiffer changes the magnitude of the stress, not the sign.
+:::
 
 ## Design Guidelines for Thermal Systems
 
 <InArticleAd />
 
 
-### Material Selection Strategy
-
-<Tabs>
-  <TabItem label="Similar α Values">
-    
-    **Strategy:** Choose materials with similar thermal expansion coefficients
-    
-    **Examples:**
-    - Steel-Iron combinations (α ≈ 12 × 10⁻⁶ /°C)
-    - Aluminum alloys with aluminum (α ≈ 23 × 10⁻⁶ /°C)
-    
-    **Benefit:** Minimal differential expansion
-    
-  </TabItem>
-  <TabItem label="Expansion Joints">
-    
-    **Strategy:** Provide space for thermal growth
-    
-    **Applications:**
-    - Bridge expansion joints
-    - Pipeline expansion loops  
-    - Machine tool thermal compensation
-    
-    **Benefit:** Zero thermal stress development
-    
-  </TabItem>
-  <TabItem label="Thermal Barriers">
-    
-    **Strategy:** Isolate components from heat sources
-    
-    **Methods:**
-    - Insulation materials
-    - Heat shields
-    - Active cooling systems
-    
-    **Benefit:** Reduced ΔT minimizes thermal effects
-    
-  </TabItem>
-</Tabs>
-
-### Common Thermal Design Mistakes
-
-:::danger[Avoid These Errors]
-1. **Ignoring thermal expansion** in precision mechanisms
-2. **Over-constraining** thermal growth with rigid connections  
-3. **Mixing high-α and low-α materials** without accommodation
-4. **Forgetting thermal effects** in tolerance stack-ups
-5. **Assuming room temperature operation** in heated environments
-:::
-
-## Thermal Analysis Summary
-
-<InArticleAd />
-
-
 <CardGrid>
-  <Card title="Thermal Expansion" icon="information">
-    **Aluminum expansion:** 0.0849 mm  
-    **Steel expansion:** 0.0431 mm  
-    **Differential:** 0.0418 mm  
-    **Status:** Aluminum expands 2× more
+  <Card title="Match expansion coefficients" icon="setting">
+  When two parts must maintain a precise fit across a temperature range, choose materials with similar $\alpha$ values. Steel-to-steel or aluminum-to-aluminum pairings eliminate differential expansion as a problem.
   </Card>
-  <Card title="Operating Clearances" icon="approve">
-    **Cold clearance:** 0.05 mm  
-    **Hot clearance:** 0.092 mm  
-    **Design clearance:** 0.092 mm cold  
-    **Status:** Adequate clearance maintained
+  <Card title="Provide room to grow" icon="rocket">
+  Expansion joints, slotted holes, and slip-fit ends let a member expand freely. A free member develops no thermal stress no matter how large the temperature change.
   </Card>
-  <Card title="Thermal Stress" icon="error">
-    **Constrained Al stress:** 297 MPa  
-    **Al yield strength:** 270 MPa  
-    **Safety:** Would yield if constrained  
-    **Status:** Must allow free expansion
+  <Card title="Check constrained stress against yield" icon="warning">
+  Before welding or bolting a member into a rigid frame, compute $\sigma = E \alpha \Delta T$ for the expected temperature range and compare it with the yield strength. If the margin is small, the fix is to allow movement, not to choose a stronger material.
+  </Card>
+  <Card title="Account for thermal effects in tolerances" icon="puzzle">
+  Clearances and press-fit interferences are room-temperature numbers. For any heated assembly, recalculate the fit at the operating temperature using the differential expansion before specifying the cold dimensions.
   </Card>
 </CardGrid>
+
+:::tip[Instrument it]
+Thermal stress is a temperature problem first. Put a thermocouple (a K-type through a MAX31855) on each part and a dial gauge or LVDT across the clearance, and you can watch the gap close as things heat up and catch the seizure point before it arrives. An [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/) reading temperature and displacement together lets you [trend the clearance on siliconwit.io](https://siliconwit.io) and prove the part expands freely instead of locking up.
+:::
 
 ## Summary and Next Steps
 
 <InArticleAd />
 
 
-In this unit, you learned to:
+### Key Concepts Mastered
 
-1. **Calculate** thermal expansion using δ = αLΔT
-2. **Analyze** thermal stress in constrained systems (σ = EαΔT)
-3. **Design** clearances for thermal operation
-4. **Prevent** thermal stress through proper accommodation
+1. **Free thermal strain** is $\epsilon_T = \alpha \Delta T$ and free expansion is $\delta_T = \alpha L \Delta T$. A free member develops no stress.
+2. **Full constraint** prevents all expansion and develops a compressive thermal stress $\sigma_T = E \alpha \Delta T$, independent of length.
+3. **Differential expansion** in a two-material running fit (piston-cylinder) changes the clearance; the direction depends on which material has the higher $\alpha$.
+4. **Compound assemblies** require the compatibility method: write the condition that both parts must reach the same elongation, solve for the internal force, then divide by each area for the stress.
 
-**Key Design Principle:** Allow thermal expansion to prevent stress
+### Results at a Glance
 
-**Critical Formula:** Thermal stress = E × α × ΔT (for fully constrained systems)
+| Application | Description | Key result | Safety factor |
+|------------|-------------|------------|:-------------:|
+| Piston-cylinder (Al/steel) | differential expansion, $\Delta T = 180$ °C | clearance grows from 0.05 mm to 0.092 mm | N/A (free expansion) |
+| Fully restrained steel rod | $\Delta T = 60$ °C, both ends fixed | $\sigma_T = 144$ MPa (compressive), $F = 28.8$ kN | 1.74 vs yield |
+| Compound Al rod in steel housing | $\Delta T = 80$ °C, bonded ends | $P = 14.3$ kN; $\sigma_{Al} = 45.6$ MPa (C), $\sigma_{st} = 45.6$ MPa (T) | 5.9 (Al), 5.5 (st) |
 
-**Coming Next**: In Lesson 1.5, we'll analyze torsional loading in a Geneva mechanism crankshaft, exploring how twisting forces create shear stresses and angular deformation in rotating mechatronic systems.
+### A Note on Tools
+
+All three analyses here used only $\delta_T = \alpha L \Delta T$, $\sigma = E \alpha \Delta T$, and the compatibility equation. No finite-element software is needed to screen a design or size an expansion joint; the hand calculation is the design decision, and simulation only refines geometry once the concept is proven safe.
+
+Next, [Fundamentals of Shaft Torsion](/education/mechanics-of-materials/fundamentals-of-shaft-torsion) takes the same material-property framework into rotating shafts, where the load twists the cross-section rather than stretching or compressing it, and the governing stress is shear rather than normal.
 
 
 

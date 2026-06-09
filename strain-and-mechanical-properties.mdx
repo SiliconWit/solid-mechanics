@@ -1,9 +1,9 @@
 ---
-title: "Lesson 1.2: Simple Stress and Strain in Actuator Systems"
-description: "Analyzing axial stress and strain in CNC actuator shafts, including material selection for precision positioning"
+title: "Lesson 1.2: Strain, Material Properties, and Shear in Actuator Systems"
+description: "Understand strain, the full stress-strain curve, and shear behaviour by working three real applications: a CNC actuator shaft, a tensile coupon test, and a bonded elastomer anti-vibration mount."
 contributors: "sam-macharia,jack-kojiro"
 tags: ["solid-mechanics", "actuator-shaft", "axial-stress", "material-selection", "CNC-systems"]
-excerpt: "Learn axial stress and strain analysis through a CNC actuator shaft system, covering material selection criteria for precision mechatronic applications."
+excerpt: "Learn axial stress and strain, how to read a tensile test curve, and how to apply shear modulus, by analyzing a CNC Z-axis actuator shaft, a steel tensile coupon, and a rubber anti-vibration mount."
 pubDate: 2025-09-16
 ---
 
@@ -23,335 +23,454 @@ import { Card, CardGrid, Badge, Steps, LinkButton, FileTree } from '@astrojs/sta
 
 
 
-A CNC actuator shaft that stretches even a few micrometers under load throws off positioning accuracy, and choosing a material by cost alone risks either over-designing (heavy, expensive) or under-designing (flexible, imprecise). Selecting the right material requires comparing elastic modulus, yield strength, and elongation at failure across candidates, then computing the actual deformation under your expected loads. In this lesson you will perform that analysis on a CNC actuator shaft system, learning axial stress and strain calculations alongside practical material selection criteria. #AxialStress #MaterialSelection #CNCDesign
+A CNC actuator shaft that stretches even a few micrometres under load throws off positioning accuracy, and choosing a material by cost alone risks either over-designing (heavy, expensive) or under-designing (flexible, imprecise). Selecting the right material requires comparing elastic modulus, yield strength, and elongation at failure across candidates, then computing the actual deformation under your expected loads. In this lesson you will perform that analysis on a CNC actuator shaft, read a steel tensile test curve to extract yield strength, toughness, and ductility, and compute shear deflection in a bonded elastomer mount. #AxialStress #MaterialSelection #CNCDesign
 
 ## Learning Objectives
 
-By the end of this unit, you will be able to:
+By the end of this lesson, you will be able to:
 
-1. Analyze axial stress and strain in precision actuator shafts
-2. Calculate allowable loads based on yield strength criteria
-3. Compare material properties (aluminum vs steel) for actuator applications
-4. Solve shaft sizing problems for CNC positioning systems
+1. **Analyze** axial stress and strain in a precision actuator shaft and select between steel and aluminum based on strength and stiffness criteria
+2. **Interpret** a tensile test stress-strain curve to identify proportional limit, 0.2% offset yield strength, UTS, fracture strain, modulus of resilience, and modulus of toughness
+3. **Apply** the shear modulus relation $G = E / (2(1+\nu))$ to calculate shear stress, shear strain, and lateral deflection in an elastomer component
 
 ## Real-World System Problem: CNC Z-Axis Actuator Shaft
 
 <InArticleAd />
 
 
-<BionicText method="advanced" intensity="medium" class="highlight">
-In a Computer Numerical Control (CNC) machine, the Z-axis actuator controls vertical tool movement. The actuator shaft must transmit precise forces while maintaining dimensional accuracy under varying loads.
-</BionicText>
+In a CNC machine the Z-axis actuator controls vertical tool movement. The shaft must transmit precise forces while maintaining dimensional accuracy under varying loads. A shaft that deflects too far under the cutting force moves the tool out of the programmed path, producing scrap.
 
-### System Description
+### The Shaft Selection Problem
 
-**CNC Z-Axis Components:**
-- **Lead Screw** (converts rotary motion to linear motion)
-- **Actuator Shaft** (transmits axial forces to the tool)
-- **Linear Bearings** (guide smooth motion)
-- **Stepper/Servo Motor** (provides controlled rotation)
+> **Engineering Question:** How do you select the right material and shaft diameter to ensure the CNC system maintains a deformation limit of 0.05 mm under a maximum axial load of 5,000 N?
 
-### The Critical Challenge
-
-During machining operations:
-- The actuator shaft experiences **axial tension** when the tool pulls upward
-- Heavy workpieces create **axial compression** loads
-- Precision requirements demand **minimal shaft deformation**
-
-> **Engineering Question:** How do we select the right material and shaft diameter to ensure the CNC system maintains ±0.01 mm positioning accuracy under a maximum load of 5,000 N?
+Answering that requires two independent checks: a strength check (the stress must stay below the allowable strength) and a stiffness check (the elongation must stay within the positional tolerance). Either check can set the minimum diameter, and in precision systems the stiffness check almost always wins.
 
 ### Why Material Selection Matters
 
-**Aluminum Shaft Benefits:**
-- Lightweight (reduces system inertia)
-- Good machinability
-- Corrosion resistance
-- Lower cost
-
-**Steel Shaft Benefits:**
-- Higher strength
-- Greater stiffness (higher E)
-- Better wear resistance
-- Proven reliability
-
-The choice affects system performance, cost, and precision.
-
-:::note[CNC Actuator Design Trade-offs]
-Precision: Steel's higher stiffness reduces deformation  
-Speed: Aluminum's lighter weight enables faster motion  
-Cost: Material and machining costs vary significantly  
-Durability: Steel offers better long-term wear resistance
-:::
-
-## Fundamental Theory: Axial Stress and Strain
-
-<InArticleAd />
-
-
-Building on Lesson 1's foundation, let's develop the theory needed to solve our actuator shaft problem.
-
-### Axial Loading Conditions
-
-When forces act **along** the centerline of a shaft:
-
-<Card title="⚡ Axial Stress Formula" icon="document">
-$$\sigma_{axial} = \frac{F}{A} = \frac{4F}{\pi d^2}$$
-
-**Where:**
-- $F$ = Axial force (N)
-- $d$ = Shaft diameter (m)
-- $A$ = Cross-sectional area (m²)
-
-**Physical Meaning:** Stress is distributed uniformly across the cross-section when forces act along the centerline.
-</Card>
-
-### Axial Strain and Deformation
-
-The shaft will elongate (tension) or compress (compression) by:
-
-<Card title="📏 Axial Deformation Formula" icon="document">
-$$\delta = \frac{FL}{AE} = \frac{\sigma L}{E}$$
-
-**Where:**
-- $\delta$ = Total deformation (m)
-- $L$ = Shaft length (m)
-- $E$ = Young's modulus (Pa)
-
-**Physical Meaning:** Deformation is proportional to force and length, but inversely proportional to cross-sectional area and material stiffness.
-</Card>
-
-### Design Criteria for Actuator Systems
-
-<Tabs>
-  <TabItem label="Strength Criterion">
-    
-    **Prevent Material Failure:**
-    
-    <Card title="🔒 Strength Design Criterion" icon="document">
-    $$\sigma_{applied} \leq \frac{\sigma_{yield}}{SF}$$
-    
-    **Where:**
-    - SF = Safety Factor (typically 2-4 for CNC systems)
-    
-    **Purpose:** Ensures the applied stress remains well below the material's yield strength to prevent permanent deformation.
-    </Card>
-    
-  </TabItem>
-  <TabItem label="Stiffness Criterion">
-    
-    **Limit Deformation:**
-    
-    <Card title="📐 Stiffness Design Criterion" icon="document">
-    $$\delta = \frac{FL}{AE} \leq \delta_{allowable}$$
-    
-    **Where:**
-    - $\delta_{allowable}$ = Maximum acceptable deformation
-    - For precision systems: $\delta_{allowable}$ = 0.01-0.1 mm
-    
-    **Purpose:** Maintains dimensional accuracy by limiting elastic deformation under load.
-    </Card>
-    
-  </TabItem>
-  <TabItem label="Material Properties">
-    
-    **Aluminum 6061-T6:**
-    - $E$ = 70 GPa
-    - $\sigma_{yield}$ = 270 MPa
-    - Density = 2,700 kg/m³
-    
-    **Steel 1045:**
-    - $E$ = 200 GPa  
-    - $\sigma_{yield}$ = 530 MPa
-    - Density = 7,850 kg/m³
-    
-  </TabItem>
-</Tabs>
-
-## Application: CNC Actuator Shaft Analysis
-
-<InArticleAd />
-
-
-Let's solve the actuator shaft problem step by step using our theoretical foundation.
-
-:::note[Problem Statement]
-**CNC Z-Axis Actuator Shaft Material Selection**
-
-**What we need to determine:**
-1. **Minimum shaft diameter** required for strength (both materials)
-2. **Stiffness compliance** with deformation limits
-3. **Material selection** based on strength vs. stiffness requirements
-4. **Final design recommendations** considering weight and cost
-
-**Key Question:** Should we use aluminum or steel for this actuator shaft, and what diameter is required to meet both strength and stiffness requirements?
-:::
-
-<hr />
-
-**System Parameters:**
-- CNC Z-axis positioning system
-- Circular actuator shaft
-- Maximum axial force: 5,000 N (tension)
-- **`Safety factor`**: SF = 3
-- Deformation limit: δ ≤ 0.05 mm
-- Shaft length: L = 400 mm
-
-**Material Options:**
-- **Option A:** Aluminum 6061-T6 (E = 70 GPa, σ_yield = 270 MPa)
-- **Option B:** Steel 1045 (E = 200 GPa, σ_yield = 530 MPa)
-
-<hr />
-
-### Step 1: Determine Aluminum and Steel Strengths
-
-<details>
-<summary>**Click to reveal strength calculations**</summary>
-
-<Steps>
-
-1. **Determine Minimum Shaft Diameter (Strength) for Aluminum 6061-T6:**
-   
-   Allowable stress: $\sigma_{allowable} = \frac{\sigma_{yield}}{SF} = \frac{270}{3} = 90 \text{ MPa}$
-   
-   Required area: $A_{min} = \frac{F}{\sigma_{allowable}} = \frac{5,000}{90 \times 10^6} = 5.56 \times 10^{-5} \text{ m}^2$
-   
-   Minimum diameter: $d_{min} = \sqrt{\frac{4A_{min}}{\pi}} = 8.41 \text{ mm}$
-
-2. **Determine Minimum Shaft Diameter (Strength) for Steel 1045:**
-   
-   Allowable stress: $\sigma_{allowable} = \frac{530}{3} = 177 \text{ MPa}$
-   
-   Required area: $A_{min} = \frac{5,000}{177 \times 10^6} = 2.82 \times 10^{-5} \text{ m}^2$
-   
-   Minimum diameter: $d_{min} = 6.00 \text{ mm}$
-
-</Steps>
-
-</details>
-
-### Step 2: Check 10 mm diameter Shaft Stiffness Requirements
-
-<details>
-<summary>**Click to reveal shaft requirements calculations**</summary>
-
-<Steps>
-
-1. **Aluminum shaft (d = 10 mm):**
-
-   Area: $A = \frac{\pi \times (0.01)^2}{4} = 7.85 \times 10^{-5} \text{ m}^2$
-
-   Deformation: $\delta = \frac{FL}{AE} = \frac{5,000 \times 0.4}{7.85 \times 10^{-5} \times 70 \times 10^9} = 0.364 \text{ mm}$
-
-   ❌ **Fails stiffness requirement** (0.364 mm > 0.05 mm allowable)
-
-2. **Steel shaft (d = 10 mm):**
-
-   Deformation: $\delta = \frac{5,000 \times 0.4}{7.85 \times 10^{-5} \times 200 \times 10^9} = 0.127 \text{ mm}$
-
-   ❌ **Still fails stiffness requirement** (0.127 mm > 0.05 mm allowable)
-
-</Steps>
-
-:::caution[Stiffness Dominance]
-In precision applications, **stiffness requirements often exceed strength requirements by large margins**. This leads to over-designed components from a strength perspective.
-:::
-
-:::tip[Young's Modulus Impact]
-Steel's 2.86× higher E compared to aluminum significantly reduces deformation, but still insufficient for this precision requirement.
-:::
-
-</details>
-
-### Step 3: Size for Stiffness Requirements
-
-<details>
-<summary>**Click to reveal area and diameter calculations**</summary>
-
-<Steps>
-1. Area and diameter for aluminum
-
-   Required area for aluminum: $A = \frac{FL}{\delta_{allowable} \times E} = \frac{5,000 \times 0.4}{0.05 \times 10^{-3} \times 70 \times 10^9} = 5.71 \times 10^{-4} \text{ m}^2$
-
-   Required diameter: $d = \sqrt{\frac{4 \times 5.71 \times 10^{-4}}{\pi}} = 27.0 \text{ mm}$
-   
-2. Area and diameter for steel
-
-   Required area for steel: $A = \frac{5,000 \times 0.4}{0.05 \times 10^{-3} \times 200 \times 10^9} = 2.0 \times 10^{-4} \text{ m}^2$
-
-   Required diameter: $d = \sqrt{\frac{4 \times 2.0 \times 10^{-4}}{\pi}} = 16.0 \text{ mm}$
-</Steps>
-
-</details>
-
-### Step 4: Final Design Comparison
-
-<details>
-<summary>**Click to reveal design recommendations**</summary>
-
 <CardGrid>
-  <Card title="Aluminum 6061-T6 Shaft">
-    **Required Diameter:** 27 mm  
-    **Mass (L=400mm):** 0.62 kg  
-    **Stress:** 8.7 MPa  
-    **Deformation:** 0.05 mm  
-    **Cost:** Lower material cost
+  <Card title="Stiffness governs precision" icon="warning">
+  In positioning systems, the deformation limit is often tighter than the strength limit. A shaft sized purely for strength may deflect several times more than the tolerance allows.
   </Card>
-  <Card title="Steel 1045 Shaft">
-    **Required Diameter:** 16 mm  
-    **Mass (L=400mm):** 0.63 kg  
-    **Stress:** 24.9 MPa  
-    **Deformation:** 0.05 mm  
-    **Cost:** Higher material cost
+  <Card title="Modulus sets deflection" icon="setting">
+  Steel ($E = 200$ GPa) is about 2.9 times stiffer than aluminum ($E = 70$ GPa). For the same diameter and load, the steel shaft deflects less than a third as much.
+  </Card>
+  <Card title="Section size follows from E" icon="puzzle">
+  Because $\delta = FL/(AE)$, a stiffer material needs a smaller area for the same deflection, which keeps the shaft compact.
+  </Card>
+  <Card title="Mass can be nearly equal" icon="rocket">
+  Steel is about 2.9 times denser than aluminum, but steel's higher E lets it use a smaller cross-section, so the final shaft masses can end up similar.
   </Card>
 </CardGrid>
 
-:::tip[Engineering Design Decision]
-**Recommended: Steel 1045 shaft (16 mm diameter)**
-
-**Advantages:**
-- 69% smaller diameter (16 mm vs 27 mm)
-- Compact design fits space constraints
-- Similar mass (0.63 kg vs 0.62 kg)
-- Higher strength margin for future load increases
-
-**Trade-off:** Slightly higher material cost for superior performance
-:::
-
-</details>
-
-## Material Selection Guidelines for Mechatronics
+## Fundamental Theory: Strain, Hooke's Law, and the Stress-Strain Curve
 
 <InArticleAd />
 
 
-### When to Choose Aluminum
+The previous lesson defined stress. Here we build the quantities needed to predict deformation and to read a material test curve.
 
-:::note[Aluminum Applications in Mechatronics]
-✅ **Excellent for:**
-- High-speed robotics: Lower inertia enables faster acceleration
-- Thermal management: 4× better thermal conductivity than steel
-- Corrosive environments: Natural oxide layer protection
-- Weight-critical systems: Drones, portable equipment
+### Axial Strain and Deformation
 
-❌ **Avoid when:**
-- Ultra-precision required: Lower E causes excessive deflection
-- High contact stresses: Lower hardness leads to wear
-- Fatigue-critical: Lower fatigue strength than steel
+<Card title="Axial Strain and Deflection" icon="document">
+$$\epsilon = \frac{\delta}{L_0}, \qquad \delta = \frac{F L_0}{A E}$$
+
+Where:
+- $\epsilon$ = axial strain (dimensionless)
+- $\delta$ = change in length (mm or m)
+- $L_0$ = original length
+- $F$ = axial force (N)
+- $A$ = cross-sectional area (mm² or m²)
+- $E$ = Young's modulus (GPa)
+
+The second form is the most-used relation in this lesson: it links a known load and geometry to the actual elongation.
+</Card>
+
+### The Stress-Strain Curve
+
+A tensile test pulls a standard coupon to fracture while recording force and extension. The resulting curve divides material behaviour into regions:
+
+<Card title="Key Points on the Curve" icon="document">
+- **Proportional limit:** the highest stress at which stress and strain remain strictly proportional (the curve is still a straight line)
+- **Yield strength (0.2% offset):** found by drawing a line with slope $E$ starting at $\epsilon = 0.002$; where it intersects the curve is the yield point
+- **Ultimate tensile strength (UTS):** the peak stress the material ever carries
+- **Fracture point:** where the coupon breaks; the strain here gives the percent elongation (a ductility measure)
+</Card>
+
+:::note[Strength vs Stiffness]
+Young's modulus $E$ is the slope of the elastic line: it describes stiffness, how much force per unit strain. Yield strength and UTS describe strength, how much stress the material can carry. A soft rubber has a low $E$ but high elongation; a cast iron has a high $E$ but fractures with almost no plastic stretch. These are separate properties and must be checked separately.
 :::
 
-### When to Choose Steel
+### Modulus of Resilience and Modulus of Toughness
 
-:::note[Steel Applications in Mechatronics]
-✅ **Excellent for:**
-- Precision systems: High E minimizes deflection
-- Load-bearing structures: Superior strength and stiffness
-- Durable mechanisms: Excellent fatigue and wear resistance
-- Space-constrained designs: Higher strength enables smaller sections
+<Card title="Energy Absorption Measures" icon="document">
+$$u_r = \frac{\sigma_y^2}{2E} \quad \text{(modulus of resilience, J/m}^3\text{)}$$
 
-❌ **Avoid when:**
-- Weight-sensitive applications: 3× heavier than aluminum
-- High-frequency motion: Higher inertia limits acceleration
-- Budget constraints: Higher material and machining costs
+$$u_T \approx \text{area under the full stress-strain curve} \quad \text{(modulus of toughness, J/m}^3\text{)}$$
+
+Resilience measures how much elastic energy the material stores per unit volume before yielding. Toughness measures the total energy per unit volume absorbed before fracture, including all the plastic work.
+</Card>
+
+### Shear Modulus
+
+<Card title="Shear Modulus and Its Relation to E and Poisson's Ratio" icon="document">
+$$G = \frac{E}{2(1 + \nu)}$$
+
+$$\tau = G \gamma, \qquad \gamma = \frac{\tau}{G}, \qquad \delta_{shear} = \gamma \, h$$
+
+Where:
+- $G$ = shear modulus (Pa or MPa)
+- $\tau$ = shear stress (Pa or MPa)
+- $\gamma$ = shear strain (dimensionless, in radians)
+- $h$ = thickness of the sheared layer
+
+For metals, $G$ falls between $0.38E$ and $0.40E$. For elastomers with $\nu \approx 0.49$, $G \approx E/2.98$, much smaller than for metals.
+</Card>
+
+:::tip[Material Selection Insight]
+A higher $E$ means a stiffer material that deforms less under the same load. A lower $E$ means more flexibility, which is useful for vibration damping in mounts and couplings. Steel ($E \approx 200$ GPa) is about 2.9 times stiffer than aluminum ($E \approx 70$ GPa) for the same shape, but an elastomer ($E \approx 4$ MPa) is roughly 50,000 times less stiff than steel.
+:::
+
+## Application 1: CNC Actuator Shaft, Steel vs Aluminum
+
+<InArticleAd />
+
+
+The CNC Z-axis shaft must transmit a maximum axial force of 5,000 N while keeping elongation within 0.05 mm over its 400 mm length. Both a strength check and a stiffness check are required.
+
+:::note[System Problem Statement]
+- **Component:** CNC Z-axis actuator shaft, circular cross-section
+- **Maximum axial force:** $F = 5{,}000$ N (tension)
+- **Shaft length:** $L = 400$ mm
+- **Deformation limit:** $\delta \leq 0.05$ mm
+- **Safety factor:** SF = 3
+- **Material Option A:** Aluminum 6061-T6, $E = 70$ GPa, $\sigma_{yield} = 270$ MPa
+- **Material Option B:** Steel 1045, $E = 200$ GPa, $\sigma_{yield} = 530$ MPa
+- **Task:** find the minimum shaft diameter from the strength criterion and then from the stiffness criterion for each material; identify which criterion governs
+
+**Key Question:** Should this shaft be aluminum or steel, and what diameter is required to meet both strength and stiffness requirements?
+:::
+
+### Step 1: Minimum Diameter from the Strength Criterion
+
+<details>
+<summary>**Click to reveal the strength calculations**</summary>
+
+<Steps>
+
+1. **Allowable stress for each material** with SF = 3:
+
+   Aluminum: $\sigma_{allow} = 270 / 3 = 90 \text{ MPa}$ ✅
+
+   Steel: $\sigma_{allow} = 530 / 3 = 177 \text{ MPa}$ ✅
+
+2. **Minimum area** from $A_{min} = F / \sigma_{allow}$:
+
+   Aluminum: $A_{min} = 5{,}000 / 90 = 55.6 \text{ mm}^2$ ✅
+
+   Steel: $A_{min} = 5{,}000 / 177 = 28.2 \text{ mm}^2$ ✅
+
+3. **Minimum diameter** from $d_{min} = \sqrt{4 A_{min} / \pi}$:
+
+   Aluminum: $d_{min} = \sqrt{4 \times 55.6 / \pi} = 8.41 \text{ mm}$ ✅
+
+   Steel: $d_{min} = \sqrt{4 \times 28.2 / \pi} = 6.00 \text{ mm}$ ✅
+
+   Strength alone would permit quite a thin shaft for either material. ✅
+
+</Steps>
+
+</details>
+
+### Step 2: Minimum Diameter from the Stiffness Criterion
+
+<details>
+<summary>**Click to reveal the stiffness calculations**</summary>
+
+<Steps>
+
+1. **Required area** from $\delta = FL/(AE) \leq 0.05$ mm, rearranged to $A \geq FL/(\delta_{allow} \cdot E)$:
+
+   Aluminum: $A = \frac{5{,}000 \times 400}{0.05 \times 70{,}000} = \frac{2{,}000{,}000}{3{,}500} = 571 \text{ mm}^2$ ✅
+
+   Steel: $A = \frac{5{,}000 \times 400}{0.05 \times 200{,}000} = \frac{2{,}000{,}000}{10{,}000} = 200 \text{ mm}^2$ ✅
+
+   (Here $E$ is in MPa = N/mm², so $\delta$ in mm and $L$ in mm are consistent.)
+
+2. **Required diameter** from $d = \sqrt{4A/\pi}$:
+
+   Aluminum: $d = \sqrt{4 \times 571 / \pi} = \sqrt{727.4} = 27.0 \text{ mm}$ ✅
+
+   Steel: $d = \sqrt{4 \times 200 / \pi} = \sqrt{254.6} = 15.95 \text{ mm} \approx 16.0 \text{ mm}$ ✅
+
+3. **Compare the two criteria:**
+
+   For aluminum: strength needs 8.4 mm, stiffness needs 27.0 mm. Stiffness governs by a factor of 3.2. ✅
+
+   For steel: strength needs 6.0 mm, stiffness needs 16.0 mm. Stiffness governs by a factor of 2.7. ✅
+
+</Steps>
+
+</details>
+
+### Step 3: Verify the Final Design and Compare Materials
+
+<details>
+<summary>**Click to reveal the design comparison**</summary>
+
+<Steps>
+
+1. **Confirm deformation for the stiffness-governed diameters.** For the 27 mm aluminum shaft:
+
+   $A = \pi (27)^2 / 4 = 572.6 \text{ mm}^2$ ✅
+
+   $\delta = \frac{5{,}000 \times 400}{572.6 \times 70{,}000} = \frac{2{,}000{,}000}{40{,}082{,}000} = 0.0499 \text{ mm}$ (just within 0.05 mm) ✅
+
+   For the 16 mm steel shaft:
+
+   $A = \pi (16)^2 / 4 = 201.1 \text{ mm}^2$ ✅
+
+   $\delta = \frac{5{,}000 \times 400}{201.1 \times 200{,}000} = \frac{2{,}000{,}000}{40{,}220{,}000} = 0.0497 \text{ mm}$ (just within 0.05 mm) ✅
+
+2. **Estimate shaft mass** using $m = \rho A L$:
+
+   Aluminum ($\rho = 2{,}700$ kg/m³): $m = 2{,}700 \times 572.6 \times 10^{-6} \times 0.4 = 0.618$ kg ✅
+
+   Steel ($\rho = 7{,}850$ kg/m³): $m = 7{,}850 \times 201.1 \times 10^{-6} \times 0.4 = 0.631$ kg ✅
+
+   The masses are nearly equal because steel's higher density is almost exactly offset by its smaller cross-section. ✅
+
+3. **Design decision:** Steel 1045 at 16 mm diameter meets both criteria, uses a 41% smaller diameter (16 mm versus 27 mm, which fits tighter machine envelopes), and has a similar mass to the aluminum option. ✅
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+In precision positioning systems, the stiffness criterion almost always sets the shaft size, not the strength criterion. A shaft that is well within the strength limit can still fail the job by deflecting the tool out of tolerance. Both criteria must be checked, and the larger of the two required diameters governs the design.
+:::
+
+## Application 2: Interpreting a Tensile Test of a Steel Coupon
+
+<InArticleAd />
+
+
+A tensile test is the standard way to measure the mechanical properties of a material before it goes into a design. Understanding how to read the stress-strain curve lets you extract the numbers that feed every other analysis.
+
+:::note[System Problem Statement]
+- **Component:** standard round steel coupon (ASTM E8)
+- **Gauge length:** $L_0 = 50$ mm
+- **Diameter:** $d = 12.5$ mm, giving $A_0 = \pi(12.5)^2/4 = 122.7$ mm²
+- **Material:** medium-carbon steel, $E = 200$ GPa
+- **Curve data (read from the test record):**
+  - Proportional limit: approximately 280 MPa
+  - 0.2% offset yield strength: $\sigma_y = 350$ MPa
+  - Ultimate tensile strength: $\sigma_{UTS} = 520$ MPa
+  - Fracture stress: 410 MPa (after necking)
+  - Elongation at fracture: 22% of gauge length
+- **Task:** confirm the 0.2% offset construction, compute modulus of resilience, estimate modulus of toughness, and compute percent elongation
+
+**Key Question:** What are the energy-absorption characteristics of this steel, and how ductile is it?
+:::
+
+### Step 1: Confirm the 0.2% Offset Yield Construction
+
+<details>
+<summary>**Click to reveal the 0.2% offset construction**</summary>
+
+<Steps>
+
+1. **What "0.2% offset" means.** Draw a straight line with slope equal to $E$ (200 GPa) that starts not at the origin but at $\epsilon = 0.002$ on the strain axis. Where that line intersects the actual stress-strain curve is defined as the yield strength. The 0.002 offset accounts for the permanent set that is considered acceptable for a yield criterion.
+
+2. **Check the elastic slope at the yield point.** At $\sigma_y = 350$ MPa the elastic strain is:
+
+   $$\epsilon_{elastic} = \frac{\sigma_y}{E} = \frac{350 \text{ MPa}}{200{,}000 \text{ MPa}} = 0.00175$$ ✅
+
+   The total strain at the 0.2% offset yield point is $0.00175 + 0.002 = 0.00375$, which is consistent with where the offset line meets the curve. ✅
+
+3. **Read the other landmarks:**
+   - Proportional limit $\approx 280$ MPa at strain $\approx 0.0014$ (curve is still linear)
+   - UTS = 520 MPa at a strain of roughly 12% (the peak of the curve)
+   - Fracture at 22% elongation and 410 MPa (necking has reduced the load-bearing area)
+
+</Steps>
+
+</details>
+
+### Step 2: Modulus of Resilience
+
+<details>
+<summary>**Click to reveal the resilience calculation**</summary>
+
+<Steps>
+
+1. **Formula.** The modulus of resilience is the area under the elastic portion of the curve, approximated as a triangle:
+
+   $$u_r = \frac{\sigma_y^2}{2E}$$
+
+2. **Calculation:**
+
+   $$u_r = \frac{(350 \times 10^6)^2}{2 \times (200 \times 10^9)} = \frac{1.225 \times 10^{17}}{4.0 \times 10^{11}} = 306{,}250 \text{ J/m}^3 \approx 306 \text{ kJ/m}^3$$ ✅
+
+3. **Meaning.** This steel can absorb 306 kJ per cubic metre elastically before yielding. A material with higher resilience makes a better spring; higher toughness (see Step 3) makes a better crash absorber. ✅
+
+</Steps>
+
+</details>
+
+### Step 3: Estimate the Modulus of Toughness
+
+<details>
+<summary>**Click to reveal the toughness estimate**</summary>
+
+<Steps>
+
+1. **Approach.** The modulus of toughness is the total area under the stress-strain curve. A practical estimate splits the curve into the elastic triangle plus a trapezoidal plastic region:
+
+   $$u_T \approx u_r + \frac{(\sigma_y + \sigma_{UTS})}{2} \times (\epsilon_{fracture} - \epsilon_y^{*})$$
+
+   where $\epsilon_y^{*}$ is the strain at yield (approximately 0.00175) and $\epsilon_{fracture} = 0.22$.
+
+2. **Calculation:**
+
+   Elastic contribution: $u_r = 306{,}250$ J/m³ (from Step 2) ✅
+
+   Average stress over plastic region: $(350 + 520)/2 = 435$ MPa ✅
+
+   Plastic strain range: $0.22 - 0.00175 = 0.2183$ ✅
+
+   Plastic contribution: $435 \times 10^6 \times 0.2183 = 94{,}961{,}000$ J/m³ $\approx 94.96$ MJ/m³ ✅
+
+   Total: $u_T \approx 0.31 + 94.96 \approx 95.3$ MJ/m³ ✅
+
+3. **Interpretation.** The steel absorbs roughly 95 MJ per cubic metre before fracturing. Nearly all of that (99.7%) is plastic work during the large permanent elongation. This high toughness is what makes medium-carbon steel suitable for parts that must absorb impact without shattering. ✅
+
+</Steps>
+
+</details>
+
+### Step 4: Percent Elongation (Ductility)
+
+<details>
+<summary>**Click to reveal the percent elongation**</summary>
+
+<Steps>
+
+1. **Percent elongation** is defined over the original gauge length:
+
+   $$\%EL = \frac{L_f - L_0}{L_0} \times 100 = \frac{(50 \times 1.22) - 50}{50} \times 100 = 22\%$$ ✅
+
+   (The fracture elongation of 22% was read from the curve; it means the gauge section grew from 50 mm to 61 mm before breaking.) ✅
+
+2. **Classification.** Materials with $\%EL > 5\%$ are considered ductile. At 22%, this steel has substantial ductility: it gives visual warning (necking and elongation) well before fracture, which is the property that makes ductile metals forgiving in overload situations. ✅
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+A stress-strain curve tells you four different things about a material: its stiffness (the slope $E$), its yield strength (where permanent deformation begins), its ultimate strength (the peak load it can ever carry), and its ductility (how much it deforms before breaking). All four numbers are needed for a complete design check, and none of them can substitute for another.
+:::
+
+## Application 3: Shear Modulus and a Bonded Elastomer Anti-Vibration Mount
+
+<InArticleAd />
+
+
+Shear modulus governs any component that is loaded across its thickness rather than along its length. Bonded elastomer mounts are a common example: the rubber layer is glued between two metal plates, and when the structure moves horizontally the rubber is sheared. The mount's compliance in shear is exactly what provides the vibration isolation.
+
+:::note[System Problem Statement]
+- **Component:** bonded natural-rubber anti-vibration mount
+- **Bonded pad dimensions:** 80 mm x 80 mm (shear area $A = 6{,}400$ mm²)
+- **Rubber layer thickness:** $h = 20$ mm
+- **Material:** natural rubber, $E = 4$ MPa, $\nu = 0.49$
+- **Applied horizontal shear force:** $F = 800$ N
+- **Task:** compute $G$ from $E$ and $\nu$, then find shear stress $\tau$, shear strain $\gamma$, and the lateral shear deflection $\delta_{shear}$
+
+**Key Question:** By how much does the mount deflect laterally under an 800 N horizontal load, and is that deflection in the expected design range for vibration isolation?
+:::
+
+### Step 1: Shear Modulus from E and Poisson's Ratio
+
+<details>
+<summary>**Click to reveal the shear modulus calculation**</summary>
+
+<Steps>
+
+1. **Apply the elastic relation** between $G$, $E$, and $\nu$:
+
+   $$G = \frac{E}{2(1 + \nu)} = \frac{4 \text{ MPa}}{2(1 + 0.49)} = \frac{4}{2 \times 1.49} = \frac{4}{2.98} = 1.342 \text{ MPa}$$ ✅
+
+2. **Context.** For nearly incompressible materials such as rubber ($\nu \approx 0.49$ to $0.50$), the denominator $2(1+\nu)$ approaches $3.0$, so $G \approx E/3$. This is why rubber is much easier to shear than to compress: its shear modulus is only a third of its tensile modulus, while for steel the ratio is about $0.385$. ✅
+
+</Steps>
+
+</details>
+
+### Step 2: Shear Stress in the Rubber Layer
+
+<details>
+<summary>**Click to reveal the shear stress calculation**</summary>
+
+<Steps>
+
+1. **Shear stress** is force over the area parallel to the load:
+
+   $$\tau = \frac{F}{A} = \frac{800 \text{ N}}{6{,}400 \text{ mm}^2} = 0.125 \text{ MPa}$$ ✅
+
+2. **Check against the rubber's short-term shear strength.** Natural rubber typically carries shear stresses up to 1 to 2 MPa before tearing. At 0.125 MPa the mount is well within its elastic range. ✅
+
+</Steps>
+
+</details>
+
+### Step 3: Shear Strain and Lateral Deflection
+
+<details>
+<summary>**Click to reveal the shear strain and deflection**</summary>
+
+<Steps>
+
+1. **Shear strain** from $\tau = G\gamma$:
+
+   $$\gamma = \frac{\tau}{G} = \frac{0.125 \text{ MPa}}{1.342 \text{ MPa}} = 0.0931 \text{ rad}$$ ✅
+
+2. **Lateral shear deflection.** Shear strain is the tangent of the shear angle, which for small angles equals $\delta_{shear}/h$:
+
+   $$\delta_{shear} = \gamma \times h = 0.0931 \times 20 \text{ mm} = 1.86 \text{ mm}$$ ✅
+
+3. **Interpret the result.** A lateral deflection of about 1.9 mm under 800 N gives a lateral stiffness of $k = F/\delta = 800/1.86 = 430$ N/mm. Anti-vibration mounts for light machinery typically target lateral stiffnesses in the range of 200 to 800 N/mm, so this mount is in the right design region. ✅
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+The shear modulus is not an independent material property: it follows directly from Young's modulus and Poisson's ratio through $G = E/(2(1+\nu))$. For metals, $G \approx 0.38E$; for rubbers, $G \approx E/3$. Whenever a component is loaded in shear (a lap joint, an elastomer mount, a keyed shaft), the calculation uses $\tau = F/A$ and $\gamma = \tau/G$, in exactly the same pattern as the axial case but with the shear quantities throughout.
+:::
+
+## Design Guidelines for Strain and Material Properties
+
+<InArticleAd />
+
+
+<CardGrid>
+  <Card title="Check stiffness and strength separately" icon="rocket">
+  In precision systems, the deformation limit almost always sets a larger minimum cross-section than the strength criterion. Run both calculations and take the larger diameter.
+  </Card>
+  <Card title="Read the full stress-strain curve" icon="warning">
+  Yield strength and UTS are on the same curve, but they mean different things. Yield is where permanent deformation begins; UTS is the peak load. Using UTS for a yield-based design check is unsafe.
+  </Card>
+  <Card title="Know G for shear-loaded parts" icon="setting">
+  Any component carrying shear (a pin, an adhesive joint, a rubber mount, a splined coupling) requires the shear modulus, not Young's modulus. Compute it from $G = E/(2(1+\nu))$ if you only have $E$ and $\nu$.
+  </Card>
+  <Card title="Ductility provides failure warning" icon="puzzle">
+  A material with more than 5% elongation at fracture deforms visibly before it breaks. This gives warning time. Brittle materials fracture suddenly, with no prior deformation, which is why ductility matters in safety-critical parts.
+  </Card>
+</CardGrid>
+
+:::tip[Instrument it]
+The stiffness criterion that sized the actuator shaft is something you can measure directly. Mount an LVDT or a dial indicator at the loaded end and read the real deflection under a known load; its slope is the actual axial stiffness, which is rarely exactly what the handbook modulus predicts (fits, surface condition, and bearing compliance all add compliance). An [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/) logging the LVDT output lets you [trend the measured stiffness on siliconwit.io](https://siliconwit.io) and verify the shaft meets the tolerance before you trust the part in production.
 :::
 
 ## Summary and Next Steps
@@ -359,24 +478,25 @@ Steel's 2.86× higher E compared to aluminum significantly reduces deformation, 
 <InArticleAd />
 
 
-In this unit, you learned to:
+### Key Concepts Mastered
 
-1. **Analyze** axial stress in actuator shafts using σ = F/A
-2. **Calculate** deformation using δ = FL/(AE)
-3. **Apply** both strength and stiffness criteria in design
-4. **Compare** aluminum vs steel for precision applications
+1. **Axial deflection** follows $\delta = FL/(AE)$. In precision systems the stiffness criterion (deformation limit) almost always sets a larger minimum section than the strength criterion, and both must be checked.
+2. **The tensile test curve** captures stiffness ($E$, the slope), yield strength (0.2% offset construction), UTS (peak), fracture strain (ductility), and the energy per unit volume the material can absorb (resilience and toughness).
+3. **Shear modulus** is related to Young's modulus and Poisson's ratio by $G = E/(2(1+\nu))$. Shear-loaded parts (elastomer mounts, pins, adhesive joints) use $\tau = F/A$ and $\gamma = \tau/G$ to find the shear deflection $\delta_{shear} = \gamma h$.
 
-**Key Engineering Insights:**
-- Stiffness ∝ E: Material stiffness is material-dependent
-- Stiffness ∝ A: Cross-sectional area linearly affects stiffness  
-- Strength ∝ A: Doubling area doubles load capacity
-- Deformation ∝ 1/E: Higher E dramatically reduces deflection
+### Results at a Glance
 
-:::danger[Critical Design Rule]
-**Always check both strength AND stiffness criteria**. In precision mechatronics, stiffness requirements typically govern the design, leading to components that are over-designed for strength.
-:::
+| Application | Key result | Governing criterion |
+|------------|-----------|---------------------|
+| CNC shaft: aluminum 27 mm, steel 16 mm | Al: $\delta = 0.050$ mm, mass 0.62 kg; steel: $\delta = 0.050$ mm, mass 0.63 kg | Stiffness governs both |
+| Steel tensile coupon | $u_r = 306$ kJ/m³, $u_T \approx 95.3$ MJ/m³, ductility 22% | Yield at 350 MPa, UTS 520 MPa |
+| Elastomer mount (80 mm x 80 mm, 20 mm thick) | $G = 1.34$ MPa, $\tau = 0.125$ MPa, $\gamma = 0.093$ rad, $\delta_{shear} = 1.86$ mm | Shear governs deflection |
 
-**Coming Next**: In Lesson 1.3, we'll analyze compound bars with multiple materials, exploring how linear actuators with steel-aluminum segments share loads and deform under force.
+### A Note on Tools
+
+Every number in this lesson came from three formulas ($\delta = FL/(AE)$, $u_r = \sigma_y^2/(2E)$, $G = E/(2(1+\nu))$) and a calculator. Finite-element software is not needed for uniform axial or shear members; the hand calculation is the design, and simulation is for validating complex geometry after the sizing is done.
+
+Next, [Compound Bars and Composite Systems](/education/mechanics-of-materials/compound-bars-and-composite-systems) extends the axial analysis to members made of two different materials in series or parallel, which is the situation in every bolted joint, press fit, and bi-material actuator.
 
 
 

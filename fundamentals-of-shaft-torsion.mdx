@@ -1,10 +1,10 @@
 ---
 title: "Lesson 1.5: Torsion of Circular Shafts"
-description: "Analyzing torsional stresses and angular deformation in Geneva mechanism crankshafts and rotating mechatronic systems"
+description: "Learn torsional shear stress, angle of twist, and hollow-versus-solid shaft design by working three real examples: a Geneva mechanism crankshaft, a power-transmitting motor shaft, and a hollow-versus-solid comparison."
 contributors: "sam-macharia,jack-kojiro"
 pubDate: 2025-09-17
 tags: ["solid-mechanics", "torsion", "Geneva-mechanism", "crankshaft", "shear-stress", "angular-deformation"]
-excerpt: "Learn torsional analysis through Geneva mechanism crankshafts, covering shear stress distribution, angle of twist calculations, and design principles for rotating mechanical components."
+excerpt: "Master torsional analysis through three worked examples: sizing a Geneva mechanism crankshaft, computing shear stress and twist for a power-transmitting shaft, and quantifying the material saving when a hollow shaft replaces a solid one."
 ---
 
 import MechanicsOfMaterialsComments from '../../../../components/mechanics-of-materials/MechanicsOfMaterialsComments.astro';
@@ -23,421 +23,415 @@ import { Card, CardGrid, Badge, Steps, LinkButton, FileTree } from '@astrojs/sta
 
 
 
-A shaft that transmits torque without breaking can still fail functionally if it twists too much: the angular deflection throws off the timing in a Geneva indexing mechanism, causes vibration in a coupling, or misaligns a sensor mounting. Designing against torsional failure means checking both the shear stress (will it yield?) and the angle of twist (will it stay accurate?). In this lesson you will analyze Geneva mechanism crankshafts, learning shear stress distribution, angle of twist calculations, and the design principles that keep rotating shafts strong and stiff. #Torsion #ShearStress #ShaftDesign
+A shaft that transmits torque without breaking can still fail functionally if it twists too much: the angular deflection throws off the timing in a Geneva indexing mechanism, causes vibration in a coupling, or misaligns a sensor mounting. Designing against torsional failure means checking both the shear stress (will it yield?) and the angle of twist (will it stay accurate?). In this lesson you will analyze three real cases, a Geneva mechanism crankshaft, a power-transmitting motor shaft, and a hollow-versus-solid shaft comparison, learning the torsion formula, polar moment of inertia, and the design trade-offs that keep rotating shafts strong and stiff. #Torsion #ShearStress #ShaftDesign
 
 ## Learning Objectives
 
 By the end of this lesson, you will be able to:
 
-1. Calculate torsional shear stresses in circular crankshafts
-2. Determine angular deformation (twist) in rotating shafts
-3. Apply torsion theory to Geneva mechanism analysis
-4. Design shafts for both strength and stiffness requirements
+1. **Derive** the torsional shear stress formula and explain why stress peaks at the outer surface
+2. **Calculate** peak shear stress and angle of twist for solid and hollow circular shafts
+3. **Convert** power and rotational speed into torque, and apply the result to a shaft design
+4. **Compare** a hollow and a solid shaft carrying the same torque, and quantify the material saving
 
 ## Real-World System Problem: Geneva Mechanism Crankshaft
 
 <InArticleAd />
 
 
-<BionicText method="advanced" intensity="medium" class="highlight">
-The Geneva mechanism (also called Maltese cross mechanism) converts continuous rotation into intermittent motion. Found in film projectors, indexing tables, and automated manufacturing, the crankshaft experiences torsional loading during motion transfer.
-</BionicText>
-
-### System Description
-
-**Geneva Mechanism Components:**
-- **Drive Crankshaft** (continuous rotation input)
-- **Geneva Wheel** (intermittent rotation output)  
-- **Drive Pin** (transfers motion between components)
-- **Motor Coupling** (connects to drive motor)
+The Geneva mechanism converts continuous rotation into intermittent indexing motion. It appears in film-transport mechanisms, rotary indexing tables, and automated assembly equipment. The drive crankshaft spins continuously while the Geneva wheel advances one slot at a time, and every engagement event sends a torque spike through the crankshaft.
 
 ### The Torsional Challenge
 
-During operation, the Geneva mechanism crankshaft experiences:
+> **Engineering Question:** How do we size the crankshaft so it can transmit peak torque without yielding, and keep the angular twist small enough to preserve timing accuracy?
 
-:::note[Torsional Loading Conditions]
-- **Continuous torque** from the driving motor
-- **Impact loading** when the drive pin engages the Geneva wheel slots
-- **Variable torque** due to acceleration/deceleration of the Geneva wheel
-- **Angular deformation** that affects timing precision
-:::
-
-> **Engineering Question:** How do we ensure the crankshaft can transmit the required torque without excessive shear stress or angular twist that would affect the mechanism's timing accuracy?
+Both criteria matter. A shaft that survives the stress but winds up by several degrees will cause the Geneva wheel to over-travel or under-travel its slot, jamming the mechanism or marking parts at the wrong position.
 
 ### Why Torsional Analysis Matters
 
-**Consequences of Poor Torsional Design:**
-- **Shaft failure** due to excessive shear stress
-- **Timing errors** from excessive angular deformation  
-- **Mechanism jamming** from shaft twist under load
-- **Reduced accuracy** in intermittent positioning
-
-**Benefits of Proper Torsional Design:**
-- **Reliable torque transmission** without failure
-- **Precise timing** through controlled angular deformation
-- **Long service life** with appropriate safety factors
-- **Predictable performance** under varying loads
+<CardGrid>
+  <Card title="Preventing shaft failure" icon="warning">
+  Peak shear stress compared against the allowable value tells you whether the shaft survives the worst engagement torque before it is ever assembled.
+  </Card>
+  <Card title="Preserving timing accuracy" icon="setting">
+  The angle of twist formula sets how stiff a shaft must be so that angular deflection stays within the positioning tolerance of the driven mechanism.
+  </Card>
+  <Card title="Choosing solid versus hollow" icon="puzzle">
+  Most of the torsional stiffness in a circular shaft comes from material near the outer surface, so removing the low-stress core saves weight with little penalty in strength.
+  </Card>
+  <Card title="Sizing for power transmission" icon="rocket">
+  Motors and gearboxes are specified by power and speed, not torque. Converting P and n to T is the first step in every shaft design.
+  </Card>
+</CardGrid>
 
 ## Fundamental Theory: Torsional Mechanics
 
 <InArticleAd />
 
 
-### Basic Torsion Concepts
+When a circular shaft carries a twisting moment (torque), every cross-section resists by developing shear stress that varies linearly from zero at the centre to a maximum at the outer surface. Three formulas govern everything in this lesson.
 
-When a circular shaft is subjected to twisting moment (torque), it experiences:
+<Card title="Torsional shear stress" icon="document">
+$$\tau = \frac{T \, r}{J}$$
 
-**Shear Stress (τ):** Internal resistance to twisting
-**Shear Strain (γ):** Angular deformation of material elements
-**Angle of Twist (θ):** Overall angular deformation of the shaft
+Where:
+- $\tau$ = shear stress (Pa)
+- $T$ = applied torque (N·m)
+- $r$ = radial distance from the shaft centre (m); maximum stress occurs at $r = d/2$
+- $J$ = polar second moment of area (m$^4$)
 
-### Torsional Shear Stress Formula
-
-For circular shafts, the shear stress varies linearly from zero at the center to maximum at the outer surface:
-
-<Card title="🌀 Torsional Shear Stress Formula" icon="document">
-$$\tau = \frac{T \rho}{J}$$
-
-**Where:**
-- $\tau$ = Shear stress (Pa)
-- $T$ = Applied torque (N·m)
-- $\rho$ = Radial distance from center (m)
-- $J$ = Polar moment of inertia (m⁴)
-
-**Physical Meaning:** Shear stress varies linearly from zero at the center to maximum at the outer surface due to the radial distance dependency.
+The stress is highest at the outer fibre because $r$ is largest there. The centre carries no shear stress at all, which is why hollow shafts waste so little capacity.
 </Card>
 
-**Maximum shear stress** occurs at the outer surface:
+<Card title="Polar second moment of area" icon="document">
+For a solid shaft of diameter $d$:
 
-<Card title="⚡ Maximum Torsional Shear Stress" icon="document">
-$$\tau_{max} = \frac{T r}{J} = \frac{T d}{2J}$$
+$$J_{solid} = \frac{\pi \, d^4}{32}$$
 
-**Where:**
-- $r$ = Radius of shaft (m)
-- $d$ = Diameter of shaft (m)
+For a hollow shaft with outer diameter $d_o$ and inner diameter $d_i$:
 
-**Physical Meaning:** Maximum stress occurs at the outer fiber where the radial distance is greatest.
+$$J_{hollow} = \frac{\pi \left(d_o^4 - d_i^4\right)}{32}$$
+
+$J$ captures how the cross-section's area is distributed about the axis. Because diameter enters as the fourth power, a modest increase in diameter raises $J$ dramatically.
 </Card>
 
-<Tabs>
-  <TabItem label="Solid Circular Shafts">
-    
-    <Card title="⚙️ Solid Shaft Properties" icon="document">
-    **Polar Moment of Inertia:**
-    $$J = \frac{\pi d^4}{32}$$
-    
-    **Maximum Shear Stress:**
-    $$\tau_{max} = \frac{16 T}{\pi d^3}$$
-    
-    **Physical Meaning:** For solid circular shafts, these formulas provide direct relationships between geometry and stress/stiffness properties.
-    </Card>
+<Card title="Angle of twist" icon="document">
+$$\varphi = \frac{T \, L}{G \, J}$$
 
-    
-    **Common Applications:** Small diameter shafts, cost-sensitive designs
-    
-  </TabItem>
-  <TabItem label="Hollow Circular Shafts">
-    
-    <Card title="🔘 Hollow Shaft Properties" icon="document">
-    **Polar Moment of Inertia:**
-    $$J = \frac{\pi (d_o^4 - d_i^4)}{32}$$
-    
-    **Maximum Shear Stress:**
-    $$\tau_{max} = \frac{T d_o}{2J}$$
-    
-    **Physical Meaning:** Hollow shafts remove low-stress material near the center, providing better strength-to-weight ratios.
-    </Card>
-    
-    **Advantages:** Higher strength-to-weight ratio, material savings
-    
-  </TabItem>
-  <TabItem label="Material Properties">
-    
-    **Shear Modulus (G):**
-    - Steel: G = 80 GPa
-    - Aluminum: G = 26 GPa
-    - Related to Young's Modulus: $G = \frac{E}{2(1+\nu)}$
-    
-    **Allowable Shear Stress:**
-    - Typically 50-60% of yield strength in tension
-    
-  </TabItem>
-</Tabs>
+Where:
+- $\varphi$ = angle of twist (radians)
+- $L$ = shaft length (m)
+- $G$ = shear modulus of the material (Pa); for steel $G \approx 79$ GPa
 
-### Angle of Twist Formula
+Angular deflection grows with torque and length, and shrinks with material stiffness and section stiffness. A shaft that passes the stress check can still fail the stiffness check if it is long or lightly proportioned.
+</Card>
 
-The total angular deformation of a shaft under torque:
+<Card title="Power and torque" icon="document">
+A motor or gearbox rated at power $P$ (watts) running at angular speed $\omega$ (rad/s) delivers:
 
-<Card title="🔄 Angle of Twist Formula" icon="document">
-$$\theta = \frac{TL}{GJ}$$
+$$T = \frac{P}{\omega}, \qquad \omega = \frac{2 \pi \, n}{60} \text{ (rad/s, with } n \text{ in rpm)}$$
 
-**Where:**
-- $\theta$ = Angle of twist (radians)
-- $T$ = Applied torque (N·m)
-- $L$ = Shaft length (m)  
-- $G$ = Shear modulus (Pa)
-- $J$ = Polar moment of inertia (m⁴)
-
-**Physical Meaning:** Angular deformation is proportional to torque and length, but inversely proportional to material stiffness (G) and geometric stiffness (J).
-
+This is the gateway calculation for every driven shaft: convert the nameplate data to torque before applying the torsion formula.
 </Card>
 
 :::tip[Engineering Units]
-- **Angle in degrees:** $\theta_{degrees} = \theta_{radians} \times \frac{180}{\pi}$
-- **Angle per unit length:** $\theta/L$ = twist per meter (rad/m)
-- **Practical limits:** Typically limit to 1°/meter for precision mechanisms
+Working in SI throughout keeps the units consistent. Torque in N·m, length in m, $G$ in Pa, and $J$ in m$^4$ gives $\varphi$ in radians and $\tau$ in Pa. Convert Pa to MPa by dividing by $10^6$.
+
+The shortcut 1 MPa = 1 N/mm$^2$ lets you use mm throughout: convert $d$ to m only for $J$ (or keep mm and divide by $10^{12}$ to get m$^4$). The clearest approach is to stay in SI metres and convert the final answer.
 :::
 
-## Application: Geneva Mechanism Crankshaft Analysis
+## Application 1: Geneva Mechanism Crankshaft
 
 <InArticleAd />
 
 
-Let's analyze a realistic Geneva mechanism crankshaft design.
+The Geneva drive crankshaft below is the original motivating problem. Three design questions are answered in sequence: is the 25 mm shaft strong enough? if not, what diameter is needed for strength? and once resized, does it meet the timing requirement?
 
-:::note[Problem Statement]
-**Geneva Mechanism Crankshaft Torsion Analysis**
+:::note[System Problem Statement]
+- **Component:** Geneva mechanism drive crankshaft, solid steel (G = 80 GPa, $\tau_{allow}$ = 180 MPa)
+- **Shaft diameter:** 25 mm, **Length:** 200 mm
+- **Continuous torque:** $T_{cont}$ = 50 N·m (normal running)
+- **Peak engagement torque:** $T_{peak}$ = 150 N·m (slot entry)
+- **Required safety factor:** 3.0 on peak torque
+- **Precision requirement:** angular twist must stay within $\pm 0.5°$
 
-**What we need to determine:**
-1. **Torsional stress** under continuous and peak loading conditions
-2. **Safety factors** for both operating scenarios
-3. **Shaft diameter** required for adequate safety margins
-4. **Angular deformation** and its effect on precision requirements
-
-**Key Questions:** Can this 25 mm crankshaft safely handle 150 N·m peak torque with SF = 3.0, and will the angular twist meet ±0.5° precision requirements?
+**Key Question:** Can this 25 mm crankshaft safely handle 150 N·m peak torque with SF = 3.0, and will the angular twist stay within the $\pm 0.5°$ precision budget?
 :::
 
-<hr />
-
-**System Parameters:**
-- Geneva mechanism drive system
-- Material: Steel 1045 (G = 80 GPa, **`τ_allowable`** = 180 MPa)
-- Diameter: 25 mm (solid circular)
-- Length: L = 200 mm
-- **`Safety factor`**: 3.0
-- Motor torque: **`T_continuous`** = 50 N·m (continuous)
-- Peak torque: **`T_peak`** = 150 N·m (during engagement)
-- **`Required precision`**: ±0.5° angular accuracy
-
-<hr />
-
-### Step 1: Calculate Polar Moment of Inertia
+### Step 1: Polar Moment of Inertia for the 25 mm Shaft
 
 <details>
-<summary>**Click to reveal polar moment calculation**</summary>
-
-For solid circular shaft:
-$$J = \frac{\pi d^4}{32} = \frac{\pi (25 \times 10^{-3})^4}{32} = 3.835 \times 10^{-8} \text{ m}^4$$
-
-</details>
-
-### Step 2: Analyze Torsional Stress
-
-<details>
-<summary>**Click to reveal torsional stress analysis**</summary>
+<summary>**Click to reveal the polar moment calculation**</summary>
 
 <Steps>
 
-1. **Continuous operation stress:**
-   
-   $$\tau_{continuous} = \frac{16 T}{\pi d^3} = \frac{16 \times 50}{\pi (25 \times 10^{-3})^3} = 163.6 \text{ MPa}$$
+1. **Apply the solid-shaft formula.** Convert diameter to metres:
+
+   $$J = \frac{\pi d^4}{32} = \frac{\pi (25 \times 10^{-3})^4}{32} = \frac{\pi \times 3.906 \times 10^{-7}}{32} = 3.835 \times 10^{-8} \text{ m}^4$$ ✅
+
+2. **Store this value.** It feeds directly into the stress and twist calculations that follow.
+
+</Steps>
+
+</details>
+
+### Step 2: Torsional Stress Check
+
+<details>
+<summary>**Click to reveal the torsional stress analysis**</summary>
+
+<Steps>
+
+1. **Continuous running stress:**
+
+   $$\tau_{cont} = \frac{T_{cont} \cdot r}{J} = \frac{50 \times 0.0125}{3.835 \times 10^{-8}} = 16.3 \text{ MPa}$$ ✅
 
 2. **Peak engagement stress:**
-   
-   $$\tau_{peak} = \frac{16 \times 150}{\pi (25 \times 10^{-3})^3} = 490.9 \text{ MPa}$$
 
-3. **Safety factor check:**
-   
-   - Allowable stress: 180 MPa
-   - Continuous operation: SF = 180/163.6 = 1.1 ❌ **Too low!**
-   - Peak loading: SF = 180/490.9 = 0.37 ❌ **Failure expected!**
+   $$\tau_{peak} = \frac{T_{peak} \cdot r}{J} = \frac{150 \times 0.0125}{3.835 \times 10^{-8}} = \frac{1.875}{3.835 \times 10^{-8}} = 48.9 \text{ MPa}$$ ✅
+
+   The same result follows from the compact shortcut $\tau = 16T/(\pi d^3)$, which is algebraically identical to $Tr/J$ for a solid shaft. Keep $d$ in metres throughout:
+
+   $$\tau_{peak} = \frac{16 \times 150}{\pi \times (0.025)^3} = \frac{2{,}400}{\pi \times 1.563 \times 10^{-5}} = \frac{2{,}400}{4.909 \times 10^{-5}} = 48.9 \text{ MPa}$$ ✅
+
+3. **Safety factor at peak torque:**
+
+   $$\text{SF} = \frac{\tau_{allow}}{\tau_{peak}} = \frac{180 \text{ MPa}}{48.9 \text{ MPa}} = 3.7$$ ✅
+
+   The 25 mm shaft passes the strength check at SF = 3.7, above the required 3.0. ✅
 
 </Steps>
 
-> **Analysis Result:** The 25 mm shaft is undersized for this application!
-
 </details>
 
-### Step 3: Redesign for Adequate Safety Factor
+### Step 3: Angle of Twist Check
 
 <details>
-<summary>**Click to reveal redesign calculations**</summary>
+<summary>**Click to reveal the angular deformation analysis**</summary>
 
 <Steps>
 
-1. **Required shaft diameter for SF = 3:**
-   
-   From $\tau_{allowable} = \frac{16 T}{\pi d^3}$, solving for diameter:
-   $$d = \left(\frac{16 T}{\pi \tau_{allowable}}\right)^{1/3}$$
+1. **Angle of twist under peak torque ($L$ = 200 mm = 0.2 m):**
 
-2. **Calculate for peak torque with SF = 3:**
-   
-   Allowable stress: $\tau_{allowable} = \frac{180}{3} = 60 \text{ MPa}$
-   Required diameter: $d = \left(\frac{16 \times 150}{\pi \times 60 \times 10^6}\right)^{1/3} = 0.0336 \text{ m} = 33.6 \text{ mm}$
-   
-   **Design Decision:** Use **35 mm diameter** shaft for standard sizing.
+   $$\varphi = \frac{T L}{G J} = \frac{150 \times 0.2}{80 \times 10^9 \times 3.835 \times 10^{-8}} = \frac{30}{3{,}068} = 9.78 \times 10^{-3} \text{ rad}$$ ✅
 
-</Steps>
+   Converting to degrees: $\varphi = 9.78 \times 10^{-3} \times (180/\pi) = 0.56°$ ✅
 
-</details>
+2. **Check against the precision requirement of $\pm 0.5°$:**
 
-### Step 4: Verify Angular Deformation
+   $0.56° > 0.5°$: the shaft just exceeds the stiffness budget. A slightly larger diameter resolves this without any strength concern. ✅
 
-<details>
-<summary>**Click to reveal angular deformation analysis**</summary>
+3. **Required diameter for $\varphi \leq 0.5° = 8.727 \times 10^{-3}$ rad:**
 
-<Steps>
+   $$J_{req} = \frac{T L}{G \varphi} = \frac{150 \times 0.2}{80 \times 10^9 \times 8.727 \times 10^{-3}} = \frac{30}{6.982 \times 10^8} = 4.30 \times 10^{-8} \text{ m}^4$$ ✅
 
-1. **Calculate new polar moment:**
-   
-   $$J_{new} = \frac{\pi (35 \times 10^{-3})^4}{32} = 1.469 \times 10^{-7} \text{ m}^4$$
+   $$d = \left(\frac{32 \, J_{req}}{\pi}\right)^{1/4} = \left(\frac{32 \times 4.30 \times 10^{-8}}{\pi}\right)^{1/4} = (4.38 \times 10^{-7})^{0.25} = 0.0257 \text{ m} = 25.7 \text{ mm}$$
 
-2. **Angle of twist under peak torque:**
-   
-   $$\theta = \frac{TL}{GJ} = \frac{150 \times 0.2}{80 \times 10^9 \times 1.469 \times 10^{-7}} = 0.255 \text{ radians}$$
-   
-   Convert to degrees: $\theta = 0.255 \times \frac{180}{\pi} = 14.6°$
+   Rounding up to the next standard size, **26 mm**, meets both strength and stiffness requirements. ✅
 
 </Steps>
 
 </details>
 
-:::caution[Design Assessment]
-**Angular deformation = 14.6°** exceeds the required precision of ±0.5°. 
-
-Even with adequate strength, the shaft is too flexible for precision timing!
+:::note[Engineering Insight]
+The 25 mm crankshaft is strong enough (SF = 3.7) but marginally too flexible (twist = 0.56°, just over the 0.5° limit). The governing design criterion here is stiffness, not strength, which is typical for precision indexing mechanisms. Increasing the diameter by 1 mm resolves both and adds very little mass.
 :::
 
-### Step 5: Design for Stiffness Requirements
-
-**Required angle limit:** ±0.5° = 0.00873 radians
-
-**Required polar moment of inertia:**
-$$J_{required} = \frac{TL}{G\theta} = \frac{150 \times 0.2}{80 \times 10^9 \times 0.00873} = 4.30 \times 10^{-7} \text{ m}^4$$
-
-**Required diameter:**
-$$d = \left(\frac{32 J_{required}}{\pi}\right)^{1/4} = \left(\frac{32 \times 4.30 \times 10^{-7}}{\pi}\right)^{1/4} = 0.0481 \text{ m} = 48.1 \text{ mm}$$
-
-**Final Design:** Use **50 mm diameter** shaft.
-
-## Design Comparison Summary
+## Application 2: Sizing a Power-Transmitting Motor Shaft
 
 <InArticleAd />
 
 
-<CardGrid>
-  <Card title="Original Design (25 mm)" icon="error">
-    **Shear Stress:** 491 MPa  
-    **Safety Factor:** 0.37  
-    **Angular Twist:** 40.8°  
-    **Status:** Fails both criteria
-  </Card>
-  <Card title="Strength Design (35 mm)" icon="warning">
-    **Shear Stress:** 176 MPa  
-    **Safety Factor:** 3.0  
-    **Angular Twist:** 14.6°  
-    **Status:** Strong but too flexible
-  </Card>
-  <Card title="Final Design (50 mm)" icon="approve">
-    **Shear Stress:** 61 MPa  
-    **Safety Factor:** 8.9  
-    **Angular Twist:** 0.49°  
-    **Status:** Meets all requirements
-  </Card>
-</CardGrid>
+A small conveyor drive unit has a 5 kW induction motor running at 960 rpm. The output shaft connects the motor to a worm gearbox over a span of 400 mm. The shaft material is steel with $G = 79$ GPa and an allowable shear stress of 60 MPa. A 20 mm solid shaft has been proposed. Verify the shear stress and angle of twist.
+
+:::note[System Problem Statement]
+- **Component:** solid steel motor output shaft, $d$ = 20 mm, $L$ = 400 mm
+- **Motor power:** $P$ = 5 kW at $n$ = 960 rpm
+- **Material:** steel, $G$ = 79 GPa, $\tau_{allow}$ = 60 MPa
+- **Task:** compute the delivered torque, the peak shear stress, and the angle of twist; check the stress against the allowable
+
+**Key Question:** Does the 20 mm shaft keep shear stress within the 60 MPa allowable, and how many degrees does it twist over its 400 mm length?
+:::
+
+### Step 1: Torque from Power and Speed
+
+<details>
+<summary>**Click to reveal the torque calculation**</summary>
+
+<Steps>
+
+1. **Convert rotational speed to rad/s:**
+
+   $$\omega = \frac{2 \pi n}{60} = \frac{2 \pi \times 960}{60} = 100.5 \text{ rad/s}$$ ✅
+
+2. **Compute the transmitted torque:**
+
+   $$T = \frac{P}{\omega} = \frac{5{,}000 \text{ W}}{100.5 \text{ rad/s}} = 49.8 \text{ N·m}$$ ✅
+
+</Steps>
+
+</details>
+
+### Step 2: Polar Moment and Peak Shear Stress
+
+<details>
+<summary>**Click to reveal the stress calculation**</summary>
+
+<Steps>
+
+1. **Polar second moment for the 20 mm solid shaft:**
+
+   $$J = \frac{\pi d^4}{32} = \frac{\pi (0.020)^4}{32} = \frac{\pi \times 1.600 \times 10^{-7}}{32} = 1.571 \times 10^{-8} \text{ m}^4$$ ✅
+
+2. **Peak shear stress at the outer surface ($r$ = 10 mm = 0.010 m):**
+
+   $$\tau = \frac{T r}{J} = \frac{49.8 \times 0.010}{1.571 \times 10^{-8}} = \frac{0.498}{1.571 \times 10^{-8}} = 31.7 \text{ MPa}$$ ✅
+
+3. **Safety factor:**
+
+   $$\text{SF} = \frac{\tau_{allow}}{\tau} = \frac{60 \text{ MPa}}{31.7 \text{ MPa}} = 1.89$$ ✅
+
+   The shaft is safe. A factor of 1.89 is acceptable for a well-characterised steady load; if the drive sees shock loading or fatigue, a larger diameter would be chosen. ✅
+
+</Steps>
+
+</details>
+
+### Step 3: Angle of Twist
+
+<details>
+<summary>**Click to reveal the angle of twist calculation**</summary>
+
+<Steps>
+
+1. **Apply the twist formula ($L$ = 400 mm = 0.4 m):**
+
+   $$\varphi = \frac{T L}{G J} = \frac{49.8 \times 0.4}{79 \times 10^9 \times 1.571 \times 10^{-8}} = \frac{19.92}{1{,}241} = 0.01606 \text{ rad}$$ ✅
+
+2. **Convert to degrees:**
+
+   $$\varphi = 0.01606 \times \frac{180°}{\pi} = 0.92°$$ ✅
+
+   Over 400 mm the shaft twists by just under one degree. For a conveyor drive this is entirely acceptable. For a precision indexing shaft it would require a larger diameter to stiffen the section. ✅
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+Starting from nameplate data (power and rpm), the torque follows from $T = P/\omega$, and the rest of the shaft analysis proceeds by the same formulas as any other torsion problem. The stress of 31.7 MPa leaves a factor of 1.89 against the allowable, meaning the proposed 20 mm shaft is adequate for steady drive duty but has limited margin for shock or fatigue. Because shear stress scales as $1/d^3$, the safety factor scales as $d^3$: increasing to 22 mm or 25 mm would raise SF to about 2.5 or 3.7 respectively at negligible cost.
+:::
+
+## Application 3: Hollow Versus Solid Shaft for the Same Torque
+
+<InArticleAd />
+
+
+A drive shaft must transmit $T$ = 200 N·m. The allowable shear stress is 60 MPa. Two designs are compared: a minimum solid shaft sized to just meet the allowable, and a hollow shaft with the same outer diameter as the next standard size up. The goal is to show how much cross-sectional area (and therefore material) the hollow design saves.
+
+:::note[System Problem Statement]
+- **Torque:** $T$ = 200 N·m
+- **Allowable shear stress:** $\tau_{allow}$ = 60 MPa
+- **Design A:** solid shaft, diameter sized to meet the allowable
+- **Design B:** hollow shaft, outer diameter $d_o$ = 32 mm, inner diameter $d_i$ = 26 mm
+- **Task:** compute $J$, peak shear stress, and cross-sectional area for each; find the area saving
+
+**Key Question:** How much lighter is the hollow shaft compared to the solid shaft for the same torque and the same allowable stress?
+:::
+
+### Step 1: Size the Solid Shaft
+
+<details>
+<summary>**Click to reveal the solid shaft sizing**</summary>
+
+<Steps>
+
+1. **Minimum diameter from the allowable stress.** Rearranging $\tau = 16T/(\pi d^3)$:
+
+   $$d_{min} = \left(\frac{16 T}{\pi \, \tau_{allow}}\right)^{1/3} = \left(\frac{16 \times 200}{\pi \times 60 \times 10^6}\right)^{1/3} = \left(\frac{3{,}200}{1.885 \times 10^8}\right)^{1/3} = (1.698 \times 10^{-5})^{1/3} = 0.02570 \text{ m} = 25.7 \text{ mm}$$
+
+   Round up to the standard size: **$d$ = 26 mm**. ✅
+
+2. **Polar moment for the 26 mm solid shaft:**
+
+   $$J_{solid} = \frac{\pi (0.026)^4}{32} = \frac{\pi \times 4.570 \times 10^{-7}}{32} = 4.486 \times 10^{-8} \text{ m}^4$$ ✅
+
+3. **Shear stress check:**
+
+   $$\tau_{solid} = \frac{T r}{J} = \frac{200 \times 0.013}{4.486 \times 10^{-8}} = \frac{2.60}{4.486 \times 10^{-8}} = 57.96 \text{ MPa} \approx 58.0 \text{ MPa}$$ ✅
+
+   This is just below the 60 MPa allowable, confirming the sizing is correct. ✅
+
+4. **Cross-sectional area:**
+
+   $$A_{solid} = \frac{\pi \, d^2}{4} = \frac{\pi \times (26)^2}{4} = 530.9 \text{ mm}^2$$ ✅
+
+</Steps>
+
+</details>
+
+### Step 2: Analyse the Hollow Shaft
+
+<details>
+<summary>**Click to reveal the hollow shaft analysis**</summary>
+
+<Steps>
+
+1. **Polar moment for the hollow shaft ($d_o$ = 32 mm, $d_i$ = 26 mm):**
+
+   $$J_{hollow} = \frac{\pi (d_o^4 - d_i^4)}{32} = \frac{\pi \left[(0.032)^4 - (0.026)^4\right]}{32}$$
+
+   Working out the fourth powers:
+   - $(0.032)^4 = 1.049 \times 10^{-6}$ m$^4$ ✅
+   - $(0.026)^4 = 4.570 \times 10^{-7}$ m$^4$ ✅
+   - Difference: $1.049 \times 10^{-6} - 4.570 \times 10^{-7} = 5.918 \times 10^{-7}$ m$^4$ ✅
+
+   $$J_{hollow} = \frac{\pi \times 5.918 \times 10^{-7}}{32} = 5.808 \times 10^{-8} \text{ m}^4$$ ✅
+
+2. **Peak shear stress at the outer surface ($r_o$ = 16 mm = 0.016 m):**
+
+   $$\tau_{hollow} = \frac{T \, r_o}{J_{hollow}} = \frac{200 \times 0.016}{5.808 \times 10^{-8}} = \frac{3.20}{5.808 \times 10^{-8}} = 55.1 \text{ MPa}$$ ✅
+
+   The hollow shaft has a slightly lower peak stress than the solid shaft (55.1 MPa vs 58.0 MPa) despite having a larger outer diameter, because the additional outer material adds more $J$ than it adds to the stress numerator. ✅
+
+3. **Cross-sectional area:**
+
+   $$A_{hollow} = \frac{\pi (d_o^2 - d_i^2)}{4} = \frac{\pi (32^2 - 26^2)}{4} = \frac{\pi \times 348}{4} = 273.3 \text{ mm}^2$$ ✅
+
+</Steps>
+
+</details>
+
+### Step 3: Compare and Quantify the Saving
+
+<details>
+<summary>**Click to reveal the comparison**</summary>
+
+<Steps>
+
+1. **Area saving (which equals the mass-per-metre saving for the same material):**
+
+   $$\text{saving} = \frac{A_{solid} - A_{hollow}}{A_{solid}} \times 100 = \frac{530.9 - 273.3}{530.9} \times 100 = \frac{257.6}{530.9} \times 100 = 48.5\%$$ ✅
+
+2. **Summary side by side:**
+
+   | Quantity | Solid, $d$ = 26 mm | Hollow, $d_o/d_i$ = 32/26 mm |
+   |---|:---:|:---:|
+   | $J$ (m$^4$) | $4.486 \times 10^{-8}$ | $5.808 \times 10^{-8}$ |
+   | Peak $\tau$ (MPa) | 58.0 | 55.1 |
+   | Area (mm$^2$) | 530.9 | 273.3 |
+   | Mass saving | baseline | **48.5% lighter** |
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+The material near the centre of a solid shaft contributes very little to $J$ because the lever-arm $r$ is tiny there, yet it adds full weight. Removing that core with a hollow design here cuts mass by nearly half while keeping peak stress slightly below the solid shaft's value. The trade-off is a larger outer diameter (32 mm vs 26 mm) and a slightly more complex machining or forming process. In weight-sensitive applications such as aerospace linkages, robot arms, and high-speed spindles, that trade is almost always worth making.
+:::
 
 ## Design Guidelines for Torsional Loading
 
 <InArticleAd />
 
 
-### Design Hierarchy
+<CardGrid>
+  <Card title="Convert power to torque first" icon="rocket">
+  Every motor-driven shaft starts with $T = P/\omega$. Get the torque right before applying any geometry formula; a factor-of-ten error in torque flows straight through to the stress.
+  </Card>
+  <Card title="Check strength and stiffness separately" icon="warning">
+  A shaft can pass the shear-stress check and still fail if the angle of twist throws off a timing mechanism or misaligns a coupling. Both criteria must be satisfied.
+  </Card>
+  <Card title="Increase diameter over length" icon="setting">
+  Diameter enters $J$ as the fourth power and enters the stress as the third power, so increasing $d$ by 10% reduces stress by 25% and increases stiffness by 46%. Length reduction offers far less return.
+  </Card>
+  <Card title="Consider hollow sections for weight" icon="puzzle">
+  The centre of a shaft contributes little to torsional stiffness. For large diameters or weight-sensitive designs, hollow sections routinely save 40 to 60% of cross-sectional area with only a modest increase in outer size.
+  </Card>
+</CardGrid>
 
-:::note[Design Priority Order]
-1. **Strength Requirements** - Prevent material failure
-2. **Stiffness Requirements** - Limit angular deformation  
-3. **Dynamic Considerations** - Avoid resonance
-4. **Manufacturing Constraints** - Standard sizes, machining limits
-:::
-
-### Shaft Optimization Strategies
-
-<Tabs>
-  <TabItem label="Hollow vs Solid">
-    
-    **Hollow Shaft Advantages:**
-    - **Weight reduction:** ~40% lighter for same torsional stiffness
-    - **Material savings:** Lower cost for large diameters
-    - **Better heat dissipation:** Internal cooling possible
-    
-    **When to Use Hollow:**
-    - Large diameter requirements (>50 mm)
-    - Weight-critical applications
-    - Heat generation concerns
-    
-  </TabItem>
-  <TabItem label="Material Selection">
-    
-    **High Strength Steel:**
-    - Higher allowable shear stress
-    - Smaller diameter for same torque
-    - More expensive
-    
-    **Standard Steel:**
-    - Good balance of properties
-    - Readily available
-    - Cost-effective
-    
-    **Aluminum:**
-    - Lightweight but lower shear strength
-    - Requires larger diameter
-    - Corrosion resistant
-    
-  </TabItem>
-  <TabItem label="Design Trade-offs">
-    
-    **Diameter vs Length:**
-    - **Diameter ↑** → Stress ↓, Twist ↓ (efficient)
-    - **Length ↑** → Twist ↑ (less efficient)
-    
-    **Rule:** Increase diameter before reducing length
-    
-    **Cost Considerations:**
-    - Material cost ∝ Volume ∝ d²
-    - Machining cost ∝ Length
-    
-  </TabItem>
-</Tabs>
-
-## Advanced Analysis: Variable Torque and Fatigue
-
-<InArticleAd />
-
-
-### Geneva Mechanism Torque Profile
-
-Geneva mechanisms create **variable torque** during operation:
-
-<Steps>
-
-1. **Engagement Phase:** High torque to accelerate Geneva wheel
-2. **Transfer Phase:** Moderate torque during motion transfer  
-3. **Dwell Phase:** Low torque maintaining position
-4. **Disengagement Phase:** Variable torque as pin exits slot
-
-</Steps>
-
-### Fatigue Considerations
-
-**Alternating Stress Analysis:**
-
-For variable torque applications:
-- **Mean Stress:** $\tau_m = \frac{\tau_{max} + \tau_{min}}{2}$
-- **Alternating Stress:** $\tau_a = \frac{\tau_{max} - \tau_{min}}{2}$
-- **Fatigue Safety Factor:** Must consider both mean and alternating components
-
-:::warning[Fatigue Design Rule]
-For shafts with variable torque, use **endurance limit** (typically 40-50% of ultimate strength) instead of yield strength for allowable stress calculations.
+:::tip[Instrument it]
+The two quantities this lesson sizes, shear stress and angle of twist, are both measurable in a running system. A strain-gauge bridge bonded at 45 degrees to the shaft axis reads the principal strains from torsion; from those, the shear stress and torque follow directly. An optical or magnetic encoder pair, one at each end of the shaft, reads the actual twist in service. An [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/) reading both sensors can [stream torque and twist data to siliconwit.io](https://siliconwit.io) and flag when a shaft is winding up past its precision limit or approaching its fatigue threshold.
 :::
 
 ## Summary and Next Steps
@@ -445,21 +439,28 @@ For shafts with variable torque, use **endurance limit** (typically 40-50% of ul
 <InArticleAd />
 
 
-In this unit, you learned to:
+### Key Concepts Mastered
 
-1. **Calculate** torsional shear stress using τ = Tr/J
-2. **Determine** angular twist using θ = TL/(GJ)
-3. **Design** for both strength and stiffness requirements
-4. **Optimize** shaft geometry for torsional loading
+1. **Torsional shear stress** is $\tau = Tr/J$, peaks at the outer surface, and is zero at the centre; the formula holds for any circular shaft, solid or hollow.
+2. **Polar moment** $J = \pi d^4/32$ for a solid shaft and $J = \pi(d_o^4 - d_i^4)/32$ for hollow; diameter enters as the fourth power, making it the most effective design variable.
+3. **Angle of twist** is $\varphi = TL/(GJ)$; stiffness governs precision mechanisms just as strength governs high-stress shafts, and both checks are mandatory.
+4. **Power conversion** $T = P/\omega$ is the gateway to every motor-shaft calculation; always carry the full torque value into the torsion formula.
+5. **Hollow shafts** remove the low-stress core, saving roughly half the cross-sectional area for a modest increase in outer diameter, as shown in Application 3.
 
-**Key Design Insight:** Stiffness often governs shaft design more than strength
+### Results at a Glance
 
-**Critical Formulas:**
-- **Solid shaft stress:** τ = 16T/(πd³)  
-- **Angle of twist:** θ = TL/(GJ)
-- **Design principle:** Increase diameter for both strength and stiffness
+| Application | Key inputs | Peak $\tau$ (MPa) | Angle of twist | Notes |
+|---|---|:---:|:---:|---|
+| Geneva crankshaft | $T$ = 150 N·m, $d$ = 25 mm | 48.9 | 0.56° | Strength OK; stiffness marginally exceeded; use 26 mm |
+| Motor shaft | $P$ = 5 kW, 960 rpm, $d$ = 20 mm | 31.7 | 0.92° over 400 mm | SF = 1.89; adequate for steady drive |
+| Solid shaft | $T$ = 200 N·m, $d$ = 26 mm | 58.0 | | $A$ = 530.9 mm$^2$ |
+| Hollow shaft | $T$ = 200 N·m, $d_o/d_i$ = 32/26 mm | 55.1 | | $A$ = 273.3 mm$^2$; 48.5% lighter |
 
-**Coming Next**: In Lesson 1.6, we'll analyze thin-walled pressure vessels in pneumatic actuator casings, exploring how internal pressure creates both hoop and longitudinal stresses in cylindrical components.
+### A Note on Tools
+
+Every result in this lesson came from four formulas ($\tau = Tr/J$, $J = \pi d^4/32$, $\varphi = TL/(GJ)$, $T = P/\omega$) and a calculator. No finite-element package is needed for circular shafts under uniform torque; the hand calculation is the design, and simulation only confirms it for complex geometry such as stepped or keyway-notched shafts.
+
+Next, [Thin-Walled Pressure Vessels](/education/mechanics-of-materials/thin-walled-pressure-vessels) applies a similar two-stress approach to cylindrical shells, where internal pressure simultaneously creates both hoop (circumferential) and longitudinal normal stresses in the wall.
 
 
 

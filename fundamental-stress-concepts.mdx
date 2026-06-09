@@ -1,10 +1,10 @@
 ---
 title: "Lesson 1.1: Introduction to Mechanics of Materials in Mechatronics"
-description: "Understanding stress, strain, and material properties through the analysis of a crank-slider connecting rod system"
+description: "Learn stress, strain, Hooke's law, and Poisson's ratio by working three real mechatronic parts: a connecting rod in compression, a tie rod in tension, and a clevis pin in double shear."
 contributors: "sam-macharia,jack-kojiro"
 pubDate: 2025-09-16
 tags: ["mechanics of materials", "solid-mechanics", "mechatronics", "crank-slider", "stress-strain", "connecting-rod"]
-excerpt: "Learn fundamental mechanics of materials concepts by analyzing the connecting rod in a crank-slider mechanism, covering stress-strain relations, Young's modulus, and Poisson's ratio."
+excerpt: "Learn the fundamental quantities of mechanics of materials, stress, strain, Young's modulus, and Poisson's ratio, by analyzing three real parts: a connecting rod in compression, a precision tie rod in tension, and a clevis pin in double shear."
 ---
 
 import MechanicsOfMaterialsComments from '../../../../components/mechanics-of-materials/MechanicsOfMaterialsComments.astro';
@@ -23,25 +23,23 @@ import { Card, CardGrid, Badge, Steps, LinkButton, FileTree } from '@astrojs/sta
 
 
 
-A connecting rod that looks strong enough can fail in service if the designer did not account for the stress concentration at a fillet, the fatigue limit of the material, or the difference between tensile and compressive loading. Predicting whether a part will survive requires more than intuition: it requires stress analysis. In this lesson you will learn the fundamental quantities (stress, strain, Young's modulus, Poisson's ratio) by analyzing the connecting rod in a crank-slider mechanism, the same component that converts combustion pressure into crankshaft rotation in every piston engine. #StressAnalysis #MechanicsOfMaterials #ConnectingRod
+A connecting rod that looks strong enough can fail in service if the designer did not account for the stress concentration at a fillet, the fatigue limit of the material, or the difference between tensile and compressive loading. Predicting whether a part will survive requires more than intuition: it requires stress analysis. In this lesson you will learn the fundamental quantities (stress, strain, Young's modulus, Poisson's ratio) and put them to work on three real parts, the connecting rod in a crank-slider mechanism, a precision tie rod in tension, and a clevis pin in double shear. #StressAnalysis #MechanicsOfMaterials #ConnectingRod
 
 ## Learning Objectives
 
-By the end of this unit, you will be able to:
+By the end of this lesson, you will be able to:
 
-1. Analyze real-world mechatronic systems to identify critical components under stress
-2. Define and calculate stress, strain, and material properties (Young's modulus, Poisson's ratio)
-3. Apply Hooke's Law to predict material behavior under loading
-4. Solve connecting rod stress problems during peak compression in crank-slider systems
+1. **Analyze** real mechatronic systems to identify the components that carry critical loads
+2. **Calculate** normal stress, shear stress, strain, and the material properties that link them (Young's modulus, Poisson's ratio)
+3. **Apply** Hooke's law to predict elastic deformation under tension, compression, and shear
+4. **Evaluate** a design against yield strength with a safety factor, and read the lateral contraction that Poisson's ratio predicts
 
 ## Real-World System Problem: The Crank-Slider Mechanism
 
 <InArticleAd />
 
 
-<BionicText method="advanced" intensity="medium" class="highlight">
-Consider an internal combustion engine or reciprocating compressor. At the heart of these systems lies the crank-slider mechanism—one of the most fundamental motion conversion systems in mechanical engineering.
-</BionicText>
+Consider an internal combustion engine or a reciprocating compressor. At the heart of these systems lies the crank-slider mechanism, one of the most fundamental motion conversion systems in mechanical engineering. The connecting rod ties the rotating crank to the sliding piston, and on every compression stroke it carries a large axial load that switches between compression and tension thousands of times a minute.
 
 <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
   <TailwindWrapper>
@@ -49,32 +47,31 @@ Consider an internal combustion engine or reciprocating compressor. At the heart
   </TailwindWrapper>
 </div>
 
-### System Components and Function
+### The Stress Problem
 
-The crank-slider mechanism consists of:
-- **Crankshaft** (rotates continuously)
-- **Connecting Rod** (experiences **`tension`** and **`compression`**)
-- **Piston** (moves linearly back and forth)
+> **Engineering Question:** During the compression stroke, enormous forces act on the connecting rod. How do we know the rod will not buckle, yield, or break, and how much will it deform under load?
 
-> **Critical Question:** During the compression stroke of an engine, enormous forces act on the connecting rod. How do we ensure this rod won't fail under these extreme loads?
+Answering that needs more than a feel for "strong enough." Without stress and strain we cannot predict whether the rod will fail, choose between steel, aluminum, and titanium, optimize the cross-section, or guarantee reliable operation over millions of cycles.
 
-This is where **mechanics of materials** becomes essential. Without understanding **`stress`** and **`strain`**, we cannot:
-- **`Predict`** if the connecting rod will buckle or break
-- Choose appropriate **`materials`** (steel, aluminum, titanium)
-- **`Optimize`** the rod's cross-sectional shape
-- Ensure **`reliable`** operation over millions of cycles
+### Why Stress Analysis Matters
 
-### Why This System Matters in Mechatronics
-
-Modern engines and compressors are **mechatronic systems** integrating:
-- **Mechanical**: Crank-slider mechanism, valves, pistons
-- **Electrical**: Ignition systems, fuel injectors, sensors
-- **Control**: Engine management systems, timing control
-
-But if the connecting rod fails mechanically, no amount of sophisticated control can save the system.
+<CardGrid>
+  <Card title="Predicting failure" icon="warning">
+  Stress compared against the material's strength tells you whether a part survives its worst load, before it is ever built.
+  </Card>
+  <Card title="Material selection" icon="setting">
+  Young's modulus and yield strength let you trade steel against aluminum or titanium on stiffness, weight, and cost.
+  </Card>
+  <Card title="Sizing the section" icon="puzzle">
+  Because stress is force over area, the analysis sets the smallest cross-section that is still safe, which controls weight.
+  </Card>
+  <Card title="System reliability" icon="rocket">
+  In a mechatronic system a single mechanical failure stops everything, so the load-bearing parts decide overall reliability.
+  </Card>
+</CardGrid>
 
 :::caution[Critical Design Insight]
-In mechatronic systems, **mechanical failure modes often dominate over electrical or software failures**. A single mechanical component failure can render the entire system inoperable, making mechanics of materials analysis essential for system reliability.
+In mechatronic systems, mechanical failure modes often dominate over electrical or software failures. A single broken connecting rod or sheared pin can render the entire system inoperable, no matter how sophisticated the control electronics are. This is why mechanics of materials analysis sits at the foundation of reliable design.
 :::
 
 ## Fundamental Theory: Stress, Strain, and Material Properties
@@ -82,216 +79,342 @@ In mechatronic systems, **mechanical failure modes often dominate over electrica
 <InArticleAd />
 
 
-Now that we understand **why** we need mechanics of materials, let's develop the theoretical foundation to analyze our connecting rod.
+With the reason for the analysis clear, we can build the four quantities that the rest of the chapter rests on.
 
 ### What is Stress?
 
-**Stress** is the internal resistance of a material to applied forces, measured as force per unit area:
+Stress is the internal resistance of a material to applied force, measured as force per unit area:
 
-<Card title="🔑 Fundamental Stress Formula" icon="document">
+<Card title="Normal Stress" icon="document">
 $$\sigma = \frac{F}{A}$$
 
-**Where:**
-- σ = Normal stress (Pa or N/m²)
-- F = Applied force (N)
-- A = Cross-sectional area (m²)
+Where:
+- $\sigma$ = normal stress (Pa, or N/m²)
+- $F$ = applied force (N)
+- $A$ = cross-sectional area (m²)
 
-**Physical Meaning:** Force distributed over area - higher force or smaller area = higher stress
+The same force over a smaller area gives a higher stress. This single idea, force spread over area, is the most-used relation in the whole subject.
 </Card>
 
 <Tabs>
   <TabItem label="Types of Stress">
     
-    **Normal Stress (σ):**
-    - **Tensile**: Material is stretched (positive)
-    - **Compressive**: Material is compressed (negative)
+    **Normal stress ($\sigma$)** acts perpendicular to the cut surface:
+    - Tensile: the material is stretched (taken as positive)
+    - Compressive: the material is squeezed (taken as negative)
     
-    **Shear Stress (τ):**
-    - Forces act parallel to the surface
-    - Causes angular deformation
+    **Shear stress ($\tau$)** acts parallel to the surface and tends to slide one face past the other, causing angular distortion. A pin or bolt loaded across its axis carries shear.
     
-  </TabItem>
+</TabItem>
   <TabItem label="Engineering Units">
     
-    **Common Stress Units:**
-    - Pascal (Pa) = N/m² = 1 Pa
-    - Kilopascal (kPa) = 1,000 Pa
-    - Megapascal (MPa) = 1,000,000 Pa
-    - Gigapascal (GPa) = 1,000,000,000 Pa
+    Stress is measured in pascals:
+    - 1 Pa = 1 N/m²
+    - 1 kPa = 1,000 Pa
+    - 1 MPa = 1,000,000 Pa = 1 N/mm²
+    - 1 GPa = 1,000,000,000 Pa
     
-    **Typical Values:**
-    - Steel yield strength: ~250-400 MPa
-    - Aluminum yield strength: ~70-500 MPa
+    The relation 1 MPa = 1 N/mm² is worth memorizing: it lets you work in newtons and millimetres and read the answer straight off in MPa.
     
-  </TabItem>
+    Typical yield strengths: structural steel 250 to 400 MPa, aluminum alloys 70 to 500 MPa.
+    
+</TabItem>
 </Tabs>
 
 ### What is Strain?
 
-**Strain** is the measure of deformation—how much a material changes shape under stress:
+Strain measures deformation: how much a material changes length relative to its original size.
 
-<Card title="📐 Fundamental Strain Formula" icon="document">
+<Card title="Normal Strain" icon="document">
 $$\epsilon = \frac{\delta_L}{L_0}$$
 
-**Where:**
-- $\epsilon$ = Normal strain (dimensionless)
-- $\delta_L$ = Change in length (m)
-- $L_0$ = Original length (m)
+Where:
+- $\epsilon$ = normal strain (dimensionless)
+- $\delta_L$ = change in length (m)
+- $L_0$ = original length (m)
 
-**Physical Meaning:** Relative deformation - how much the material stretches or compresses compared to its original size
+Strain is a ratio, so it has no units. A strain of 0.001 means the part stretched by one part in a thousand, often written as 1000 microstrain.
 </Card>
 
 ### Hooke's Law: The Foundation of Linear Elasticity
 
-For most engineering materials within their elastic range:
+For most engineering materials, up to a limit, stress and strain are proportional:
 
-<Card title="⚖️ Hooke's Law - Linear Elasticity" icon="document">
+<Card title="Hooke's Law" icon="document">
 $$\sigma = E \cdot \epsilon$$
 
-**Where:**
-- $E$ = Young's Modulus (Pa)
-- Also written as: $F/A = E \cdot (\delta_L/L_0)$
+Where $E$ is Young's modulus (Pa), the slope of the stress-strain line. Combining it with the two definitions above gives the working form for axial deflection:
 
-**Physical Meaning:** Stress and strain are directly proportional in the elastic range. Young's Modulus represents material stiffness—how much stress is needed to produce a given strain.
+$$\delta_L = \frac{F \, L_0}{A \, E}$$
+
+Young's modulus is a measure of stiffness: how much stress is needed to produce a given strain.
 </Card>
 
 :::tip[Material Selection Insight]
-Higher E = Stiffer Material → Less deformation under load  
-Lower E = More Flexible → More deformation, better for vibration damping
+A higher $E$ means a stiffer material that deforms less under the same load. A lower $E$ means more flexibility, which can be useful for vibration damping or compliant mechanisms. Steel ($E \approx 200$ GPa) is about three times stiffer than aluminum ($E \approx 70$ GPa) for the same shape.
 :::
 
-### Poisson's Ratio: Lateral Strain Effects
+### Poisson's Ratio: Lateral Strain
 
-When materials are stretched longitudinally, they contract laterally:
+When a bar is stretched along its length, it gets thinner across its width. Poisson's ratio links the two:
 
-<Card title="🔄 Poisson's Ratio - Lateral Strain Effect" icon="document">
+<Card title="Poisson's Ratio" icon="document">
 $$\nu = -\frac{\epsilon_{lateral}}{\epsilon_{longitudinal}}$$
 
-**Where:**
+Where:
 - $\nu$ = Poisson's ratio (dimensionless)
-- $\epsilon_{lateral}$ = Strain perpendicular to applied load
-- $\epsilon_{longitudinal}$ = Strain in direction of applied load
+- $\epsilon_{lateral}$ = strain across the load direction
+- $\epsilon_{longitudinal}$ = strain along the load direction
 
-**Physical Meaning:** When stretched in one direction, materials contract in perpendicular directions. Typical values: 0.25-0.35 for metals.
+The minus sign makes $\nu$ positive, because stretching lengthwise (positive longitudinal strain) gives a negative lateral strain. Typical values run from 0.25 to 0.35 for metals.
 </Card>
 
-:::note[Poisson's Ratio Applications]
-- **ν ≈ 0.3** for most structural metals (steel, aluminum)
-- **ν ≈ 0.5** for incompressible materials (rubber)
-- **ν ≈ 0.2** for concrete and ceramics
-- **Critical for** multi-axial stress analysis in complex geometries
+:::note[Poisson's Ratio Values]
+- $\nu \approx 0.3$ for most structural metals (steel, aluminum)
+- $\nu \approx 0.5$ for nearly incompressible materials such as rubber
+- $\nu \approx 0.2$ for concrete and many ceramics
+
+Poisson's ratio becomes important wherever a part is loaded in more than one direction at once, which is the subject of the principal-stress analysis later in the course.
 :::
 
-## Application: Crank-Slider Connecting Rod Analysis
+## Application 1: Crank-Slider Connecting Rod in Compression
 
 <InArticleAd />
 
 
-Now let's return to our crank-slider system and apply what we've learned to solve a real engineering problem.
+Return to the crank-slider and put the theory to work on the rod itself.
 
 <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
   <TailwindWrapper>
-	![4 Stroke Engine](./images/Slider-Crank-Mechanism.gif)
+	![Four-stroke engine slider-crank mechanism in motion](./images/Slider-Crank-Mechanism.gif)
   </TailwindWrapper>
 </div>
 
-:::note[Problem Statement]
-**Crank-Slider Connecting Rod Stress Analysis**
+:::note[System Problem Statement]
+- **Component:** Steel connecting rod, the critical link between crank and piston
+- **Peak compression force:** $F = 15{,}000$ N
+- **Cross-sectional area:** $A = 500$ mm²
+- **Length:** $L = 150$ mm
+- **Material:** steel, $E = 200$ GPa, $\sigma_{yield} = 350$ MPa
+- **Task:** find the peak compressive stress, the safety factor against yield, and the deflection under load
 
-**What we need to determine:**
-1. **Peak compressive stress** in the connecting rod
-2. **Safety factor** against material failure
-3. **Deformation** of the rod under maximum load
-
-**Key Question:** Is this connecting rod design safe for the given loading conditions, and how much will it deform?
-
+**Key Question:** Is this rod safe under peak compression, and how much does it shorten?
 :::
 
-<hr />
-
-**System Parameters:**
-- Four-stroke engine with crank-slider mechanism
-- Steel connecting rod (critical component)
-- Maximum compression force: F = 15,000 N
-- Connecting rod cross-sectional area: A = 500 mm²
-- Connecting rod length: L = 150 mm
-- Material: Steel (E = 200 GPa, **`σ_yield`** = 350 MPa)
-
-<hr />
-
-### Step 1: Calculate Peak Compressive Stress
+### Step 1: Peak Compressive Stress
 
 <details>
-<summary>**Click to reveal stress calculations**</summary>
+<summary>**Click to reveal the stress calculation**</summary>
 
 <Steps>
 
-1. **Apply the stress formula:**
-   
-   Using our fundamental stress formula:
-   $$\sigma = \frac{F}{A} = \frac{15,000 \text{ N}}{500 \text{ mm}^2}$$
-   
-   Converting units: 500 mm² = 500 × 10⁻⁶ m²
-   $$\sigma = \frac{15,000}{500 \times 10^{-6}} = 30,000,000 \text{ Pa} = 30 \text{ MPa}$$
-   
-   Peak compressive stress = **30 MPa**
+1. **Apply the stress formula.** Work in newtons and square millimetres so the answer falls out in MPa:
+
+   $$\sigma = \frac{F}{A} = \frac{15{,}000 \text{ N}}{500 \text{ mm}^2} = 30 \text{ N/mm}^2 = 30 \text{ MPa}$$ ✅
+
+2. **Read the result.** The rod carries a peak compressive stress of **30 MPa**, well below the 350 MPa yield strength of steel. ✅
 
 </Steps>
 
 </details>
 
-### Step 2: Check Safety Factor
+### Step 2: Safety Factor
 
 <details>
-<summary>**Click to reveal safety factor analysis**</summary>
+<summary>**Click to reveal the safety-factor check**</summary>
 
 <Steps>
 
-1. **Safety factor calculation:**
-   
-   Applied stress: σ = 30 MPa  
-   Yield strength: σ_yield = 350 MPa
-   Safety factor: SF = 350/30 = 11.7
-   
-   ✅ **Safe operation with SF = 11.7**
+1. **Compare the stress with the yield strength:**
+
+   $$\text{SF} = \frac{\sigma_{yield}}{\sigma} = \frac{350 \text{ MPa}}{30 \text{ MPa}} = 11.7$$ ✅
+
+2. **Interpret it.** A static safety factor of 11.7 looks generous, and against a single static load it is. A connecting rod is not sized by static yield, though: it is sized by fatigue (millions of load reversals) and by buckling under compression. The large static margin is what those other limits leave behind, not over-design. ✅
 
 </Steps>
 
 :::tip[Safety Factor Guidelines]
-- **SF = 2-3**: Well-understood loading and materials
-- **SF = 4-6**: Some uncertainty in loads or materials  
-- **SF = 8-12**: High uncertainty or critical applications
-- **SF > 15**: May indicate over-design (weight/cost penalty)
+- SF 2 to 3: well-understood loads and materials
+- SF 4 to 6: some uncertainty in loads or materials
+- SF 8 to 12: high uncertainty, or a critical part also governed by fatigue or buckling
+- SF above 15: usually genuine over-design, a weight and cost penalty
 :::
 
 </details>
 
-### Step 3: Calculate Deformation
+### Step 3: Deflection Under Load
 
 <details>
-<summary>**Click to reveal deformation calculations**</summary>
+<summary>**Click to reveal the deflection calculation**</summary>
 
 <Steps>
 
-1. **Calculate strain and deformation:**
-   
-   Strain: $\epsilon = \frac{\sigma}{E} = \frac{30 \times 10^6}{200 \times 10^9} = 0.00015$
-   
-   Deformation: $\delta = \epsilon \times L = 0.00015 \times 150 \text{ mm} = 0.0225 \text{ mm}$
-   
-   **Compression**: Only 0.023 mm—negligible for engine operation.
+1. **Find the strain** from Hooke's law:
+
+   $$\epsilon = \frac{\sigma}{E} = \frac{30 \times 10^6}{200 \times 10^9} = 1.5 \times 10^{-4}$$ ✅
+
+2. **Find the shortening:**
+
+   $$\delta_L = \epsilon \, L = (1.5 \times 10^{-4})(150 \text{ mm}) = 0.0225 \text{ mm}$$ ✅
+
+   The rod shortens by about 23 micrometres under peak load, negligible for engine geometry but exactly the kind of number that matters in a precision positioning system, as the next application shows. ✅
 
 </Steps>
 
-:::note[Deformation Analysis]
-Elastic deformation is usually **acceptable** in structural components
+</details>
 
-Permanent deformation occurs beyond yield strength
-
-Failure occurs at ultimate tensile strength
+:::note[Engineering Insight]
+The static stress is small and the deflection tiny, yet the rod is still one of the most carefully designed parts in an engine. The governing loads are not the static peak but the millions of tension-compression reversals (fatigue) and the buckling tendency under compression. Static analysis is where you start, not where you stop.
 :::
 
+## Application 2: Precision Tie Rod in Tension
+
+<InArticleAd />
+
+
+A camera gantry, a CNC frame, and many robot structures use a thin steel tie rod (or turnbuckle) to hold two points at a fixed spacing under tension. Here both the stretch and the sideways contraction matter, because the tie rod also acts as a dimensional reference.
+
+:::note[System Problem Statement]
+- **Component:** steel tie rod, $d = 10$ mm diameter, $L = 600$ mm long
+- **Tensile load:** $F = 8$ kN
+- **Material:** steel, $E = 200$ GPa, $\sigma_{yield} = 350$ MPa, $\nu = 0.3$
+- **Task:** find the tensile stress and safety factor, the elongation, and the lateral contraction of the rod diameter
+
+**Key Question:** How far does the rod stretch, and by how much does its diameter shrink while loaded?
+:::
+
+### Step 1: Tensile Stress and Safety Factor
+
+<details>
+<summary>**Click to reveal the stress and safety factor**</summary>
+
+<Steps>
+
+1. **Cross-sectional area** of the round rod:
+
+   $$A = \frac{\pi d^2}{4} = \frac{\pi (10 \text{ mm})^2}{4} = 78.5 \text{ mm}^2$$ ✅
+
+2. **Tensile stress:**
+
+   $$\sigma = \frac{F}{A} = \frac{8{,}000 \text{ N}}{78.5 \text{ mm}^2} = 101.9 \text{ MPa}$$ ✅
+
+3. **Safety factor against yield:**
+
+   $$\text{SF} = \frac{350 \text{ MPa}}{101.9 \text{ MPa}} = 3.4$$ ✅
+
+   A safety factor of 3.4 is sensible for a static structural tie with well-known loads. ✅
+
+</Steps>
+
 </details>
+
+### Step 2: Elongation
+
+<details>
+<summary>**Click to reveal the elongation calculation**</summary>
+
+<Steps>
+
+1. **Longitudinal strain:**
+
+   $$\epsilon = \frac{\sigma}{E} = \frac{101.9 \times 10^6}{200 \times 10^9} = 5.09 \times 10^{-4}$$ ✅
+
+2. **Elongation:**
+
+   $$\delta_L = \epsilon \, L = (5.09 \times 10^{-4})(600 \text{ mm}) = 0.306 \text{ mm}$$ ✅
+
+   The rod stretches about 0.31 mm. On a gantry that positions a tool or camera, three tenths of a millimetre is the difference between in-tolerance and scrap, so this stretch must be designed in. ✅
+
+</Steps>
+
+</details>
+
+### Step 3: Lateral Contraction from Poisson's Ratio
+
+<details>
+<summary>**Click to reveal the Poisson contraction**</summary>
+
+<Steps>
+
+1. **Lateral strain** follows from Poisson's ratio:
+
+   $$\epsilon_{lateral} = -\nu \, \epsilon = -(0.3)(5.09 \times 10^{-4}) = -1.53 \times 10^{-4}$$ ✅
+
+2. **Change in diameter:**
+
+   $$\Delta d = \epsilon_{lateral} \, d = (-1.53 \times 10^{-4})(10 \text{ mm}) = -1.53 \times 10^{-3} \text{ mm} = -1.5 \text{ }\mu\text{m}$$ ✅
+
+   The rod necks down by about 1.5 micrometres while loaded. It is tiny, but it is real, and in a press fit or a threaded joint that contraction can be enough to loosen a connection under load. ✅
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+The same load produces three different effects worth tracking: a stress to check against strength, an elongation to check against tolerance, and a lateral contraction from Poisson's ratio. A part can pass the strength check and still fail the job if the elongation throws a precision dimension out of tolerance.
+:::
+
+## Application 3: Clevis Pin in Double Shear
+
+<InArticleAd />
+
+
+Where one link of a robot or a linkage connects to another, the load usually passes through a pin. A clevis (a forked fitting) grips the pin on two sides, so the pin is cut across by two shear planes at once. This is double shear, and it is governed by shear stress rather than normal stress.
+
+:::note[System Problem Statement]
+- **Component:** steel clevis pin, $d = 8$ mm diameter, loaded in double shear
+- **Load through the joint:** $F = 6$ kN
+- **Material:** steel, $\sigma_{yield} = 350$ MPa
+- **Task:** find the shear stress in the pin and the safety factor against shear yield
+
+**Key Question:** Will the pin shear off, and how much margin does it have?
+:::
+
+### Step 1: Shear Stress in Double Shear
+
+<details>
+<summary>**Click to reveal the shear-stress calculation**</summary>
+
+<Steps>
+
+1. **Identify the shear planes.** In double shear the load is carried by two cross-sections of the pin, so the area resisting shear is twice the single area:
+
+   $$A_{single} = \frac{\pi d^2}{4} = \frac{\pi (8 \text{ mm})^2}{4} = 50.3 \text{ mm}^2, \qquad A_{shear} = 2 A_{single} = 100.5 \text{ mm}^2$$ ✅
+
+2. **Shear stress:**
+
+   $$\tau = \frac{F}{A_{shear}} = \frac{6{,}000 \text{ N}}{100.5 \text{ mm}^2} = 59.7 \text{ MPa}$$ ✅
+
+   If the same pin were in single shear, the stress would double to about 119 MPa. Putting the pin in double shear halves the shear stress, which is why clevis joints are used for higher loads. ✅
+
+</Steps>
+
+</details>
+
+### Step 2: Safety Factor Against Shear Yield
+
+<details>
+<summary>**Click to reveal the shear safety factor**</summary>
+
+<Steps>
+
+1. **Estimate the shear yield strength.** A ductile metal yields in shear at roughly $0.577$ of its tensile yield (the von Mises relation):
+
+   $$\tau_{yield} \approx 0.577 \, \sigma_{yield} = 0.577 (350 \text{ MPa}) = 202 \text{ MPa}$$ ✅
+
+2. **Safety factor:**
+
+   $$\text{SF} = \frac{\tau_{yield}}{\tau} = \frac{202 \text{ MPa}}{59.7 \text{ MPa}} = 3.4$$ ✅
+
+   The pin has a comfortable margin. The more conservative maximum-shear-stress theory uses $\tau_{yield} = 0.5\,\sigma_{yield} = 175$ MPa, giving SF = 2.9, still safe. The choice between the two failure theories is the subject of the principal-stress lesson later in the course. ✅
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+Normal stress and shear stress are different failure modes and must be checked separately. A pin that is perfectly safe in tension can still shear off, and the way a joint grips the pin (single versus double shear) changes the stress by a factor of two. Always ask which way the load actually cuts the material.
+:::
 
 ## Key Material Properties for Mechatronics
 
@@ -299,46 +422,66 @@ Failure occurs at ultimate tensile strength
 
 
 <CardGrid>
-  <Card title="Steel (Structural)">
-    **E = 200 GPa**  
-    High stiffness, moderate weight  
-    Common in: Frames, shafts, gears
+  <Card title="Steel (structural)" icon="document">
+  $E = 200$ GPa. High stiffness, moderate weight. Common in frames, shafts, gears, and pins.
   </Card>
-  <Card title="Aluminum (6061-T6)">
-    **E = 70 GPa**  
-    Lower stiffness, lightweight  
-    Common in: Actuator housings, brackets
+  <Card title="Aluminum (6061-T6)" icon="document">
+  $E = 70$ GPa. Lower stiffness, light weight. Common in actuator housings and brackets.
   </Card>
-  <Card title="Carbon Fiber">
-    **E = 150+ GPa**  
-    High stiffness, very lightweight  
-    Common in: Drone frames, precision arms
+  <Card title="Carbon fiber composite" icon="document">
+  $E = 150$ GPa and up. High stiffness at very low weight. Common in drone frames and precision arms.
   </Card>
 </CardGrid>
+
+## Design Guidelines for Stress and Strain
+
+<InArticleAd />
+
+
+<CardGrid>
+  <Card title="Start with force over area" icon="rocket">
+  Most static checks reduce to $\sigma = F/A$ or $\tau = F/A_{shear}$. Get the area and the load path right and the stress follows.
+  </Card>
+  <Card title="Check strength and stiffness" icon="warning">
+  A part must pass two tests: the stress stays below the allowable strength, and the deflection stays within tolerance. Either one can govern.
+  </Card>
+  <Card title="Know which stress acts" icon="setting">
+  Normal stress and shear stress fail differently. Identify whether the load stretches, compresses, or cuts the section before choosing the formula.
+  </Card>
+  <Card title="Remember the side effects" icon="puzzle">
+  Poisson contraction, fatigue, and buckling all hide behind a clean static number. A generous static safety factor does not excuse you from checking them.
+  </Card>
+</CardGrid>
+
+:::tip[Instrument it]
+Stress is invisible, but strain is not. Bond a foil strain gauge to the part along the load axis and you read strain directly; multiply by Young's modulus and you have the actual stress, the number your safety factor rests on. A quarter-bridge into an HX711 or an instrumentation amplifier, read by an [ESP32 or STM32](/education/sensor-actuator-interfacing-stm32/), turns a hand calculation into a measured value you can [trend on siliconwit.io](https://siliconwit.io) and check against the yield limit before anything breaks.
+:::
 
 ## Summary and Next Steps
 
 <InArticleAd />
 
 
-In this unit, you learned to:
+### Key Concepts Mastered
 
-1. **Identify** critical mechanical components in mechatronic systems
-2. **Define** stress (σ = F/A) and strain (ε = δ/L₀)
-3. **Apply** Hooke's Law (σ = Eε) for elastic analysis  
-4. **Solve** real connecting rod problems with safety factors
+1. **Stress** is force over area, $\sigma = F/A$ for normal stress and $\tau = F/A_{shear}$ for shear, with 1 MPa = 1 N/mm².
+2. **Strain** is the dimensionless ratio $\epsilon = \delta_L / L_0$, linked to stress by Hooke's law $\sigma = E\epsilon$, which gives the deflection $\delta_L = FL_0/(AE)$.
+3. **Poisson's ratio** ties lateral contraction to longitudinal stretch, $\epsilon_{lateral} = -\nu\,\epsilon_{longitudinal}$.
+4. **A safe design** keeps the working stress below the allowable strength, and the deflection within tolerance, with a safety factor chosen for the uncertainty and the failure mode.
 
-**Key Design Principles:**
-- Strength Check: σ_applied < σ_allowable
-- Stiffness Check: δ_applied < δ_allowable  
-- Fatigue Check: For cyclic loading
-- Buckling Check: For compression members
+### Results at a Glance
 
-:::tip[Mechatronic Design Philosophy]
-**"Design for the weakest link"** - In complex mechatronic systems, identify and strengthen the component most likely to fail under normal operating conditions.
-:::
+| Application | Load type | Key result | Safety factor |
+|------------|-----------|------------|:-------------:|
+| Connecting rod | compression | $\sigma = 30$ MPa, $\delta = 0.023$ mm | 11.7 (static) |
+| Tie rod | tension | $\sigma = 102$ MPa, $\delta = 0.31$ mm, $\Delta d = -1.5\,\mu$m | 3.4 |
+| Clevis pin | double shear | $\tau = 59.7$ MPa | 3.4 |
 
-**Coming Next**: In Lesson 1.2, we'll analyze an actuator shaft under axial loading, exploring how material selection affects performance in precision positioning systems.
+### A Note on Tools
+
+Every result here came from three formulas ($\sigma = F/A$, $\epsilon = \sigma/E$, $\nu = -\epsilon_{lat}/\epsilon_{long}$) and a calculator. No finite-element software is needed for axial and shear members; the hand calculation is the design, and software only confirms it for complex geometry.
+
+Next, [Strain and Mechanical Properties](/education/mechanics-of-materials/strain-and-mechanical-properties) develops the full stress-strain curve, the difference between stiffness and strength, and how a material's behaviour past the elastic limit decides whether a part bends or breaks.
 
 
 
