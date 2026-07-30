@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 430" width="1020" height="430">
+<rect width="1020" height="430" fill="white"/>
+<text x="160.0" y="32.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#000" text-anchor="middle" font-weight="bold">(1) If each were free</text>
+<rect x="60.0" y="80.0" width="256.0" height="40.0" fill="#d9b45a" stroke="#000" stroke-width="1.8"/>
+<text x="70.0" y="106.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal">A  (high α)</text>
+<rect x="60.0" y="144.0" width="230.0" height="40.0" fill="#9aa4ad" stroke="#000" stroke-width="1.8"/>
+<text x="70.0" y="170.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal">B  (low α)</text>
+<line x1="270.0" y1="68.0" x2="270.0" y2="198.0" stroke="#666" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="270.0" y="62.0" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#666" text-anchor="middle" font-weight="normal">original length</text>
+<line x1="270.0" y1="138.0" x2="309.0" y2="138.0" stroke="#c00000" stroke-width="1.8"/>
+<polygon points="316.0,138.0 309.0,141.4 309.0,134.6" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<text x="324.0" y="132.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#c00000" text-anchor="start" font-weight="normal">α<tspan baseline-shift="sub" font-size="9">A</tspan>LΔT</text>
+<line x1="270.0" y1="202.0" x2="283.0" y2="202.0" stroke="#c00000" stroke-width="1.8"/>
+<polygon points="290.0,202.0 283.0,205.4 283.0,198.6" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<text x="324.0" y="226.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#c00000" text-anchor="start" font-weight="normal">α<tspan baseline-shift="sub" font-size="9">B</tspan>LΔT</text>
+<text x="160.0" y="296.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#333" text-anchor="middle" font-weight="normal">A wants to grow more than B</text>
+<line x1="348.0" y1="60.0" x2="348.0" y2="318.0" stroke="#ccc" stroke-width="1.2"/>
+<text x="520.0" y="32.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#000" text-anchor="middle" font-weight="bold">(2) The mismatch to be closed</text>
+<rect x="400.0" y="80.0" width="256.0" height="40.0" fill="#d9b45a" stroke="#000" stroke-width="1.8"/>
+<text x="410.0" y="106.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal">A</text>
+<rect x="400.0" y="144.0" width="230.0" height="40.0" fill="#9aa4ad" stroke="#000" stroke-width="1.8"/>
+<text x="410.0" y="170.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal">B</text>
+<line x1="610.0" y1="68.0" x2="610.0" y2="198.0" stroke="#666" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="610.0" y="62.0" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#666" text-anchor="middle" font-weight="normal">original length</text>
+<line x1="630.0" y1="70.0" x2="630.0" y2="200.0" stroke="#c00000" stroke-width="1.2" stroke-dasharray="4,3"/>
+<line x1="656.0" y1="70.0" x2="656.0" y2="200.0" stroke="#c00000" stroke-width="1.2" stroke-dasharray="4,3"/>
+<line x1="638.0" y1="214.0" x2="648.0" y2="214.0" stroke="#c00000" stroke-width="1.2"/>
+<polygon points="656.0,214.0 648.0,217.4 648.0,210.6" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<polygon points="630.0,214.0 638.0,210.6 638.0,217.4" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<rect x="630.0" y="204.0" width="26" height="20" fill="white"/>
+<text x="643.0" y="219.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#c00000" text-anchor="middle" font-weight="normal" font-style="italic"></text>
+<text x="456.8" y="246.0" font-family="Arial, Helvetica, sans-serif" font-size="13.5" fill="#c00000" text-anchor="start" font-weight="bold">Δ = (α<tspan baseline-shift="sub" font-size="9">A</tspan> − α<tspan baseline-shift="sub" font-size="9">B</tspan>) L ΔT</text>
+<text x="520.0" y="296.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#333" text-anchor="middle" font-weight="normal">but they are bonded, so the ends must meet</text>
+<line x1="686.0" y1="60.0" x2="686.0" y2="318.0" stroke="#ccc" stroke-width="1.2"/>
+<text x="822.0" y="32.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#000" text-anchor="middle" font-weight="bold">(3) Internal forces close it</text>
+<rect x="712.0" y="80.0" width="243.0" height="40.0" fill="#d9b45a" stroke="#000" stroke-width="1.8"/>
+<text x="722.0" y="106.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal">A</text>
+<rect x="712.0" y="144.0" width="243.0" height="40.0" fill="#9aa4ad" stroke="#000" stroke-width="1.8"/>
+<text x="722.0" y="170.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal">B</text>
+<line x1="922.0" y1="68.0" x2="922.0" y2="198.0" stroke="#666" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="1001.0" y1="100.0" x2="969.0" y2="100.0" stroke="#1a4fd6" stroke-width="2.2"/>
+<polygon points="961.0,100.0 969.0,96.6 969.0,103.4" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<text x="1007.0" y="105.0" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#1a4fd6" text-anchor="start" font-weight="normal" font-style="italic">P</text>
+<text x="714.0" y="74.0" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#1a4fd6" text-anchor="start" font-weight="normal">compression</text>
+<line x1="961.0" y1="164.0" x2="993.0" y2="164.0" stroke="#1a4fd6" stroke-width="2.2"/>
+<polygon points="1001.0,164.0 993.0,167.4 993.0,160.6" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<text x="1007.0" y="169.0" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#1a4fd6" text-anchor="start" font-weight="normal" font-style="italic">P</text>
+<text x="714.0" y="200.0" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#1a4fd6" text-anchor="start" font-weight="normal">tension</text>
+<text x="822.0" y="240.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#333" text-anchor="middle" font-weight="normal">common final length</text>
+<text x="822.0" y="262.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="middle" font-weight="normal">(equal and opposite forces:</text>
+<text x="822.0" y="278.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="middle" font-weight="normal">the assembly carries no external load)</text>
+<line x1="60.0" y1="330.0" x2="960.0" y2="330.0" stroke="#ccc" stroke-width="1.2"/>
+<text x="510.0" y="356.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#333" text-anchor="middle" font-weight="normal">Compatibility: the free mismatch is exactly absorbed by the two elastic deformations</text>
+<text x="349.8" y="384.0" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#000" text-anchor="start" font-weight="normal">α<tspan baseline-shift="sub" font-size="9">A</tspan>LΔT − PL/(A<tspan baseline-shift="sub" font-size="9">A</tspan>E<tspan baseline-shift="sub" font-size="9">A</tspan>)  =  α<tspan baseline-shift="sub" font-size="9">B</tspan>LΔT + PL/(A<tspan baseline-shift="sub" font-size="9">B</tspan>E<tspan baseline-shift="sub" font-size="9">B</tspan>)</text>
+<text x="328.0" y="412.0" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#1a4fd6" text-anchor="start" font-weight="bold">P = (α<tspan baseline-shift="sub" font-size="9">A</tspan> − α<tspan baseline-shift="sub" font-size="9">B</tspan>) ΔT / [ 1/(A<tspan baseline-shift="sub" font-size="9">A</tspan>E<tspan baseline-shift="sub" font-size="9">A</tspan>) + 1/(A<tspan baseline-shift="sub" font-size="9">B</tspan>E<tspan baseline-shift="sub" font-size="9">B</tspan>) ]</text>
+</svg>

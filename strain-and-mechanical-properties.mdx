@@ -189,6 +189,8 @@ Each segment is analysed on its own and the extensions are added. The stress is 
 
 Self-weight problems use the identical integral, except that $N(x)$ varies and $A$ may not:
 
+![Panel (a): a uniform bar hanging from its top end with an element dx at height x, and the triangular internal force diagram rising from zero at the free end to rho g A L at the support. Panel (b): a conical bar hanging from its base, where the weight below any cut is a cone](./images/self-weight-extension.svg)
+
 - **Uniform bar hanging under its own weight** ($\rho$ = density, $g$ = 9.81 m/s²). At a height $x$ above the free end the bar carries the weight below it, $N(x) = \rho g A x$, so
 
   $$\delta = \int_0^L \frac{\rho g A x\,dx}{AE} = \frac{\rho g L^2}{2E} = \frac{W_{total}L}{2AE}$$
@@ -218,6 +220,10 @@ Equivalent uniform section: $d_{eq} = \sqrt{D_1D_2}$ for a circular taper, $b_{e
 
 A tensile test pulls a standard coupon to fracture while recording force and extension. The resulting curve divides material behaviour into regions:
 
+![Panel (a): the complete stress-strain curve of a ductile steel to fracture, marking UTS and the necking region. Panel (b): the elastic and yield region magnified, showing the elastic line of slope E and the parallel 0.2% offset line intersecting the curve at the yield strength](./images/stress-strain-offset-construction.svg)
+
+The two panels are the same curve at different scales, and the scale change is the point: the elastic behaviour that governs every deflection calculation in this lesson occupies less than 2% of the strain axis. The 0.2% offset construction can only be drawn in the magnified view.
+
 <Card title="Key Points on the Curve" icon="document">
 - **Proportional limit:** the highest stress at which stress and strain remain strictly proportional (the curve is still a straight line)
 - **Yield strength (0.2% offset):** found by drawing a line with slope $E$ starting at $\epsilon = 0.002$; where it intersects the curve is the yield point
@@ -238,6 +244,10 @@ $$u_T \approx \text{area under the full stress-strain curve} \quad \text{(modulu
 
 Resilience measures how much elastic energy the material stores per unit volume before yielding. Toughness measures the total energy per unit volume absorbed before fracture, including all the plastic work.
 </Card>
+
+![Panel (a): the area under the entire stress-strain curve shaded, representing the modulus of toughness of about 95 MJ per cubic metre. Panel (b): the magnified elastic triangle shaded, representing the modulus of resilience of 306 kJ per cubic metre](./images/stress-strain-energy-areas.svg)
+
+Both quantities are areas under the same curve, which is why they are so easily confused; the figure shows how different those areas are. The elastic triangle is roughly 310 times smaller than the total, so for a ductile metal the toughness is essentially all plastic work.
 
 ### Shear Modulus
 

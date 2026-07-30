@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1010 430" width="1010" height="430">
+<rect width="1010" height="430" fill="white"/>
+<text x="215.0" y="32.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#000" text-anchor="middle" font-weight="bold">(a) Uniform bar under its own weight</text>
+<line x1="123.0" y1="76.0" x2="110.0" y2="89.0" stroke="#000" stroke-width="1.3"/>
+<line x1="136.0" y1="76.0" x2="114.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="149.0" y1="76.0" x2="127.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="162.0" y1="76.0" x2="140.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="175.0" y1="76.0" x2="153.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="188.0" y1="76.0" x2="166.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="201.0" y1="76.0" x2="179.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="214.0" y1="76.0" x2="192.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="227.0" y1="76.0" x2="205.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="240.0" y1="76.0" x2="218.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="240.0" y1="89.0" x2="231.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="110.0" y1="76.0" x2="240.0" y2="76.0" stroke="#000" stroke-width="3.0"/>
+<rect x="150.0" y="90.0" width="46.0" height="210.0" fill="#9aa4ad" stroke="#000" stroke-width="1.8"/>
+<rect x="150.0" y="200.0" width="46.0" height="16.0" fill="#d9b45a" stroke="#000" stroke-width="1.8"/>
+<text x="204.0" y="212.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal" font-style="italic">dx</text>
+<line x1="128.0" y1="98.0" x2="128.0" y2="192.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="128.0,200.0 124.6,192.0 131.4,192.0" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<polygon points="128.0,90.0 131.4,98.0 124.6,98.0" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<text x="128.0" y="83.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000" text-anchor="middle" font-weight="normal" font-style="italic"></text>
+<text x="110.0" y="145.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#000" text-anchor="middle" font-weight="normal">L − x</text>
+<line x1="128.0" y1="224.0" x2="128.0" y2="292.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="128.0,300.0 124.6,292.0 131.4,292.0" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<polygon points="128.0,216.0 131.4,224.0 124.6,224.0" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<text x="128.0" y="209.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000" text-anchor="middle" font-weight="normal" font-style="italic"></text>
+<text x="116.0" y="250.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="middle" font-weight="normal" font-style="italic">x</text>
+<line x1="144.0" y1="300.0" x2="202.0" y2="300.0" stroke="#000" stroke-width="1.2" stroke-dasharray="4,3"/>
+<polygon points="300.0,300.0 300.0,90.0 396.0,90.0 300.0,300.0" fill="#1a4fd6" fill-opacity="0.28" stroke="#1a4fd6" stroke-width="1.4"/>
+<line x1="300.0" y1="90.0" x2="300.0" y2="300.0" stroke="#000" stroke-width="1.4"/>
+<line x1="300.0" y1="300.0" x2="304.0" y2="300.0" stroke="#000" stroke-width="1.4"/>
+<text x="400.0" y="96.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#1a4fd6" text-anchor="start" font-weight="normal">N = ρgAL</text>
+<text x="308.0" y="294.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#1a4fd6" text-anchor="start" font-weight="normal">N = 0</text>
+<text x="344.0" y="76.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#1a4fd6" text-anchor="middle" font-weight="normal">internal force N(x)</text>
+<text x="59.5" y="348.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000" text-anchor="start" font-weight="normal">N(x) = ρ g A x   (weight of the bar below the cut)</text>
+<text x="86.8" y="376.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#1a4fd6" text-anchor="start" font-weight="bold">δ = ∫ ρgAx dx /(AE) = ρ g L² / (2E)</text>
+<text x="215.0" y="406.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="middle" font-weight="normal">the area cancels — half of what the total weight at the tip would give</text>
+<line x1="520.0" y1="60.0" x2="520.0" y2="416.0" stroke="#ccc" stroke-width="1.2"/>
+<text x="760.0" y="32.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#000" text-anchor="middle" font-weight="bold">(b) Conical bar hanging from its base</text>
+<line x1="613.0" y1="76.0" x2="600.0" y2="89.0" stroke="#000" stroke-width="1.3"/>
+<line x1="626.0" y1="76.0" x2="604.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="639.0" y1="76.0" x2="617.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="652.0" y1="76.0" x2="630.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="665.0" y1="76.0" x2="643.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="678.0" y1="76.0" x2="656.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="691.0" y1="76.0" x2="669.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="704.0" y1="76.0" x2="682.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="717.0" y1="76.0" x2="695.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="730.0" y1="76.0" x2="708.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="743.0" y1="76.0" x2="721.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="756.0" y1="76.0" x2="734.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="769.0" y1="76.0" x2="747.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="782.0" y1="76.0" x2="760.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="795.0" y1="76.0" x2="773.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="800.0" y1="84.0" x2="786.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="800.0" y1="97.0" x2="799.0" y2="98.0" stroke="#000" stroke-width="1.3"/>
+<line x1="600.0" y1="76.0" x2="800.0" y2="76.0" stroke="#000" stroke-width="3.0"/>
+<polygon points="626.0,90.0 774.0,90.0 700.0,300.0" fill="#9aa4ad" fill-opacity="1.0" stroke="#000" stroke-width="1.8"/>
+<polygon points="671.8,220.0 728.2,220.0 726.2,234.0 673.8,234.0" fill="#d9b45a" fill-opacity="1.0" stroke="#000" stroke-width="1.8"/>
+<text x="738.2" y="232.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal" font-style="italic">dx</text>
+<line x1="604.0" y1="242.0" x2="604.0" y2="292.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="604.0,300.0 600.6,292.0 607.4,292.0" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<polygon points="604.0,234.0 607.4,242.0 600.6,242.0" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<text x="604.0" y="227.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000" text-anchor="middle" font-weight="normal" font-style="italic"></text>
+<text x="590.0" y="260.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="middle" font-weight="normal" font-style="italic">x</text>
+<text x="792.0" y="110.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="start" font-weight="normal">the weight below the cut</text>
+<text x="792.0" y="126.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="start" font-weight="normal">is a cone: ρgA(x)·x/3</text>
+<text x="689.0" y="348.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000" text-anchor="start" font-weight="normal">N(x) = ρ g A(x) x / 3</text>
+<text x="635.6" y="376.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#1a4fd6" text-anchor="start" font-weight="bold">δ = ∫ ρgx dx /(3E) = ρ g L² / (6E)</text>
+<text x="760.0" y="406.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="middle" font-weight="normal">one third of the uniform bar: most material sits near the support</text>
+</svg>

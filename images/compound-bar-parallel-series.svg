@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 450" width="1020" height="450">
+<rect width="1020" height="450" fill="white"/>
+<text x="255.0" y="32.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#000" text-anchor="middle" font-weight="bold">(a) Parallel: both materials shorten by the same δ</text>
+<line x1="78.0" y1="109.0" x2="91.0" y2="96.0" stroke="#000" stroke-width="1.3"/>
+<line x1="78.0" y1="122.0" x2="104.0" y2="96.0" stroke="#000" stroke-width="1.3"/>
+<line x1="78.0" y1="135.0" x2="110.0" y2="103.0" stroke="#000" stroke-width="1.3"/>
+<line x1="78.0" y1="148.0" x2="110.0" y2="116.0" stroke="#000" stroke-width="1.3"/>
+<line x1="78.0" y1="161.0" x2="110.0" y2="129.0" stroke="#000" stroke-width="1.3"/>
+<line x1="78.0" y1="174.0" x2="110.0" y2="142.0" stroke="#000" stroke-width="1.3"/>
+<line x1="78.0" y1="187.0" x2="110.0" y2="155.0" stroke="#000" stroke-width="1.3"/>
+<line x1="78.0" y1="200.0" x2="110.0" y2="168.0" stroke="#000" stroke-width="1.3"/>
+<line x1="78.0" y1="213.0" x2="110.0" y2="181.0" stroke="#000" stroke-width="1.3"/>
+<line x1="78.0" y1="226.0" x2="110.0" y2="194.0" stroke="#000" stroke-width="1.3"/>
+<line x1="78.0" y1="239.0" x2="110.0" y2="207.0" stroke="#000" stroke-width="1.3"/>
+<line x1="78.0" y1="252.0" x2="110.0" y2="220.0" stroke="#000" stroke-width="1.3"/>
+<line x1="79.0" y1="264.0" x2="110.0" y2="233.0" stroke="#000" stroke-width="1.3"/>
+<line x1="92.0" y1="264.0" x2="110.0" y2="246.0" stroke="#000" stroke-width="1.3"/>
+<line x1="105.0" y1="264.0" x2="110.0" y2="259.0" stroke="#000" stroke-width="1.3"/>
+<line x1="110.0" y1="96.0" x2="110.0" y2="264.0" stroke="#000" stroke-width="3.0"/>
+<rect x="98.0" y="96.0" width="12.0" height="168.0" fill="#555" stroke="#000" stroke-width="1.8"/>
+<rect x="400.0" y="96.0" width="12.0" height="168.0" fill="#555" stroke="#000" stroke-width="1.8"/>
+<rect x="110.0" y="112.0" width="290.0" height="44.0" fill="#9aa4ad" stroke="#000" stroke-width="1.8"/>
+<text x="122.0" y="139.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal">material 1  (E<tspan baseline-shift="sub" font-size="9">1</tspan>, A<tspan baseline-shift="sub" font-size="9">1</tspan>)</text>
+<rect x="110.0" y="204.0" width="290.0" height="44.0" fill="#dfe3e6" stroke="#000" stroke-width="1.8"/>
+<text x="122.0" y="231.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal">material 2  (E<tspan baseline-shift="sub" font-size="9">2</tspan>, A<tspan baseline-shift="sub" font-size="9">2</tspan>)</text>
+<line x1="505.0" y1="180.0" x2="428.0" y2="180.0" stroke="#c00000" stroke-width="2.6"/>
+<polygon points="418.0,180.0 428.0,176.6 428.0,183.4" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<text x="512.0" y="185.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#c00000" text-anchor="start" font-weight="normal" font-style="italic">P</text>
+<line x1="300.0" y1="84.0" x2="300.0" y2="276.0" stroke="#c00000" stroke-width="1.3" stroke-dasharray="9,4,3,4"/>
+<text x="300.0" y="78.0" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#c00000" text-anchor="middle" font-weight="normal">cut</text>
+<line x1="352.0" y1="134.0" x2="316.0" y2="134.0" stroke="#1a4fd6" stroke-width="2.0"/>
+<polygon points="308.0,134.0 316.0,130.6 316.0,137.4" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<text x="358.0" y="139.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#1a4fd6" text-anchor="start" font-weight="normal">F<tspan baseline-shift="sub" font-size="9">1</tspan></text>
+<line x1="352.0" y1="226.0" x2="316.0" y2="226.0" stroke="#1a4fd6" stroke-width="2.0"/>
+<polygon points="308.0,226.0 316.0,222.6 316.0,229.4" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<text x="358.0" y="231.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#1a4fd6" text-anchor="start" font-weight="normal">F<tspan baseline-shift="sub" font-size="9">2</tspan></text>
+<rect x="378.0" y="96.0" width="12.0" height="168.0" fill="none" stroke="#666" stroke-width="1.2"/>
+<line x1="378.0" y1="264.0" x2="378.0" y2="306.0" stroke="#666" stroke-width="1.0" stroke-dasharray="4,3"/>
+<line x1="400.0" y1="264.0" x2="400.0" y2="306.0" stroke="#666" stroke-width="1.0" stroke-dasharray="4,3"/>
+<line x1="393.0" y1="298.0" x2="385.0" y2="298.0" stroke="#1a4fd6" stroke-width="1.6"/>
+<polygon points="378.0,298.0 385.0,294.6 385.0,301.4" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<polygon points="400.0,298.0 393.0,301.4 393.0,294.6" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<text x="414.0" y="303.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#1a4fd6" text-anchor="start" font-weight="normal">δ (common to both)</text>
+<line x1="118.0" y1="336.0" x2="392.0" y2="336.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="400.0,336.0 392.0,339.4 392.0,332.6" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<polygon points="110.0,336.0 118.0,332.6 118.0,339.4" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<rect x="242.0" y="326.0" width="26" height="20" fill="white"/>
+<text x="255.0" y="341.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000" text-anchor="middle" font-weight="normal" font-style="italic">L</text>
+<text x="255.0" y="372.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#333" text-anchor="middle" font-weight="normal">Compatibility:  δ is common, so ε is common</text>
+<text x="167.1" y="394.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#333" text-anchor="start" font-weight="normal">Equilibrium:  F<tspan baseline-shift="sub" font-size="9">1</tspan> + F<tspan baseline-shift="sub" font-size="9">2</tspan> = P</text>
+<text x="86.5" y="420.0" font-family="Arial, Helvetica, sans-serif" font-size="13.5" fill="#1a4fd6" text-anchor="start" font-weight="bold">F<tspan baseline-shift="sub" font-size="9">i</tspan> = P · E<tspan baseline-shift="sub" font-size="9">i</tspan>A<tspan baseline-shift="sub" font-size="9">i</tspan> / Σ E<tspan baseline-shift="sub" font-size="9">j</tspan>A<tspan baseline-shift="sub" font-size="9">j</tspan>   (load splits by stiffness)</text>
+<line x1="530.0" y1="60.0" x2="530.0" y2="432.0" stroke="#ccc" stroke-width="1.2"/>
+<text x="775.0" y="32.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#000" text-anchor="middle" font-weight="bold">(b) Series: the same force passes through both</text>
+<line x1="568.0" y1="147.0" x2="581.0" y2="134.0" stroke="#000" stroke-width="1.3"/>
+<line x1="568.0" y1="160.0" x2="594.0" y2="134.0" stroke="#000" stroke-width="1.3"/>
+<line x1="568.0" y1="173.0" x2="600.0" y2="141.0" stroke="#000" stroke-width="1.3"/>
+<line x1="568.0" y1="186.0" x2="600.0" y2="154.0" stroke="#000" stroke-width="1.3"/>
+<line x1="568.0" y1="199.0" x2="600.0" y2="167.0" stroke="#000" stroke-width="1.3"/>
+<line x1="568.0" y1="212.0" x2="600.0" y2="180.0" stroke="#000" stroke-width="1.3"/>
+<line x1="568.0" y1="225.0" x2="600.0" y2="193.0" stroke="#000" stroke-width="1.3"/>
+<line x1="580.0" y1="226.0" x2="600.0" y2="206.0" stroke="#000" stroke-width="1.3"/>
+<line x1="593.0" y1="226.0" x2="600.0" y2="219.0" stroke="#000" stroke-width="1.3"/>
+<line x1="600.0" y1="134.0" x2="600.0" y2="226.0" stroke="#000" stroke-width="3.0"/>
+<rect x="600.0" y="146.0" width="150.0" height="68.0" fill="#9aa4ad" stroke="#000" stroke-width="1.8"/>
+<text x="614.0" y="184.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal">1  (E<tspan baseline-shift="sub" font-size="9">1</tspan>, A<tspan baseline-shift="sub" font-size="9">1</tspan>)</text>
+<rect x="750.0" y="158.0" width="130.0" height="44.0" fill="#d9b45a" stroke="#000" stroke-width="1.8"/>
+<text x="762.0" y="184.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#000" text-anchor="start" font-weight="normal">2  (E<tspan baseline-shift="sub" font-size="9">2</tspan>, A<tspan baseline-shift="sub" font-size="9">2</tspan>)</text>
+<line x1="892.0" y1="180.0" x2="966.0" y2="180.0" stroke="#c00000" stroke-width="2.6"/>
+<polygon points="976.0,180.0 966.0,183.4 966.0,176.6" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<text x="982.0" y="185.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#c00000" text-anchor="start" font-weight="normal" font-style="italic">F</text>
+<line x1="672.0" y1="126.0" x2="672.0" y2="234.0" stroke="#c00000" stroke-width="1.3" stroke-dasharray="9,4,3,4"/>
+<line x1="678.0" y1="254.0" x2="716.0" y2="254.0" stroke="#1a4fd6" stroke-width="2.0"/>
+<polygon points="724.0,254.0 716.0,257.4 716.0,250.6" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<text x="730.0" y="259.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#1a4fd6" text-anchor="start" font-weight="normal" font-style="italic">F</text>
+<line x1="842.0" y1="126.0" x2="842.0" y2="234.0" stroke="#c00000" stroke-width="1.3" stroke-dasharray="9,4,3,4"/>
+<line x1="848.0" y1="254.0" x2="886.0" y2="254.0" stroke="#1a4fd6" stroke-width="2.0"/>
+<polygon points="894.0,254.0 886.0,257.4 886.0,250.6" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<text x="900.0" y="259.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#1a4fd6" text-anchor="start" font-weight="normal" font-style="italic">F</text>
+<text x="748.0" y="288.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#1a4fd6" text-anchor="middle" font-weight="normal">the same F in every segment</text>
+<line x1="608.0" y1="320.0" x2="742.0" y2="320.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="750.0,320.0 742.0,323.4 742.0,316.6" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<polygon points="600.0,320.0 608.0,316.6 608.0,323.4" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<rect x="662.0" y="310.0" width="26" height="20" fill="white"/>
+<text x="675.0" y="325.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000" text-anchor="middle" font-weight="normal" font-style="italic">L<tspan baseline-shift="sub" font-size="9">1</tspan></text>
+<line x1="758.0" y1="320.0" x2="872.0" y2="320.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="880.0,320.0 872.0,323.4 872.0,316.6" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<polygon points="750.0,320.0 758.0,316.6 758.0,323.4" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<rect x="802.0" y="310.0" width="26" height="20" fill="white"/>
+<text x="815.0" y="325.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000" text-anchor="middle" font-weight="normal" font-style="italic">L<tspan baseline-shift="sub" font-size="9">2</tspan></text>
+<text x="775.0" y="372.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#333" text-anchor="middle" font-weight="normal">Equilibrium:  F is common to both segments</text>
+<text x="626.3" y="394.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#333" text-anchor="start" font-weight="normal">Compatibility:  δ = δ<tspan baseline-shift="sub" font-size="9">1</tspan> + δ<tspan baseline-shift="sub" font-size="9">2</tspan>   (deflections add)</text>
+<text x="669.7" y="420.0" font-family="Arial, Helvetica, sans-serif" font-size="13.5" fill="#1a4fd6" text-anchor="start" font-weight="bold">δ = F ( L<tspan baseline-shift="sub" font-size="9">1</tspan>/A<tspan baseline-shift="sub" font-size="9">1</tspan>E<tspan baseline-shift="sub" font-size="9">1</tspan> + L<tspan baseline-shift="sub" font-size="9">2</tspan>/A<tspan baseline-shift="sub" font-size="9">2</tspan>E<tspan baseline-shift="sub" font-size="9">2</tspan> )</text>
+</svg>

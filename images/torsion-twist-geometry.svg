@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="1000" height="480">
+<rect width="1000" height="480" fill="white"/>
+<text x="500.0" y="34.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#000" text-anchor="middle" font-weight="bold">Angle of twist: the geometry behind φ = T L / (G J)</text>
+<line x1="116.0" y1="95.0" x2="129.0" y2="82.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="108.0" x2="142.0" y2="82.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="121.0" x2="150.0" y2="87.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="134.0" x2="150.0" y2="100.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="147.0" x2="150.0" y2="113.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="160.0" x2="150.0" y2="126.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="173.0" x2="150.0" y2="139.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="186.0" x2="150.0" y2="152.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="199.0" x2="150.0" y2="165.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="212.0" x2="150.0" y2="178.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="225.0" x2="150.0" y2="191.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="238.0" x2="150.0" y2="204.0" stroke="#000" stroke-width="1.3"/>
+<line x1="116.0" y1="251.0" x2="150.0" y2="217.0" stroke="#000" stroke-width="1.3"/>
+<line x1="118.0" y1="262.0" x2="150.0" y2="230.0" stroke="#000" stroke-width="1.3"/>
+<line x1="131.0" y1="262.0" x2="150.0" y2="243.0" stroke="#000" stroke-width="1.3"/>
+<line x1="144.0" y1="262.0" x2="150.0" y2="256.0" stroke="#000" stroke-width="1.3"/>
+<line x1="150.0" y1="82.0" x2="150.0" y2="262.0" stroke="#000" stroke-width="3.0"/>
+<rect x="150.0" y="98.0" width="490.0" height="148.0" fill="#9aa4ad" stroke="#000" stroke-width="2.0"/>
+<ellipse cx="640" cy="172" rx="20" ry="74" fill="#b9c1c8" stroke="#000" stroke-width="2"/>
+<ellipse cx="150" cy="172" rx="20" ry="74" fill="none" stroke="#000" stroke-width="1.2" stroke-dasharray="4,4"/>
+<line x1="150.0" y1="98.0" x2="640.0" y2="98.0" stroke="#000" stroke-width="1.2" stroke-dasharray="6,4"/>
+<text x="158.0" y="88.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="start" font-weight="normal">surface line before twisting</text>
+<path d="M150,98 C330,98 500,120 640,150" fill="none" fill-opacity="1.0" stroke="#c00000" stroke-width="2.4"/>
+<text x="674.0" y="190.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#c00000" text-anchor="start" font-weight="normal">after twisting</text>
+<path d="M588,98 A52,52 0 0 1 640,138" fill="none" fill-opacity="1.0" stroke="#c00000" stroke-width="1.4" stroke-dasharray="4,3"/>
+<text x="596.0" y="128.0" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#c00000" text-anchor="start" font-weight="normal" font-style="italic">γ</text>
+<line x1="640.0" y1="172.0" x2="640.0" y2="98.0" stroke="#000" stroke-width="1.2"/>
+<line x1="640.0" y1="172.0" x2="652.0" y2="150.0" stroke="#000" stroke-width="1.2"/>
+<path d="M640,120 A22,22 0 0 0 651.5,150" fill="none" fill-opacity="1.0" stroke="#000" stroke-width="1.2"/>
+<text x="656.0" y="132.0" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#000" text-anchor="start" font-weight="normal" font-style="italic">φ</text>
+<path d="M704,226 A64,64 0 0 1 704,118" fill="none" fill-opacity="1.0" stroke="#c00000" stroke-width="2.4"/>
+<line x1="704.0" y1="126.0" x2="704.0" y2="119.0" stroke="#c00000" stroke-width="2.4"/>
+<polygon points="704.0,110.0 707.4,119.0 700.6,119.0" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<text x="714.0" y="178.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#c00000" text-anchor="start" font-weight="normal" font-style="italic">T</text>
+<line x1="158.0" y1="298.0" x2="632.0" y2="298.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="640.0,298.0 632.0,301.4 632.0,294.6" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<polygon points="150.0,298.0 158.0,294.6 158.0,301.4" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<rect x="382.0" y="288.0" width="26" height="20" fill="white"/>
+<text x="395.0" y="303.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000" text-anchor="middle" font-weight="normal" font-style="italic">L</text>
+<line x1="194.0" y1="164.0" x2="194.0" y2="106.0" stroke="#000" stroke-width="1.2"/>
+<polygon points="194.0,98.0 197.4,106.0 190.6,106.0" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<polygon points="194.0,172.0 190.6,164.0 197.4,164.0" fill="#000" fill-opacity="1.0" stroke="#000" stroke-width="0"/>
+<text x="194.0" y="91.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000" text-anchor="middle" font-weight="normal" font-style="italic"></text>
+<text x="202.0" y="135.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#000" text-anchor="start" font-weight="normal" font-style="italic">r</text>
+<line x1="90.0" y1="330.0" x2="910.0" y2="330.0" stroke="#ccc" stroke-width="1.2"/>
+<text x="500.0" y="358.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#333" text-anchor="middle" font-weight="normal">The same arc at the surface, measured two ways:</text>
+<text x="282.4" y="386.0" font-family="Arial, Helvetica, sans-serif" font-size="13.5" fill="#000" text-anchor="start" font-weight="normal">arc = r φ  (rotation of the end)  =  L γ  (shear of the surface)</text>
+<text x="369.0" y="414.0" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#000" text-anchor="start" font-weight="normal">γ = r φ / L   →   τ = G γ = G r φ / L</text>
+<text x="336.2" y="444.0" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#1a4fd6" text-anchor="start" font-weight="bold">equate with τ = T r / J   →   φ = T L / (G J)</text>
+</svg>

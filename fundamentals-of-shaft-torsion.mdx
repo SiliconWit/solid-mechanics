@@ -76,6 +76,10 @@ Both criteria matter. A shaft that survives the stress but winds up by several d
 
 When a circular shaft carries a twisting moment (torque), every cross-section resists by developing shear stress that varies linearly from zero at the centre to a maximum at the outer surface. Three formulas govern everything in this lesson.
 
+![Panel (a): a circular shaft cross-section with the shear stress rising linearly from zero at the axis to tau max at the outer surface. Panel (b): the same section with a thin ring of radius rho and width d rho, the element whose area 2 pi rho d rho integrates to the polar second moment J](./images/torsion-stress-and-polar-moment.svg)
+
+Panel (b) is where $J = \pi d^4/32$ comes from: each thin ring contributes its own area weighted by the *square* of its radius, so material near the surface counts for far more than material near the axis. That single fact explains both the stress distribution in panel (a) and why hollow shafts are efficient.
+
 <Card title="Torsional shear stress" icon="document">
 $$\tau = \frac{T \, r}{J}$$
 
@@ -110,6 +114,10 @@ Where:
 
 Angular deflection grows with torque and length, and shrinks with material stiffness and section stiffness. A shaft that passes the stress check can still fail the stiffness check if it is long or lightly proportioned.
 </Card>
+
+![A shaft fixed at one end and twisted by a torque at the other. A straight line on the surface becomes a helix, and the same arc at the free end can be measured either as r times the twist angle phi or as L times the surface shear strain gamma](./images/torsion-twist-geometry.svg)
+
+The formula is not arbitrary: a straight line scribed on the surface becomes a helix, and the arc swept at the free end can be measured two ways, as $r\varphi$ from the rotation or as $L\gamma$ from the shear. Equating them gives $\gamma = r\varphi/L$, and combining that with $\tau = G\gamma$ and $\tau = Tr/J$ produces $\varphi = TL/(GJ)$.
 
 <Card title="Power and torque" icon="document">
 A motor or gearbox rated at power $P$ (watts) running at angular speed $\omega$ (rad/s) delivers:

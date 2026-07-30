@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1010 430" width="1010" height="430">
+<rect width="1010" height="430" fill="white"/>
+<text x="250.0" y="32.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#000" text-anchor="middle" font-weight="bold">(a) Stress: cut the bar and look at the exposed face</text>
+<rect x="110.0" y="116.0" width="220.0" height="68.0" fill="#9aa4ad" stroke="#000" stroke-width="1.8"/>
+<line x1="100.0" y1="150.0" x2="41.0" y2="150.0" stroke="#c00000" stroke-width="2.4"/>
+<polygon points="32.0,150.0 41.0,146.6 41.0,153.4" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<text x="26.0" y="155.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#c00000" text-anchor="end" font-weight="normal" font-style="italic">F</text>
+<line x1="340.0" y1="150.0" x2="399.0" y2="150.0" stroke="#c00000" stroke-width="2.4"/>
+<polygon points="408.0,150.0 399.0,153.4 399.0,146.6" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<text x="414.0" y="155.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#c00000" text-anchor="start" font-weight="normal" font-style="italic">F</text>
+<line x1="220.0" y1="96.0" x2="220.0" y2="204.0" stroke="#c00000" stroke-width="1.3" stroke-dasharray="9,4,3,4"/>
+<text x="220.0" y="88.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#c00000" text-anchor="middle" font-weight="normal">cut here</text>
+<rect x="110.0" y="246.0" width="110.0" height="68.0" fill="#9aa4ad" stroke="#000" stroke-width="1.8"/>
+<line x1="100.0" y1="280.0" x2="41.0" y2="280.0" stroke="#c00000" stroke-width="2.4"/>
+<polygon points="32.0,280.0 41.0,276.6 41.0,283.4" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<text x="26.0" y="285.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#c00000" text-anchor="end" font-weight="normal" font-style="italic">F</text>
+<line x1="220.0" y1="254.0" x2="255.0" y2="254.0" stroke="#1a4fd6" stroke-width="1.6"/>
+<polygon points="262.0,254.0 255.0,257.4 255.0,250.6" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<line x1="220.0" y1="266.0" x2="255.0" y2="266.0" stroke="#1a4fd6" stroke-width="1.6"/>
+<polygon points="262.0,266.0 255.0,269.4 255.0,262.6" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<line x1="220.0" y1="278.0" x2="255.0" y2="278.0" stroke="#1a4fd6" stroke-width="1.6"/>
+<polygon points="262.0,278.0 255.0,281.4 255.0,274.6" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<line x1="220.0" y1="290.0" x2="255.0" y2="290.0" stroke="#1a4fd6" stroke-width="1.6"/>
+<polygon points="262.0,290.0 255.0,293.4 255.0,286.6" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<line x1="220.0" y1="302.0" x2="255.0" y2="302.0" stroke="#1a4fd6" stroke-width="1.6"/>
+<polygon points="262.0,302.0 255.0,305.4 255.0,298.6" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<text x="268.0" y="274.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#1a4fd6" text-anchor="start" font-weight="normal">internal stress σ</text>
+<text x="268.0" y="290.0" font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#1a4fd6" text-anchor="start" font-weight="normal">spread over area A</text>
+<text x="114.0" y="336.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="start" font-weight="normal">free body of the left-hand part</text>
+<text x="111.4" y="352.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#333" text-anchor="start" font-weight="normal">the exposed face must carry the whole of F</text>
+<text x="210.2" y="384.0" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#1a4fd6" text-anchor="start" font-weight="bold">σ = F / A</text>
+<text x="250.0" y="412.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="middle" font-weight="normal">same F on a smaller face means a higher stress</text>
+<line x1="520.0" y1="60.0" x2="520.0" y2="416.0" stroke="#ccc" stroke-width="1.2"/>
+<text x="760.0" y="32.0" font-family="Arial, Helvetica, sans-serif" font-size="14.5" fill="#000" text-anchor="middle" font-weight="bold">(b) Poisson's ratio: stretching thins the bar</text>
+<rect x="600.0" y="112.0" width="230.0" height="76.0" fill="none" stroke="#888" stroke-width="1.4"/>
+<text x="604.0" y="102.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#666" text-anchor="start" font-weight="normal">original</text>
+<rect x="600.0" y="121.0" width="274.0" height="58.0" fill="#9aa4ad" stroke="#000" stroke-width="1.8"/>
+<line x1="886.0" y1="150.0" x2="939.0" y2="150.0" stroke="#c00000" stroke-width="2.4"/>
+<polygon points="948.0,150.0 939.0,153.4 939.0,146.6" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<text x="954.0" y="155.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#c00000" text-anchor="start" font-weight="normal" font-style="italic">F</text>
+<line x1="588.0" y1="150.0" x2="535.0" y2="150.0" stroke="#c00000" stroke-width="2.4"/>
+<polygon points="526.0,150.0 535.0,146.6 535.0,153.4" fill="#c00000" fill-opacity="1.0" stroke="#c00000" stroke-width="0"/>
+<text x="520.0" y="155.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#c00000" text-anchor="end" font-weight="normal" font-style="italic">F</text>
+<line x1="830.0" y1="194.0" x2="830.0" y2="228.0" stroke="#666" stroke-width="1.0" stroke-dasharray="4,3"/>
+<line x1="874.0" y1="194.0" x2="874.0" y2="228.0" stroke="#666" stroke-width="1.0" stroke-dasharray="4,3"/>
+<line x1="837.0" y1="220.0" x2="867.0" y2="220.0" stroke="#1a4fd6" stroke-width="1.5"/>
+<polygon points="874.0,220.0 867.0,223.4 867.0,216.6" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<polygon points="830.0,220.0 837.0,216.6 837.0,223.4" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<text x="882.0" y="225.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#1a4fd6" text-anchor="start" font-weight="normal">δ (lengthwise)</text>
+<line x1="660.0" y1="118.0" x2="660.0" y2="115.0" stroke="#1a4fd6" stroke-width="1.5"/>
+<polygon points="660.0,121.0 656.6,115.0 663.4,115.0" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<polygon points="660.0,112.0 663.4,118.0 656.6,118.0" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<line x1="660.0" y1="182.0" x2="660.0" y2="185.0" stroke="#1a4fd6" stroke-width="1.5"/>
+<polygon points="660.0,179.0 663.4,185.0 656.6,185.0" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<polygon points="660.0,188.0 656.6,182.0 663.4,182.0" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
+<text x="760.0" y="300.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#1a4fd6" text-anchor="middle" font-weight="normal">the bar thins as it stretches (thinning exaggerated here)</text>
+<text x="584.2" y="352.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#333" text-anchor="start" font-weight="normal">ε(lateral) is negative while ε(longitudinal) is positive</text>
+<text x="626.9" y="384.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#1a4fd6" text-anchor="start" font-weight="bold">ν = − ε(lateral) / ε(longitudinal)</text>
+<text x="760.0" y="412.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="middle" font-weight="normal">about 0.3 for steel and aluminium, near 0.5 for rubber</text>
+</svg>

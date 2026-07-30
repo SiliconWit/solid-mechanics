@@ -101,6 +101,10 @@ Where:
 The same force over a smaller area gives a higher stress. This single idea, force spread over area, is the most-used relation in the whole subject.
 </Card>
 
+![Panel (a): a bar in tension cut in two, with the internal stress spread over the exposed area A, giving sigma = F/A. Panel (b): the same bar stretching lengthwise and contracting laterally, defining Poisson's ratio](./images/axial-stress-and-poisson.svg)
+
+Panel (a) is worth dwelling on: stress is not something the load "has", it is what the *cut face* must carry. Take any section, draw the part on one side of it as a free body, and the stress on the exposed face is whatever it takes to balance the external force. Panel (b) previews Poisson's ratio, covered below.
+
 <Tabs>
   <TabItem label="Types of Stress">
     
@@ -181,6 +185,8 @@ The minus sign makes $\nu$ positive, because stretching lengthwise (positive lon
 
 Poisson's ratio becomes important wherever a part is loaded in more than one direction at once, which is the subject of the principal-stress analysis later in the course.
 :::
+
+Panel (b) of the figure in *What is Stress?* above shows the lateral contraction that this ratio measures.
 
 ## Application 1: Crank-Slider Connecting Rod in Compression
 
@@ -367,6 +373,10 @@ The same load produces three different effects worth tracking: a stress to check
 
 <InArticleAd />
 
+
+![Panel (a): a lap joint whose pin is cut by a single shear plane, so tau = F/A. Panel (b): a clevis whose pin is cut by two shear planes, so tau = F/2A](./images/single-vs-double-shear.svg)
+
+Counting shear planes is the whole difference between the two joints, and it is the most common slip in this calculation: the clevis pin below carries the load across **two** sections, so the shear area is 2A, not A.
 
 Where one link of a robot or a linkage connects to another, the load usually passes through a pin. A clevis (a forked fitting) grips the pin on two sides, so the pin is cut across by two shear planes at once. This is double shear, and it is governed by shear stress rather than normal stress.
 
