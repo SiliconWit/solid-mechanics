@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 270" width="680" height="270">
+  <!-- Background -->
+  <rect width="680" height="270" fill="white"/>
+
+  <!-- Fixed-end hatching -->
+  <g stroke="#000000" stroke-width="1.5">
+    <line x1="62" y1="70" x2="90" y2="42"/>
+    <line x1="62" y1="90" x2="90" y2="62"/>
+    <line x1="62" y1="110" x2="90" y2="82"/>
+    <line x1="62" y1="130" x2="90" y2="102"/>
+    <line x1="62" y1="150" x2="90" y2="122"/>
+    <line x1="62" y1="170" x2="90" y2="142"/>
+    <line x1="62" y1="190" x2="90" y2="162"/>
+    <line x1="76" y1="190" x2="90" y2="176"/>
+  </g>
+  <line x1="90" y1="42" x2="90" y2="190" stroke="#000000" stroke-width="3"/>
+
+  <!-- Tapered bar profile: D1 at the fixed end, D2 at the loaded end -->
+  <polygon points="90,60 520,87.5 520,142.5 90,170" fill="#D4D4D4" stroke="#000000" stroke-width="2"/>
+
+  <!-- Element of thickness dx at distance x from the fixed end -->
+  <polygon points="300,73.4 322,72.0 322,158.0 300,156.6" fill="#A0A0A0" stroke="#000000" stroke-width="1.5"/>
+
+  <!-- Centre line -->
+  <line x1="78" y1="115" x2="560" y2="115" stroke="#000000" stroke-width="1" stroke-dasharray="10,5,3,5"/>
+
+  <!-- Axial load W -->
+  <line x1="520" y1="115" x2="608" y2="115" stroke="#FF0000" stroke-width="3"/>
+  <polygon points="620,115 606,109 606,121" fill="#FF0000"/>
+  <text x="626" y="110" font-family="Arial" font-size="17" font-style="italic" fill="#FF0000">W</text>
+
+  <!-- D1 dimension (inside the large end) -->
+  <line x1="104" y1="61" x2="104" y2="169" stroke="#000000" stroke-width="1.2"/>
+  <polygon points="104,60 100,70 108,70" fill="#000000"/>
+  <polygon points="104,170 100,160 108,160" fill="#000000"/>
+  <text x="104" y="52" font-family="Arial" font-size="16" font-style="italic" fill="#000000" text-anchor="middle">D<tspan baseline-shift="sub" font-size="11" font-style="normal">1</tspan></text>
+
+  <!-- D2 dimension (inside the small end) -->
+  <line x1="506" y1="88" x2="506" y2="142" stroke="#000000" stroke-width="1.2"/>
+  <polygon points="506,87 502,96 510,96" fill="#000000"/>
+  <polygon points="506,143 502,134 510,134" fill="#000000"/>
+  <text x="506" y="78" font-family="Arial" font-size="16" font-style="italic" fill="#000000" text-anchor="middle">D<tspan baseline-shift="sub" font-size="11" font-style="normal">2</tspan></text>
+
+  <!-- Leader to the element diameter d(x) -->
+  <line x1="311" y1="40" x2="311" y2="66" stroke="#000000" stroke-width="1.2"/>
+  <polygon points="311,73 307,64 315,64" fill="#000000"/>
+  <text x="311" y="32" font-family="Arial" font-size="16" font-style="italic" fill="#000000" text-anchor="middle">d(x)</text>
+  <text x="352" y="182" font-family="Arial" font-size="15" font-style="italic" fill="#000000" text-anchor="middle">dx</text>
+  <line x1="336" y1="177" x2="318" y2="163" stroke="#000000" stroke-width="1"/>
+
+  <!-- x dimension -->
+  <line x1="90" y1="204" x2="311" y2="204" stroke="#000000" stroke-width="1.2"/>
+  <polygon points="90,204 100,200 100,208" fill="#000000"/>
+  <polygon points="311,204 301,200 301,208" fill="#000000"/>
+  <line x1="311" y1="160" x2="311" y2="210" stroke="#000000" stroke-width="0.8"/>
+  <rect x="188" y="194" width="18" height="18" fill="white"/>
+  <text x="197" y="209" font-family="Arial" font-size="16" font-style="italic" fill="#000000" text-anchor="middle">x</text>
+
+  <!-- L dimension -->
+  <line x1="90" y1="238" x2="520" y2="238" stroke="#000000" stroke-width="1.2"/>
+  <polygon points="90,238 100,234 100,242" fill="#000000"/>
+  <polygon points="520,238 510,234 510,242" fill="#000000"/>
+  <line x1="90" y1="190" x2="90" y2="244" stroke="#000000" stroke-width="0.8"/>
+  <line x1="520" y1="144" x2="520" y2="244" stroke="#000000" stroke-width="0.8"/>
+  <rect x="296" y="228" width="18" height="18" fill="white"/>
+  <text x="305" y="243" font-family="Arial" font-size="16" font-style="italic" fill="#000000" text-anchor="middle">L</text>
+
+  <!-- Caption labels -->
+  <text x="62" y="262" font-family="Arial" font-size="13" fill="#333333">Fixed end (large section)</text>
+  <text x="672" y="262" font-family="Arial" font-size="13" fill="#333333" text-anchor="end">Loaded end (small section, maximum stress)</text>
+</svg>
