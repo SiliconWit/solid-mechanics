@@ -1,10 +1,10 @@
 ---
 title: "Lesson 1.6: Thin-Walled Pressure Vessels"
-description: "Analyze hoop and longitudinal stress in cylindrical and spherical pressure vessels, size wall thickness for a given pressure and allowable stress, and understand why a sphere uses half the wall material of a cylinder for the same duty."
+description: "Analyze hoop and longitudinal stress in cylindrical and spherical pressure vessels, compute the circumferential and longitudinal strains and the change in diameter, length, and volume, size wall thickness with a joint efficiency and safety factor, and understand why a sphere uses half the wall material of a cylinder for the same duty."
 contributors: "sam-macharia,jack-kojiro"
 pubDate: 2025-09-16
-tags: ["solid-mechanics", "pressure-vessels", "pneumatic-actuator", "hoop-stress", "longitudinal-stress"]
-excerpt: "Learn pressure vessel stress analysis by working three practical problems: a pneumatic actuator casing, a compressed-air receiver tank, and a spherical accumulator shell. Covers hoop stress, longitudinal stress, wall thickness sizing, and the geometry reason a sphere uses half the material of a cylinder at the same pressure."
+tags: ["solid-mechanics", "pressure-vessels", "pneumatic-actuator", "hoop-stress", "longitudinal-stress", "volumetric-strain", "joint-efficiency"]
+excerpt: "Learn pressure vessel stress analysis by working four practical problems: a pneumatic actuator casing, a compressed-air receiver tank, a spherical accumulator shell, and a riveted steam drum. Covers hoop and longitudinal stress, wall thickness sizing, circumferential and longitudinal strain, change in diameter, length and volume, joint efficiency, and the geometry reason a sphere uses half the material of a cylinder at the same pressure."
 heroImage: "https://cdn.siliconwit.com/product-development/solid-mechanics-analyzer/pressure-vessel-diagram.png"
 ---
 
@@ -35,6 +35,8 @@ By the end of this lesson, you will be able to:
 3. **Size** the minimum wall thickness for a given internal pressure and allowable stress
 4. **Evaluate** the safety factor of an existing wall against the material yield strength
 5. **Explain** why a spherical vessel carries wall stress in all directions equally and requires about half the wall material of an equivalent cylinder
+6. **Compute** the circumferential and longitudinal strains and the resulting changes in diameter, length, and volume of a pressurized cylinder
+7. **Size** the wall thickness of a seamed vessel using a joint efficiency and a factor of safety on the ultimate strength
 
 :::tip[Try it as you read]
 This lesson pairs with the [Pressure Vessel Simulator](/product-development/pressure-vessel-simulator/): pressurize a thin-walled cylinder and watch the hoop stress come out twice the longitudinal, then switch to a sphere and see the wall stress halve. The [Pressure Vessel Experiments](/education/mechanics-of-materials/pressure-vessel-experiments) reproduce the worked examples step by step with Python.
@@ -105,6 +107,30 @@ Any diametral cut through a sphere gives a symmetric result. Pressure $p$ acts o
 $$\sigma_{sphere} = \frac{p \, r}{2t}$$
 
 The sphere wall stress equals the cylinder longitudinal stress and is half the cylinder hoop stress. For the same pressure, radius, and wall thickness, the sphere wall is loaded to half the stress of the cylinder wall.
+</Card>
+
+<Card title="Volumetric Strain and Change in Dimensions" icon="document">
+A pressurized cylinder wall is in biaxial stress, so each strain follows Hooke's law with a Poisson contribution from the perpendicular stress:
+
+$$\varepsilon_{hoop} = \frac{\sigma_{hoop} - \nu\,\sigma_{long}}{E} = \frac{p r}{t E}\left(1 - \frac{\nu}{2}\right), \qquad \varepsilon_{long} = \frac{\sigma_{long} - \nu\,\sigma_{hoop}}{E} = \frac{p r}{2 t E}\left(1 - 2\nu\right)$$
+
+The circumferential (hoop) strain is exactly the diametral strain, so the diameter and length change by:
+
+$$\Delta d = \varepsilon_{hoop}\, d, \qquad \Delta L = \varepsilon_{long}\, L$$
+
+A volume grows in two circumferential directions and one axial direction at once, so the volumetric strain is the sum of two hoop strains and one longitudinal strain:
+
+$$\varepsilon_V = 2\,\varepsilon_{hoop} + \varepsilon_{long}, \qquad \Delta V = \varepsilon_V\, V, \quad V = \pi r^2 L$$
+
+For a sphere every direction carries the same stress $\sigma = pr/2t$, so the strain is $\varepsilon = \dfrac{\sigma(1-\nu)}{E}$ in every direction and the volumetric strain is $\varepsilon_V = 3\varepsilon$ with $V = \tfrac{4}{3}\pi r^3$.
+</Card>
+
+<Card title="Joint Efficiency and Design Thickness" icon="document">
+A real vessel is rolled from plate and closed by a riveted or welded seam that is weaker than the parent plate. A joint efficiency $\eta$ (a value between 0 and 1) is the fraction of the solid-plate strength the seam retains. Because the longitudinal seam runs along the axis, it carries the hoop stress and governs the wall thickness:
+
+$$t_{min} = \frac{p\,r}{\sigma_{allow}\,\eta}, \qquad \sigma_{allow} = \frac{\sigma_{UTS}}{SF}$$
+
+The circumferential seam carries only the longitudinal stress, so it needs $t = pr/(2\,\sigma_{allow}\,\eta_c)$ and rarely governs. A perfect joint ($\eta = 1$) recovers the solid-wall result $t_{min} = pr/\sigma_{allow}$.
 </Card>
 
 ## Application 1: Pneumatic Actuator Casing
@@ -368,6 +394,99 @@ Large gas storage spheres appear at refineries, LPG terminals, and compressed-ga
 The sphere's material efficiency comes entirely from geometry. Every point on a spherical shell has the same curvature in every direction, so internal pressure is resisted equally in all meridional planes. A cylinder resists pressure efficiently around its circumference (hoop) but much less efficiently along its axis (longitudinal), because only the narrow annular wall area carries the end-cap load. That geometric imbalance is the whole story behind the 2:1 stress ratio and the 2:1 wall-thickness ratio.
 :::
 
+## Application 4: Steam Drum Strains, Volume Change, and a Riveted Seam
+
+<InArticleAd />
+
+
+The first three applications sized walls and compared shapes. A steam drum adds two questions a plant engineer must answer: how much does the drum actually stretch under pressure (which sets clearances, nozzle alignment, and the fill volume), and does the riveted or welded seam, not the solid plate, decide the wall thickness?
+
+:::note[System Problem Statement]
+- **Component:** steel boiler steam drum (cylindrical)
+- **Internal pressure:** $p = 2.5$ MPa gauge
+- **Internal diameter:** 800 mm, so radius $r = 400$ mm
+- **Length:** $L = 3.0$ m
+- **Wall thickness:** $t = 16$ mm (as built)
+- **Material:** steel, $E = 200$ GPa, $\nu = 0.3$, $\sigma_{UTS} = 400$ MPa
+- **Seam:** longitudinal riveted joint, efficiency $\eta = 75\%$; required safety factor SF = 5 on the ultimate strength
+- **Task:** find the two stresses and strains, the change in diameter, length, and volume, and the minimum wall thickness the seam requires
+
+**Key Question:** How far does the drum grow under pressure, and is the 16 mm wall thick enough once the seam efficiency is accounted for?
+:::
+
+### Step 1: Stresses and Strains
+
+<details>
+<summary>**Click to reveal the stress and strain calculation**</summary>
+
+<Steps>
+
+1. **Stresses** (thin-wall check $r/t = 400/16 = 25 \geq 10$):
+
+   $$\sigma_{hoop} = \frac{p r}{t} = \frac{2.5 \times 400}{16} = 62.5 \text{ MPa}, \qquad \sigma_{long} = \frac{p r}{2t} = 31.25 \text{ MPa}$$ ✅
+
+2. **Circumferential strain** from biaxial Hooke's law:
+
+   $$\varepsilon_{hoop} = \frac{\sigma_{hoop} - \nu\,\sigma_{long}}{E} = \frac{62.5 - 0.3(31.25)}{200{,}000} = 2.66 \times 10^{-4}$$ ✅
+
+3. **Longitudinal strain:**
+
+   $$\varepsilon_{long} = \frac{\sigma_{long} - \nu\,\sigma_{hoop}}{E} = \frac{31.25 - 0.3(62.5)}{200{,}000} = 6.25 \times 10^{-5}$$ ✅
+
+</Steps>
+
+</details>
+
+### Step 2: Change in Diameter, Length, and Volume
+
+<details>
+<summary>**Click to reveal the dimensional changes**</summary>
+
+<Steps>
+
+1. **Change in diameter** (hoop strain is the diametral strain):
+
+   $$\Delta d = \varepsilon_{hoop}\, d = (2.66 \times 10^{-4})(800) = 0.213 \text{ mm}$$ ✅
+
+2. **Change in length:**
+
+   $$\Delta L = \varepsilon_{long}\, L = (6.25 \times 10^{-5})(3000) = 0.188 \text{ mm}$$ ✅
+
+3. **Volumetric strain and change in volume:**
+
+   $$\varepsilon_V = 2\varepsilon_{hoop} + \varepsilon_{long} = 5.94 \times 10^{-4}$$
+
+   $$V = \pi r^2 L = \pi (400)^2 (3000) = 1.51 \times 10^{9} \text{ mm}^3, \qquad \Delta V = \varepsilon_V\, V = 8.95 \times 10^{5} \text{ mm}^3 \approx 895 \text{ cm}^3$$ ✅
+
+</Steps>
+
+</details>
+
+### Step 3: Minimum Wall Thickness for the Riveted Seam
+
+<details>
+<summary>**Click to reveal the seam thickness check**</summary>
+
+<Steps>
+
+1. **Allowable stress** on the ultimate strength:
+
+   $$\sigma_{allow} = \frac{\sigma_{UTS}}{SF} = \frac{400}{5} = 80 \text{ MPa}$$ ✅
+
+2. **The longitudinal seam carries the hoop stress**, so it sets the thickness through the joint efficiency:
+
+   $$t_{min} = \frac{p\,r}{\sigma_{allow}\,\eta} = \frac{2.5 \times 400}{80 \times 0.75} = 16.7 \text{ mm}$$ ✅
+
+3. **Interpret.** The seam requires 16.7 mm, so the 16 mm as-built wall is marginally under the requirement at SF = 5 with a 75% joint. The design needs the next standard plate (for example 18 mm) or a higher-efficiency welded seam. Without the efficiency factor the solid-plate minimum would have been only $pr/\sigma_{allow} = 12.5$ mm, so the seam, not the plate, governs. ✅
+
+</Steps>
+
+</details>
+
+:::note[Engineering Insight]
+Two lessons sit inside this drum. First, the strains are tiny (a fifth of a millimetre on an 800 mm diameter), yet they are what open flange gaps, misalign nozzles, and set the true fill volume, so they are designed in, not ignored. Second, the joint efficiency can move the governing thickness by a third or more: a vessel that looks safe on the solid-plate formula can still fail at the seam, which is exactly why pressure-vessel codes rate the joint separately.
+:::
+
 ## Design Guidelines for Thin-Walled Pressure Vessels
 
 <InArticleAd />
@@ -386,6 +505,12 @@ The sphere's material efficiency comes entirely from geometry. Every point on a 
   <Card title="Select standard wall with practical margin" icon="rocket">
   The physics minimum from $t = pr/\sigma_{allow}$ is a lower bound. Add corrosion allowance (1 to 2 mm for steel), check code minimums, and verify that the next standard sheet thickness clears all stress concentrations around ports and welds.
   </Card>
+  <Card title="Rate the seam, not just the plate" icon="warning">
+  A riveted or welded joint is weaker than the parent plate. Divide the allowable stress by the joint efficiency $\eta$ (or multiply the required thickness by $1/\eta$) so the seam, which usually governs, is the part you actually design for.
+  </Card>
+  <Card title="Design the growth in, do not ignore it" icon="setting">
+  The strains are small but real. Use $\Delta d = \varepsilon_{hoop} d$ and $\Delta L = \varepsilon_{long} L$ to check flange gaps, nozzle alignment, and fill volume through $\Delta V = \varepsilon_V V$ before committing the design.
+  </Card>
 </CardGrid>
 
 :::tip[Instrument it]
@@ -403,6 +528,8 @@ A pressure vessel is one of the easiest systems to instrument fully. A pressure 
 2. **Cylinder stresses** are $\sigma_{hoop} = pr/t$ (circumferential) and $\sigma_{long} = pr/(2t)$ (axial). Hoop stress is twice longitudinal and governs the design; cylinders fail by splitting lengthwise.
 3. **Sphere stress** is $\sigma_{sphere} = pr/(2t)$ in every direction, equal to the cylinder longitudinal stress and half the cylinder hoop stress. A sphere therefore needs half the wall thickness of a cylinder at the same pressure, radius, and safety factor.
 4. **Wall thickness sizing** follows from $t_{min} = pr/\sigma_{allow}$ for a cylinder or $t_{min} = pr/(2\sigma_{allow})$ for a sphere, where $\sigma_{allow} = \sigma_{yield}/SF$.
+5. **Strains and dimensional change** come from biaxial Hooke's law: $\varepsilon_{hoop} = (\sigma_{hoop} - \nu\sigma_{long})/E$ and $\varepsilon_{long} = (\sigma_{long} - \nu\sigma_{hoop})/E$, giving $\Delta d = \varepsilon_{hoop} d$, $\Delta L = \varepsilon_{long} L$, and $\Delta V = (2\varepsilon_{hoop} + \varepsilon_{long})V$.
+6. **Joint efficiency** reduces the seam strength: the governing thickness is $t_{min} = pr/(\sigma_{allow}\,\eta)$, so a riveted or welded seam usually decides the wall, not the solid plate.
 
 ### Results at a Glance
 
@@ -412,7 +539,7 @@ A pressure vessel is one of the easiest systems to instrument fully. A pressure 
 | Compressed-air receiver | Cylinder | 32.0 MPa | 16.0 MPa | 10.9 | 3.66 mm |
 | Spherical accumulator | Sphere | 16.0 MPa | 16.0 MPa | 21.9 | 1.83 mm |
 
-The sphere at the same $p$, $r$, and $t$ as the receiver tank carries half the wall stress and needs half the minimum wall thickness.
+The sphere at the same $p$, $r$, and $t$ as the receiver tank carries half the wall stress and needs half the minimum wall thickness. Application 4 (the steam drum) adds the deformation and seam picture: at $p = 2.5$ MPa the 800 mm drum grows by $\Delta d = 0.213$ mm and $\Delta V \approx 895$ cm³, and its 75% riveted seam raises the required wall to 16.7 mm, above the 12.5 mm the solid plate alone would need.
 
 ### A Note on Tools
 
