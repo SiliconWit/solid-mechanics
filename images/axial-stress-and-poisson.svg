@@ -55,6 +55,6 @@
 <polygon points="660.0,188.0 656.6,182.0 663.4,182.0" fill="#1a4fd6" fill-opacity="1.0" stroke="#1a4fd6" stroke-width="0"/>
 <text x="760.0" y="300.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#1a4fd6" text-anchor="middle" font-weight="normal">the bar thins as it stretches (thinning exaggerated here)</text>
 <text x="584.2" y="352.0" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#333" text-anchor="start" font-weight="normal">ε(lateral) is negative while ε(longitudinal) is positive</text>
-<text x="626.9" y="384.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#1a4fd6" text-anchor="start" font-weight="bold">ν = − ε(lateral) / ε(longitudinal)</text>
-<text x="760.0" y="412.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="middle" font-weight="normal">about 0.3 for steel and aluminium, near 0.5 for rubber</text>
+<text x="626.9" y="384.0" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#1a4fd6" text-anchor="start" font-weight="bold">ν = - ε(lateral) / ε(longitudinal)</text>
+<text x="760.0" y="412.0" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#333" text-anchor="middle" font-weight="normal">a property of the material; typical values are listed in the text</text>
 </svg>

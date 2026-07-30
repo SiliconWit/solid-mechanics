@@ -111,10 +111,10 @@ Every result in this section, and every taper, step, or self-weight problem you 
 :::note[The four-step recipe]
 Work every varying-section problem the same way, and you never have to memorise the individual results:
 
-1. **Write $A(x)$** — the geometry, as a function of distance from one end (linear taper of a diameter, linear taper of a width, etc.)
-2. **Write $N(x)$** — the internal force. For an end-loaded bar it is simply the applied load $W$ everywhere; for self-weight it is the weight of the material below the cut.
+1. **Write $A(x)$**: the geometry, as a function of distance from one end (linear taper of a diameter, linear taper of a width, etc.)
+2. **Write $N(x)$**: the internal force. For an end-loaded bar it is simply the applied load $W$ everywhere; for self-weight it is the weight of the material below the cut.
 3. **Integrate** $N(x)\,dx / (A(x)E)$ from $0$ to $L$.
-4. **Locate the maximum stress separately** — it is at the *smallest area*, and it needs no integration at all: $\sigma_{max} = N/A_{min}$.
+4. **Locate the maximum stress separately**: it is at the *smallest area*, and it needs no integration at all: $\sigma_{max} = N/A_{min}$.
 :::
 
 #### Case A: Circular Bar Tapering Linearly (the standard case)
@@ -152,7 +152,7 @@ A bar of circular section tapers uniformly from diameter $D_1$ at the fixed end 
 </Steps>
 
 <Card title="What the Tapered-Bar Result Tells You" icon="document">
-- **Extension:** $\delta = \dfrac{4WL}{\pi E D_1 D_2}$ — symmetric in $D_1$ and $D_2$, so which end is fixed makes no difference to the total extension.
+- **Extension:** $\delta = \dfrac{4WL}{\pi E D_1 D_2}$, symmetric in $D_1$ and $D_2$, so which end is fixed makes no difference to the total extension.
 - **Maximum stress** is at the *small* end, where the area is least: $\sigma_{max} = \dfrac{4W}{\pi D_2^{\,2}}$
 - **Stress at any section** uses the local diameter: $\sigma(x) = \dfrac{4W}{\pi d(x)^2}$. At mid-length the diameter is the *arithmetic* mean, $d_{mid} = \dfrac{D_1 + D_2}{2}$, giving $\sigma_{mid} = \dfrac{16W}{\pi (D_1+D_2)^2}$.
 - **Equivalent uniform bar:** setting $\delta = WL/(A_{eq}E)$ gives $d_{eq} = \sqrt{D_1 D_2}$, the *geometric* mean of the end diameters. A uniform bar of that diameter stretches exactly as much as the taper.
@@ -222,7 +222,7 @@ A tensile test pulls a standard coupon to fracture while recording force and ext
 
 ![Panel (a): the complete stress-strain curve of a ductile steel to fracture, marking UTS and the necking region. Panel (b): the elastic and yield region magnified, showing the elastic line of slope E and the parallel 0.2% offset line intersecting the curve at the yield strength](./images/stress-strain-offset-construction.svg)
 
-The two panels are the same curve at different scales, and the scale change is the point: the elastic behaviour that governs every deflection calculation in this lesson occupies less than 2% of the strain axis. The 0.2% offset construction can only be drawn in the magnified view.
+The two panels are the same curve at different scales, and the scale change is the point: the elastic behaviour that governs every deflection calculation in this lesson occupies a small fraction of the strain axis, so the 0.2% offset construction can only be drawn in the magnified view. The axes are deliberately unnumbered because the shape is common to ductile metals while the values are not; the figures for one particular steel are worked out in Application 3 below.
 
 <Card title="Key Points on the Curve" icon="document">
 - **Proportional limit:** the highest stress at which stress and strain remain strictly proportional (the curve is still a straight line)
@@ -245,9 +245,9 @@ $$u_T \approx \text{area under the full stress-strain curve} \quad \text{(modulu
 Resilience measures how much elastic energy the material stores per unit volume before yielding. Toughness measures the total energy per unit volume absorbed before fracture, including all the plastic work.
 </Card>
 
-![Panel (a): the area under the entire stress-strain curve shaded, representing the modulus of toughness of about 95 MJ per cubic metre. Panel (b): the magnified elastic triangle shaded, representing the modulus of resilience of 306 kJ per cubic metre](./images/stress-strain-energy-areas.svg)
+![Panel (a): the area under the entire stress-strain curve shaded, labelled as the modulus of toughness, the integral of stress with respect to strain up to fracture. Panel (b): the magnified elastic triangle under the elastic line up to yield, labelled as the modulus of resilience, sigma yield squared over 2E](./images/stress-strain-energy-areas.svg)
 
-Both quantities are areas under the same curve, which is why they are so easily confused; the figure shows how different those areas are. The elastic triangle is roughly 310 times smaller than the total, so for a ductile metal the toughness is essentially all plastic work.
+Both quantities are areas under the same curve, which is why they are so easily confused, and the figure shows how different those areas are. For a ductile metal the elastic triangle is smaller than the total area by orders of magnitude, so the toughness is essentially all plastic work. Steps 2 and 3 of Application 3 evaluate both areas for a particular steel.
 
 ### Shear Modulus
 
@@ -399,7 +399,7 @@ In precision positioning systems, the stiffness criterion almost always sets the
 <InArticleAd />
 
 
-The shaft in Application 1 was uniform because it runs in bearings along its whole length. A drawbar or pull-rod is different: it is loaded in tension at one end and anchored at the other, nothing slides on it, and it moves with the axis, so every kilogram of it costs acceleration. That is exactly the case for a taper — put the metal where the stress is, and remove it where the stress is low.
+The shaft in Application 1 was uniform because it runs in bearings along its whole length. A drawbar or pull-rod is different: it is loaded in tension at one end and anchored at the other, nothing slides on it, and it moves with the axis, so every kilogram of it costs acceleration. That is exactly the case for a taper: put the metal where the stress is, and remove it where the stress is low.
 
 :::note[System Problem Statement]
 - **Component:** steel pull-rod, circular section, tapering linearly
